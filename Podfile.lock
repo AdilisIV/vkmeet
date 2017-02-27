@@ -1,0 +1,21 @@
+PODS:
+  - SwiftyVK (2.0.2)
+
+DEPENDENCIES:
+  - SwiftyVK (from `https://github.com/WE-St0r/SwiftyVK.git`)
+
+EXTERNAL SOURCES:
+  SwiftyVK:
+    :git: https://github.com/WE-St0r/SwiftyVK.git
+
+CHECKOUT OPTIONS:
+  SwiftyVK:
+    :commit: 55f55b4f09bec86debed07b661175559983d1f7d
+    :git: https://github.com/WE-St0r/SwiftyVK.git
+
+SPEC CHECKSUMS:
+  SwiftyVK: 7144fbc60287654b08f7a904ace0d81c8992d81c
+
+PODFILE CHECKSUM: 2b514908ac2fa535a87563c9a8b79b9f45a435cc
+
+COCOAPODS: 1.1.1
