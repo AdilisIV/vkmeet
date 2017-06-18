@@ -1,4 +1,4 @@
-// swiftlint:disable type_body_length
+// swiftlint:disable type_body_length identifier_name
 extension VK {
   ///Parameters for methods VK API
   public enum Arg: String, Hashable {
@@ -315,7 +315,10 @@ extension VK {
     case randomId = "random_id"
     case aid
     case gid
-
+    case deviceId = "device_id"
+    case sandbox
+    case settings
+    
     public var hashValue: Int {
       return self.rawValue.hashValue
     }

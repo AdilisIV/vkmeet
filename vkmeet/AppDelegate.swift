@@ -8,19 +8,63 @@
 
 import UIKit
 import SwiftyVK
+import GoogleMaps
+import UserNotifications
 
-
-var vkDelegateReference : VKDelegate?
+extension UIColor {
+    static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
+        return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)
+    }
+}
+//var vkDelegateReference : VKDelegate?
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    //var splashDelay = false
+    var vkdelegate: VKDelegatevkmeet!
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
-        vkDelegateReference = VKDelegatevkmeet()
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        //vkDelegateReference = VKDelegatevkmeet()
+        
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
+        })
+        
+        GMSServices.provideAPIKey("AIzaSyAsUExqj_siAnA7Pnsll0GbU49s_KumQ1I")
+        
+        vkdelegate = VKDelegatevkmeet.init()
+        VK.configure(withAppId: vkdelegate.appID, delegate: vkdelegate)
+        
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        self.window = UIWindow.init(frame: UIScreen.main.bounds)
+        let defaults = UserDefaults.standard
+        
+        if VK.state == .authorized {
+            if defaults.value(forKey: "city") != nil {
+                window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "navController")
+            } else {
+                window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "chooseCity")
+            }
+        } else {
+            window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "authorization")
+        }
+        
+        window?.makeKeyAndVisible()
+        
+        application.statusBarStyle = .lightContent
+        
+        let statusBarBackgroundView = UIView()
+        statusBarBackgroundView.backgroundColor = UIColor.rgb(red: 0, green: 0, blue: 0)
+        statusBarBackgroundView.alpha = 0.15
+        
+        window?.addSubview(statusBarBackgroundView)
+        window?.addConstraintsWithFormat(format: "H:|[v0]|", views: statusBarBackgroundView)
+        window?.addConstraintsWithFormat(format: "V:|[v0(20)]", views: statusBarBackgroundView)
+        
+        
         return true
     }
     
@@ -53,6 +97,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        application.applicationIconBadgeNumber = 0
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -64,5 +110,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DispatchQueue.main.asyncAfter(deadline: when, execute: closure)
     }
     
+}
+
+
+
+extension UIView {
+    func addConstraintsWithFormat(format: String, views: UIView...) {
+        var viewsDictionary = [String: UIView]()
+        for (index, view) in views.enumerated() {
+            let key = "v\(index)"
+            view.translatesAutoresizingMaskIntoConstraints = false
+            viewsDictionary[key] = view
+        }
+        
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
+    }
 }
 

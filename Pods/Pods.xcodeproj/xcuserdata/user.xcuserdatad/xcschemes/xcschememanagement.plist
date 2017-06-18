@@ -4,7 +4,27 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>AwesomeTextField.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-vkmeet.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -17,12 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>75493B3F2C3153C94CAE9435BD53E3ED</key>
+		<key>03AF6CA2679C881B9245CCAC2B73E426</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CD4D8A24EB135CC09BE47A35AB2AE17E</key>
+		<key>2458344336C6AFB494F77B2A73780F49</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6A897C83E7457D0716ED8DB87080BD44</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8942FD48A8EC3DE2A284A61403C8E982</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AA98FACB4AC80081222E2B139EDDBC4B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
