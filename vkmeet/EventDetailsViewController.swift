@@ -17,11 +17,9 @@ class EventDetailsViewController: UIViewController {
     
     @IBOutlet var willGoOutlet: WillGoButton!
     
-    
     @IBOutlet var addItemView: UIView!
     @IBOutlet var visualEffectView: UIVisualEffectView!
     var effect: UIVisualEffect!
-    
     
     @IBOutlet var blurBackImage: UIImageView!
     @IBOutlet var eventAvatar: UIImageView!
@@ -30,49 +28,18 @@ class EventDetailsViewController: UIViewController {
     @IBOutlet var eventMembersLabel: UILabel!
     @IBOutlet var eventDescription: UITextView!
     
-    
     @IBOutlet var smallMapView: GMSMapView!
     @IBOutlet var placeholderSmallMap: UIImageView!
     @IBOutlet var mapButtonOutlet: UIButton!
-    
     
     @IBOutlet var dateShadow: UIImageView!
 
     
     var selectedEventIDFromPrevView: String = ""
     
-    
-    
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
-    var arrRes = [[String:AnyObject]]() //Array of dictionary
-    
-    
-    var stringURL: String?
-    
-    var IDString: String?
-    
-    
-    var groupName = [String]()
-    var groupLatitude = [Double]()
-    var groupLongitude = [Double]()
-    
-    
-    // объявляю структуру
-    struct Event {
-        var id:String
-        var name: String
-        var image: String
-        var memb: String
-        var activity: String
-        var start: Int
-        var latitude: Double
-        var longitude: Double
-        var description: String
-        var url: URL
-    }
-    
-    var eventsArr = [Event]()
+    var eventsObject: Event?
 
     var willgoEventsID = [String]()
     var checkMark:Bool!
@@ -84,14 +51,14 @@ class EventDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let actionButton = DTZFloatingActionButton(frame:CGRect(x: view.frame.size.width - 56 - 14,
-                                                                y: view.frame.size.height - 56 - 14,
-                                                                width: 56,
-                                                                height: 56
+        let actionButton = DTZFloatingActionButton(frame:CGRect(
+            x: view.frame.size.width - 56 - 14,
+            y: view.frame.size.height - 56 - 14,
+            width: 56,
+            height: 56
         ))
         actionButton.handler = {
             button in
-            print("Hi!")
             
             let alert = UIAlertController.init(title: nil, message: "Вы уверены, что хотите поделиться этим мероприятием с друзьями?", preferredStyle: .alert)
             
@@ -99,7 +66,7 @@ class EventDetailsViewController: UIViewController {
             let ok = UIAlertAction.init(title: "Ок", style: .default) { action in
                 
                 let userId = Store.userID
-                APIWorker.uploadPostToWall(userID: userId!, activity: self.eventsArr[0].activity, url: self.stringUrl, eventTitle: self.eventsArr[0].name)
+                APIWorker.uploadPostToWall(userID: userId!, activity: self.eventsObject!.activity, url: self.stringUrl, eventTitle: self.eventsObject!.name)
                 
             }
             
@@ -112,12 +79,10 @@ class EventDetailsViewController: UIViewController {
         actionButton.isScrollView = true
         self.view.addSubview(actionButton)
         
-        //var defaults = UserDefaults.standard
         if self.defaults.value(forKey: "willgoevents") != nil {
             self.willgoEventsID = self.defaults.array(forKey: "willgoevents") as! [String]
         }
         
-        //willgoEventsID = ["146609781","133127050","147241231"]
         self.checkMark = false
         print(self.checkMark)
         
@@ -130,11 +95,6 @@ class EventDetailsViewController: UIViewController {
         navigationItem.titleView = titleLabel
         
         placeholderSmallMap.isHidden = true
-        
-        
-//        eventMarker.position = CLLocationCoordinate2D(latitude: 55.7494733, longitude: 37.3523193)
-//        eventMarker.title = "Moscow"
-//        eventMarker.map = mapView
         
     }
 
@@ -169,76 +129,51 @@ class EventDetailsViewController: UIViewController {
         Alamofire.request("http://onetwomeet.ru/events/eventbyid/\(eventID)").responseJSON { (responseData) -> Void in
             if((responseData.result.value) != nil) {
                 let swiftyJsonVar = JSON(responseData.result.value!)
-                print(swiftyJsonVar)
+                
+                var arrRes = [[String:AnyObject]]()
                 
                 if let resData = swiftyJsonVar.arrayObject {
-                    self.arrRes = resData as! [[String:AnyObject]]
+                    arrRes = resData as! [[String:AnyObject]]
                 }
                 
-//                var groupName = [String]()
-                var groupId = [String]()
-                var groupActivity = [String]()
-                var groupImage = [String]()
-                var groupMembers_count = [String]()
-//                var groupLatitude = [Double]()
-//                var groupLongitude = [Double]()
-                var groupDescription = [String]()
-                var groupURL = [URL]()
-                var groupStart = [Int]()
-                
-                
-                let id = self.arrRes[0]["id"]
-                let title = self.arrRes[0]["name"]
-                let activity = self.arrRes[0]["activity"]
-                let start = self.arrRes[0]["start"]
-                let img = self.arrRes[0]["photo"]
-                let memb = self.arrRes[0]["members"]?.stringValue
-                let latitude = self.arrRes[0]["latitude"]
-                let longitude = self.arrRes[0]["longitude"]
-                let description = self.arrRes[0]["description"]
-                let url = self.arrRes[0]["screenname"]
+                let id = arrRes[0]["id"]
+                let title = arrRes[0]["name"]
+                let activity = arrRes[0]["activity"]
+                let start = arrRes[0]["start"]
+                let img = arrRes[0]["photo"]
+                let memb = arrRes[0]["members"]
+                let latitude = arrRes[0]["latitude"]
+                let longitude = arrRes[0]["longitude"]
+                let description = arrRes[0]["description"]
+                let url = arrRes[0]["screenname"]
                 self.stringUrl = url as! String
                 let nsurl = URL(string: url as! String)
-
                 
-                groupId.append(id as! String)
-                self.groupName.append(title as! String)
-                groupActivity.append(activity as! String)
-                groupStart.append(start as! Int)
-                groupImage.append(img as! String)
-                groupMembers_count.append("Участников: " + memb! )
-                self.groupLatitude.append(latitude as! Double)
-                self.groupLongitude.append(longitude as! Double)
-                groupDescription.append(description as! String)
-                groupURL.append(nsurl!)
-                
-                let eventStruct = Event(id: groupId[0], name: self.groupName[0], image: groupImage[0], memb: groupMembers_count[0], activity: groupActivity[0], start: groupStart[0], latitude: self.groupLatitude[0], longitude: self.groupLongitude[0], description: groupDescription[0], url: groupURL[0])
-                
-                self.eventsArr.append(eventStruct)
+                self.eventsObject = Event.init(id: id as! String, name: title as! String, image: img as! String, memb: "Участников: \(memb!)", timeStart: start as! Int, activity: activity as! String, latitude: latitude as! Double, longitude: longitude as! Double, description: description as! String, url: nsurl!)
                 
                 
                 // заполнение UI
-                self.willGoOutlet.willgoID = self.eventsArr[0].id
-                self.dateLabel.text = self.eventsArr[0].activity
-                self.eventNameLabel.text = self.eventsArr[0].name
-                self.eventMembersLabel.text = self.eventsArr[0].memb
-                self.eventDescription.text = self.eventsArr[0].description
-                self.blurBackImage.sd_setImage(with: URL(string: self.eventsArr[0].image), placeholderImage: #imageLiteral(resourceName: "placeholder_toload"), options: [.continueInBackground, .progressiveDownload])
-                self.eventAvatar.sd_setImage(with: URL(string: self.eventsArr[0].image), placeholderImage: #imageLiteral(resourceName: "placeholder_toload"), options: [.continueInBackground, .progressiveDownload])
+                self.willGoOutlet.willgoID = self.eventsObject!.id
+                self.dateLabel.text = self.eventsObject?.activity
+                self.eventNameLabel.text = self.eventsObject?.name
+                self.eventMembersLabel.text = self.eventsObject?.memb
+                self.eventDescription.text = self.eventsObject?.description
+                self.blurBackImage.sd_setImage(with: URL(string: self.eventsObject!.image), placeholderImage: #imageLiteral(resourceName: "placeholder_toload"), options: [.continueInBackground, .progressiveDownload])
+                self.eventAvatar.sd_setImage(with: URL(string: self.self.eventsObject!.image), placeholderImage: #imageLiteral(resourceName: "placeholder_toload"), options: [.continueInBackground, .progressiveDownload])
                 
-                if (self.eventsArr[0].latitude == 0) {
+                if (self.eventsObject?.latitude == 0) {
                     self.mapButtonOutlet.isEnabled = false
                     self.placeholderSmallMap.isHidden = false
                 } else {
-                    let eventPosition = GMSCameraPosition.camera(withLatitude: self.eventsArr[0].latitude,
-                                                                 longitude: self.eventsArr[0].longitude,
+                    let eventPosition = GMSCameraPosition.camera(withLatitude: self.eventsObject!.latitude,
+                                                                 longitude: self.eventsObject!.longitude,
                                                                  zoom: 15,
                                                                  bearing: 270,
                                                                  viewingAngle: 45)
                     self.smallMapView.camera = eventPosition
                     let eventMarker = GMSMarker()
                     let markerColor = UIColor.rgb(red: 81, green: 192, blue: 171)
-                    eventMarker.position = CLLocationCoordinate2D(latitude: self.eventsArr[0].latitude, longitude: self.eventsArr[0].longitude)
+                    eventMarker.position = CLLocationCoordinate2D(latitude: self.eventsObject!.latitude, longitude: self.eventsObject!.longitude)
                     eventMarker.icon = GMSMarker.markerImage(with: markerColor)
                     eventMarker.map = self.smallMapView
                 }
@@ -249,7 +184,6 @@ class EventDetailsViewController: UIViewController {
                     print(self.checkMark)
                 } else {
                     self.willGoOutlet.backgroundColor = UIColor.rgb(red: 202, green: 219, blue: 236)
-                    //self.checkMark = true
                 }
                 
             } else {
@@ -258,45 +192,6 @@ class EventDetailsViewController: UIViewController {
         }
         
     }
-    
-    
-    /*func runGroupByID(eventID: String) {
-        
-        VK.API.Groups.getById([VK.Arg.groupId:"\(eventID)", VK.Arg.fields:"activity,members_count,start_date"]).send(
-            onSuccess: {
-                response in print("SwiftyVK: Groups.getById success \n \(response)")
-                
-                for i in 0..<response.count {
-                    
-                    let name = response[i,"name"].stringValue
-                    var activity = response[i,"activity"].stringValue
-                    let img = response[i,"photo_200"].stringValue
-                    var memb = response[i,"members_count"].stringValue
-                    let screenName = response[i,"place"].stringValue
-                    
-                    self.stringURL = "https://m.vk.com/" + screenName
-                    let url = URL(string: self.stringURL!)
-                    
-                    memb = "Участников: " + memb
-                    
-                    if response[i,"is_closed"] == 0 {
-                        print("Открыток сообщество")
-                    } else {
-                        memb = "?"
-                        activity = "Данные недоступны"
-                    }
-                }
-
-                let eventStruct = Event(id: self.groupID[0], name: self.groupName[0], image: self.groupImage[0], memb: self.groupMembers_count[0], timeStart: self.groupStart_date[0], activity: self.groupActivity[0], url: self.groupURL[0])
-                self.eventsArr.append(eventStruct)
-                
-        },
-            onError: {
-                error in print("SwiftyVK: Groups.getById fail \n \(error)")
-        }
-        )
-        
-    }*/
     
     
     func dataLoadFailed() {
@@ -311,7 +206,7 @@ class EventDetailsViewController: UIViewController {
     
     
     @IBAction func goToVKAction(_ sender: Any) {
-        let safaryVC = SFSafariViewController(url: self.eventsArr[0].url)
+        let safaryVC = SFSafariViewController(url: self.eventsObject!.url)
         safaryVC.delegate = self
         self.present(safaryVC, animated: true, completion: nil)
     }
@@ -321,9 +216,9 @@ class EventDetailsViewController: UIViewController {
         
         if segue.identifier == "goToMapView" {
             let controller = segue.destination as! mapViewController
-            controller.latitude = self.groupLatitude[0]
-            controller.longitude = self.groupLongitude[0]
-            controller.eventName = self.groupName[0]
+            controller.latitude = self.eventsObject!.latitude
+            controller.longitude = self.eventsObject!.longitude
+            controller.eventName = self.eventsObject!.name
         }
 
     }
@@ -376,18 +271,17 @@ class EventDetailsViewController: UIViewController {
                 let nowDate = Date()
                 let timeInterval = nowDate.timeIntervalSince1970
                 let nowDateInSeconds = Int(timeInterval)
-                let time = self.eventsArr[0].start - nowDateInSeconds - 4900
-                
+                let time = self.eventsObject!.timeStart - nowDateInSeconds - 4900
                 
                 self.willGoOutlet.backgroundColor = UIColor.rgb(red: 81, green: 192, blue: 171)
                 
-                self.willgoEventsID.append(self.eventsArr[0].id)
-                print("Добавление в willgoEventsID элемента - \(self.eventsArr[0].id)")
+                self.willgoEventsID.append(self.eventsObject!.id)
+                print("Добавление в willgoEventsID элемента - \(self.eventsObject!.id)")
                 print("willgoEventsID: \(self.willgoEventsID)")
                 self.defaults.set(self.willgoEventsID, forKey: "willgoevents")
                 print("UserDefaults for key:willdoevents - \(self.defaults.array(forKey: "willgoevents") as! [String])")
                 
-                self.scheduleNotification(inSeconds: 20, id: self.selectedEventIDFromPrevView, subtitle: self.eventsArr[0].name, body: self.eventsArr[0].activity, completion: { (success) in
+                self.scheduleNotification(inSeconds: TimeInterval(time), id: self.selectedEventIDFromPrevView, subtitle: self.eventsObject!.name, body: self.eventsObject!.activity, completion: { (success) in
                     if success {
                         print("We send this Notification")
                     } else {
@@ -405,12 +299,11 @@ class EventDetailsViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
             
         } else {
-            //willGoOutlet.backgroundColor = UIColor.rgb(red: 202, green: 219, blue: 236)
             let alert = UIAlertController.init(title: nil, message: "Удалить напоминание о мероприятиии?", preferredStyle: .alert)
             let ok = UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
                 self.removeNotifications(withIdentifiers: [self.selectedEventIDFromPrevView])
                 self.willGoOutlet.backgroundColor = UIColor.rgb(red: 202, green: 219, blue: 236)
-                let indexOfEvent = self.willgoEventsID.index(of: self.eventsArr[0].id)
+                let indexOfEvent = self.willgoEventsID.index(of: self.eventsObject!.id)
                 self.willgoEventsID.remove(at: indexOfEvent!)
                 self.defaults.set(self.willgoEventsID, forKey: "willgoevents")
             })
@@ -457,7 +350,6 @@ class EventDetailsViewController: UIViewController {
     
     
     func setupViews() {
-        
         // eventAvatar
         eventAvatar.layer.cornerRadius = 10
         eventAvatar.layer.masksToBounds = true
@@ -470,7 +362,6 @@ class EventDetailsViewController: UIViewController {
         dateShadow.layer.shadowRadius = 5
         dateShadow.layer.shadowOffset = CGSize.zero
         dateShadow.layer.shadowPath = UIBezierPath(rect: dateShadow.bounds).cgPath
-        
     }
     
 

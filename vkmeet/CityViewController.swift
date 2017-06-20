@@ -21,11 +21,7 @@ class CityViewController: UIViewController,  UIPickerViewDelegate, UIPickerViewD
     
     var indexSelectedRow = ""
     
-    struct City {
-        var id: String
-        var title: String
-    }
-    
+    //var CityObject: City?
     var citiesData = [City]()
     
     
@@ -52,8 +48,8 @@ class CityViewController: UIViewController,  UIPickerViewDelegate, UIPickerViewD
                         let id = arrRes[i]["id"]
                         let title = arrRes[i]["name"]
                         
-                        let cityStruct = City(id: id as! String, title: title as! String)
-                        self.citiesData.append(cityStruct)
+                        let cityObject = City.init(id: id as! String, title: title as! String)
+                        self.citiesData.append(cityObject)
                         print(self.citiesData[i].title)
                         
                     }

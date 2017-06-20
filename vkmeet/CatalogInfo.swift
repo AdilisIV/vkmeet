@@ -18,46 +18,13 @@ class CatalogInfo: UIViewController, UITableViewDataSource, UITableViewDelegate 
 
     @IBOutlet var visualEffectView: UIVisualEffectView!
     var effect: UIVisualEffect!
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     //var customCell : CustomCell?
     
     var indexSelectedRowID: String = ""
-    
     var selectedCityFromPrevView: String = ""
-    
-    
-    var groupID = [String]()
-    var groupName = [String]()
-    var groupActivity = [String]()
-    var groupImage = [String]()
-    var groupStart_date = [Int]()
-    var groupMembers_count = [String]()
-//    var groupLatitude = [Double]()
-//    var groupLongitude = [Double]()
-//    var groupDescription = [String]()
-//    var groupURL = [URL]()
 
-
-    
-    // объявляю структуру
-    struct Event {
-        var id: String
-        var name: String
-        var image: String
-        var memb: String
-        var timeStart: Int
-        var activity: String
-//        var url: URL
-//        var latitude: Double
-//        var longitude: Double
-    }
-    
     var eventsArr = [Event]()
-    
-    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
-    
-    
-    var arrRes = [[String:AnyObject]]() //Array of dictionary
-    
     
     var willgoEventsID = [String]()
     
@@ -65,13 +32,11 @@ class CatalogInfo: UIViewController, UITableViewDataSource, UITableViewDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // получаем id города, который выбрал пользователь
+        // id в UserDefaults записывается в классе CityViewController
         let defaults = UserDefaults.standard
         let userCity = defaults.string(forKey: "city")
         
-//        if defaults.value(forKey: "willgoevents") != nil {
-//            willgoEventsID = defaults.array(forKey: "willgoevents") as! [String]
-//        }
-        //willgoEventsID = ["146609781","133127050","147241231"]
         
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
@@ -85,81 +50,51 @@ class CatalogInfo: UIViewController, UITableViewDataSource, UITableViewDelegate 
     }
     
     
+    // при каждом показе View обновляем данные, сверяясь с UserDefaults
+    // и делая willGoButton активной (зеленой), есди event добавлен в UserDefaults
     override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear method")
-        
         let defaults = UserDefaults.standard
         if defaults.value(forKey: "willgoevents") != nil {
             willgoEventsID = defaults.array(forKey: "willgoevents") as! [String]
         }
         self.CatalogTable!.reloadData()
-        //let userCity = defaults.string(forKey: "city")
-        //self.getEvents(city: userCity!)
     }
     
     
+    // получаем данные, записываем в массив, обновляем данные в таблице
     func getEvents(city: String) {
         
         Alamofire.request("http://onetwomeet.ru/events/\(city)").responseJSON { (responseData) -> Void in
             if((responseData.result.value) != nil) {
                 let swiftyJsonVar = JSON(responseData.result.value!)
-                //print(swiftyJsonVar)
+                
+                var arrRes = [[String:AnyObject]]()
                 
                 if let resData = swiftyJsonVar.arrayObject {
-                    self.arrRes = resData as! [[String:AnyObject]]
+                    arrRes = resData as! [[String:AnyObject]]
                 }
                 
-                for i in 0..<self.arrRes.count {
-                    let id = self.arrRes[i]["id"]
-                    let title = self.arrRes[i]["name"]
-                    let activity = self.arrRes[i]["activity"]
-                    let img = self.arrRes[i]["photo"]
-                    let dateStart = self.arrRes[i]["start"]
-                    let memb = self.arrRes[i]["members"]?.stringValue
-//                    let latitude = self.arrRes[i]["latitude"]
-//                    let longitude = self.arrRes[i]["longitude"]
-//                    let description = self.arrRes[i]["description"]
-//                    let url = self.arrRes[i]["screenname"]
-                    //print("TITLE: \(self.arrRes[i]["name"])")
-                    
-                    
-                    //let nsurl = URL(string: url as! String)
-                    //print("URL: \(nsurl)")
-
-                    self.groupID.append(id as! String)
-                    self.groupName.append(title as! String)
-                    self.groupActivity.append(activity as! String)
-                    self.groupImage.append(img as! String)
-                    self.groupStart_date.append(dateStart as! Int)
-                    self.groupMembers_count.append("Участников: " + memb! )
-//                    self.groupLatitude.append(latitude as! Double)
-//                    self.groupLongitude.append(longitude as! Double)
-//                    self.groupURL.append(nsurl!)
-
-                }
-                
-                
-                if self.groupStart_date != [] {
-                    DispatchQueue.main.async {
+                DispatchQueue.main.async {
+                    for i in 0..<arrRes.count {
+                        let id = arrRes[i]["id"]
+                        let title = arrRes[i]["name"]
+                        let activity = arrRes[i]["activity"]
+                        let img = arrRes[i]["photo"]
+                        let dateStart = arrRes[i]["start"]
+                        let memb = arrRes[i]["members"]
                         
-                        print("Число полученных ID: \(self.groupID.count)")
-                        for j in 0..<self.groupID.count {
-                            //print("Вот j: \(j)")
-                            
-                            let eventStruct = Event(id: self.groupID[j], name: self.groupName[j], image: self.groupImage[j], memb: self.groupMembers_count[j], timeStart: self.groupStart_date[j], activity: self.groupActivity[j])
-                            
-                            self.eventsArr.append(eventStruct)
-                        }
-                        
-                        self.stopActivityIndicator()
-                        self.CatalogTable!.reloadData()
+                        let eventObject = Event.init(id: id as! String, name: title as! String, image: img as! String, memb: String(describing: memb), timeStart: dateStart as! Int, activity: activity as! String, latitude: nil, longitude: nil, description: nil, url: nil)
+                        self.eventsArr.append(eventObject)
                     }
                     
+                    self.stopActivityIndicator()
+                    self.CatalogTable!.reloadData()
                 }
-       
+
             } else {
                 self.dataLoadFailed()
             }
+            
         }
         
     }
@@ -176,8 +111,7 @@ class CatalogInfo: UIViewController, UITableViewDataSource, UITableViewDelegate 
     }
 
 
-    @IBAction func willGoButton(_ sender: Any) {
-    }
+    @IBAction func willGoButton(_ sender: Any) {}
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -187,15 +121,6 @@ class CatalogInfo: UIViewController, UITableViewDataSource, UITableViewDelegate 
         if segue.identifier == "goToEventDetails" {
             (segue.destination as! EventDetailsViewController).selectedEventIDFromPrevView = indexSelectedRowID
         }
-        
-//        let controller = segue.destination as! EventDetailsViewController
-//        controller.selectedEventIDFromPrevView = indexSelectedRowID
-        
-//        if let navVC = segue.destination as? UINavigationController {
-//            if let eventDetails = navVC.viewControllers[0] as? EventDetailsViewController {
-//                eventDetails.selectedEventIDFromPrevView = indexSelectedRowID
-//            }
-//        }
         
     }
     
@@ -219,7 +144,6 @@ class CatalogInfo: UIViewController, UITableViewDataSource, UITableViewDelegate 
     
     func stopActivityIndicator() {
         activityIndicator.stopAnimating()
-        //UIApplication.shared.endIgnoringInteractionEvents()
     }
     
     
@@ -297,11 +221,6 @@ class CatalogInfo: UIViewController, UITableViewDataSource, UITableViewDelegate 
         self.indexSelectedRowID = selectedEvent.id
         
         performSegue(withIdentifier: "goToEventDetails", sender: self)
-        
-//        let selectedEvent = eventsArr[indexPath.row]
-//        let safaryVC = SFSafariViewController(url: (selectedEvent.url))
-//        safaryVC.delegate = self
-//        self.present(safaryVC, animated: true, completion: nil)
         
     }
 

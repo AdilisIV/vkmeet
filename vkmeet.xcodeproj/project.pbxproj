@@ -21,6 +21,8 @@
 		CE1B4C891E7592DD005647F1 /* CatalogInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE20E3F41E6F50270002D4C7 /* CatalogInfo.swift */; };
 		CE1DFA3C1ECBB8BE0066AA7F /* arial-black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE1DFA3B1ECBB8A00066AA7F /* arial-black.ttf */; };
 		CE1DFA3E1ED0BE920066AA7F /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1DFA3D1ED0BE910066AA7F /* EventDetailsViewController.swift */; };
+		CE32A9D61EF90B7600D60583 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9D51EF90B7600D60583 /* Event.swift */; };
+		CE32A9D81EF90DD900D60583 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9D71EF90DD900D60583 /* City.swift */; };
 		CE3775CB1EF2C15A0070BAB0 /* LaunchScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3775CA1EF2C15A0070BAB0 /* LaunchScreenController.swift */; };
 		CE3F601A1E7CFD8600CA207C /* SettingsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F60191E7CFD8600CA207C /* SettingsNavigationController.swift */; };
 		CE503F091ED5FAC3003027D8 /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE503F081ED5FAC3003027D8 /* mapViewController.swift */; };
@@ -53,6 +55,8 @@
 		CE1DFA3B1ECBB8A00066AA7F /* arial-black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "arial-black.ttf"; path = "../../../Desktop/Sochi_presentation/Design/Source_All_Events_Screen/arial-black.ttf"; sourceTree = "<group>"; };
 		CE1DFA3D1ED0BE910066AA7F /* EventDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		CE20E3F41E6F50270002D4C7 /* CatalogInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogInfo.swift; sourceTree = "<group>"; };
+		CE32A9D51EF90B7600D60583 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		CE32A9D71EF90DD900D60583 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		CE3775CA1EF2C15A0070BAB0 /* LaunchScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenController.swift; sourceTree = "<group>"; };
 		CE3853B01E2D469200D570AE /* CityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityViewController.swift; sourceTree = "<group>"; };
 		CE3F60191E7CFD8600CA207C /* SettingsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNavigationController.swift; sourceTree = "<group>"; };
@@ -178,6 +182,8 @@
 				CEBE8A561E619269000089FA /* CustomCell.swift */,
 				CE17D4111E7D78790021273C /* CustomTextField.swift */,
 				CE6FECB01ED7EC13004D2E43 /* WillGoButton.swift */,
+				CE32A9D51EF90B7600D60583 /* Event.swift */,
+				CE32A9D71EF90DD900D60583 /* City.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -338,6 +344,8 @@
 				CE17D4141E7DCA9C0021273C /* UserSettingsViewController.swift in Sources */,
 				CE01D5A91E2A7FCE00C77574 /* VKDelegatevkmeet.swift in Sources */,
 				CE61BAF11E65F40300F3A796 /* TestAPIViewController.swift in Sources */,
+				CE32A9D81EF90DD900D60583 /* City.swift in Sources */,
+				CE32A9D61EF90B7600D60583 /* Event.swift in Sources */,
 				CE503F091ED5FAC3003027D8 /* mapViewController.swift in Sources */,
 				CE6FECB11ED7EC13004D2E43 /* WillGoButton.swift in Sources */,
 				CE01D5AB1E2A80C100C77574 /* APIWorker.swift in Sources */,
