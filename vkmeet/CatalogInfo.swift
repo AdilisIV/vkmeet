@@ -15,7 +15,6 @@ class CatalogInfo: UIViewController, UITableViewDataSource, UITableViewDelegate 
     
     @IBOutlet var CatalogTable: UITableView!
     @IBOutlet var addItemView: PopupMenuView!
-
     @IBOutlet var visualEffectView: UIVisualEffectView!
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()

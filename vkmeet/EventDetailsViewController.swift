@@ -224,11 +224,11 @@ class EventDetailsViewController: UIViewController {
     
     
     @IBAction func addItem(_ sender: Any) {
-        addItemView.animateIn(parrentView: self.view, popupView: addItemView, visualEffect: <#T##UIVisualEffectView#>)
+        addItemView.animateIn(parrentView: self.view, popupView: addItemView, visualEffect: visualEffectView)
     }
     
     @IBAction func dismissPopUp(_ sender: Any) {
-        animateOut()
+        addItemView.animateOut(parrentView: self.view, popupView: addItemView, visualEffect: visualEffectView)
     }
     
     
