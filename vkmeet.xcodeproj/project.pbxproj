@@ -23,6 +23,7 @@
 		CE1DFA3E1ED0BE920066AA7F /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1DFA3D1ED0BE910066AA7F /* EventDetailsViewController.swift */; };
 		CE32A9D61EF90B7600D60583 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9D51EF90B7600D60583 /* Event.swift */; };
 		CE32A9D81EF90DD900D60583 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9D71EF90DD900D60583 /* City.swift */; };
+		CE32A9DA1EF93D7B00D60583 /* PopupMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9D91EF93D7B00D60583 /* PopupMenuView.swift */; };
 		CE3775CB1EF2C15A0070BAB0 /* LaunchScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3775CA1EF2C15A0070BAB0 /* LaunchScreenController.swift */; };
 		CE3F601A1E7CFD8600CA207C /* SettingsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F60191E7CFD8600CA207C /* SettingsNavigationController.swift */; };
 		CE503F091ED5FAC3003027D8 /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE503F081ED5FAC3003027D8 /* mapViewController.swift */; };
@@ -57,6 +58,7 @@
 		CE20E3F41E6F50270002D4C7 /* CatalogInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogInfo.swift; sourceTree = "<group>"; };
 		CE32A9D51EF90B7600D60583 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		CE32A9D71EF90DD900D60583 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		CE32A9D91EF93D7B00D60583 /* PopupMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupMenuView.swift; sourceTree = "<group>"; };
 		CE3775CA1EF2C15A0070BAB0 /* LaunchScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenController.swift; sourceTree = "<group>"; };
 		CE3853B01E2D469200D570AE /* CityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityViewController.swift; sourceTree = "<group>"; };
 		CE3F60191E7CFD8600CA207C /* SettingsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNavigationController.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				CE6FECB01ED7EC13004D2E43 /* WillGoButton.swift */,
 				CE32A9D51EF90B7600D60583 /* Event.swift */,
 				CE32A9D71EF90DD900D60583 /* City.swift */,
+				CE32A9D91EF93D7B00D60583 /* PopupMenuView.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				CE503F091ED5FAC3003027D8 /* mapViewController.swift in Sources */,
 				CE6FECB11ED7EC13004D2E43 /* WillGoButton.swift in Sources */,
 				CE01D5AB1E2A80C100C77574 /* APIWorker.swift in Sources */,
+				CE32A9DA1EF93D7B00D60583 /* PopupMenuView.swift in Sources */,
 				CE89EEF51E7C4BA90066C6FD /* Store.swift in Sources */,
 				CE1DFA3E1ED0BE920066AA7F /* EventDetailsViewController.swift in Sources */,
 				CE01D58D1E2A62F400C77574 /* AppDelegate.swift in Sources */,

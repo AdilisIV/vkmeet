@@ -545,7 +545,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a5x-C0-hi1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view clipsSubviews="YES" contentMode="scaleToFill" id="Eye-uq-4Ed">
+                <view clipsSubviews="YES" contentMode="scaleToFill" id="Eye-uq-4Ed" customClass="PopupMenuView" customModule="vkmeet" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="321" height="700"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
@@ -861,7 +861,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="76s-aW-UIU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view clipsSubviews="YES" contentMode="scaleToFill" id="yJE-pB-H9p">
+                <view clipsSubviews="YES" contentMode="scaleToFill" id="yJE-pB-H9p" customClass="PopupMenuView" customModule="vkmeet" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="321" height="700"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>

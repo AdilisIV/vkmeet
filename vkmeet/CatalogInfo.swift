@@ -14,10 +14,10 @@ import SafariServices
 class CatalogInfo: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var CatalogTable: UITableView!
-    @IBOutlet var addItemView: UIView!
+    @IBOutlet var addItemView: PopupMenuView!
 
     @IBOutlet var visualEffectView: UIVisualEffectView!
-    var effect: UIVisualEffect!
+    
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     //var customCell : CustomCell?
     
@@ -147,39 +147,12 @@ class CatalogInfo: UIViewController, UITableViewDataSource, UITableViewDelegate 
     }
     
     
-    func animateIn() {
-        self.view.addSubview(addItemView)
-        addItemView.center = self.view.center
-        
-        addItemView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-        addItemView.alpha = 0
-        
-        UIView.animate(withDuration: 0.4) {
-            self.visualEffectView.effect = self.effect
-            self.addItemView.alpha = 1
-            self.addItemView.transform = CGAffineTransform.identity
-        }
-    }
-    
-    
-    func animateOut() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.addItemView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-            self.addItemView.alpha = 0
-            
-            self.visualEffectView.effect = nil
-        }) { (success: Bool) in
-            self.addItemView.removeFromSuperview()
-        }
-    }
-    
-    
     @IBAction func addItem(_ sender: Any) {
-        animateIn()
+        addItemView.animateIn(parrentView: self.view, popupView: addItemView, visualEffect: visualEffectView)
     }
     
     @IBAction func dismissPopUp(_ sender: Any) {
-        animateOut()
+        addItemView.animateOut(parrentView: self.view, popupView: addItemView, visualEffect: visualEffectView)
     }
     
 
