@@ -65,7 +65,7 @@ class EventDetailsViewController: UIViewController {
             let ok = UIAlertAction.init(title: "Ок", style: .default) { action in
                 
                 let userId = Store.userID
-                APIWorker.uploadPostToWall(userID: userId!, activity: self.eventsObject!.activity, url: self.stringUrl, eventTitle: self.eventsObject!.name)
+                VKAPIWorker.uploadPostToWall(userID: userId!, activity: self.eventsObject!.activity, url: self.stringUrl, eventTitle: self.eventsObject!.name)
                 
             }
             

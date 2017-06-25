@@ -83,7 +83,7 @@ class ViewController: UIViewController, VKAuthorizationObserver {
     @IBAction func buttonDown(_ sender: Any) {
         startLoadIndication()
         if InternetChecker.check() {
-            APIWorker.authorize()
+            VKAPIWorker.authorize()
         } else {
             stopLoadIndication()
             showConnectionErrorWithAlert()

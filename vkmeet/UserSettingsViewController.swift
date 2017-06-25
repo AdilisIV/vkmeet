@@ -29,7 +29,7 @@ class UserSettingsViewController: UIViewController {
             
             UserDefaults.standard.removeObject(forKey: "city")
             
-            APIWorker.action(2)
+            VKAPIWorker.action(2)
             let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
             let viewController = storyboard.instantiateViewController(withIdentifier: "authorization") as! ViewController
             let appDelegate = UIApplication.shared.delegate as! AppDelegate

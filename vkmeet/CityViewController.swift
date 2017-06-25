@@ -14,14 +14,13 @@ import SwiftyJSON
 
 
 
-class CityViewController: UIViewController,  UIPickerViewDelegate, UIPickerViewDataSource {
+class CityViewController: LiveViewController,  UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var cityPickerView: UIPickerView!
     
     
     var indexSelectedRow = ""
     
-    //var CityObject: City?
     var citiesData = [City]()
     
     
@@ -31,40 +30,26 @@ class CityViewController: UIViewController,  UIPickerViewDelegate, UIPickerViewD
         cityPickerView.delegate = self
         cityPickerView.dataSource = self
         
-        
-        Alamofire.request("http://onetwomeet.ru/cities").responseJSON { (responseData) -> Void in
-            if((responseData.result.value) != nil) {
-                let swiftyJsonVar = JSON(responseData.result.value!)
-                print(swiftyJsonVar)
-                
-                var arrRes = [[String:AnyObject]]()
-                
-                if let resData = swiftyJsonVar.arrayObject {
-                    arrRes = resData as! [[String:AnyObject]]
-                }
-                
-                DispatchQueue.main.async {
-                    for i in 0..<arrRes.count {
-                        let id = arrRes[i]["id"]
-                        let title = arrRes[i]["name"]
-                        
-                        let cityObject = City.init(id: id as! String, title: title as! String)
-                        self.citiesData.append(cityObject)
-                        print(self.citiesData[i].title)
-                        
-                    }
-                    self.indexSelectedRow = self.citiesData[0].id
-                    self.cityPickerView.reloadAllComponents()
-                }
-                
-            }
-        }
-        
-        
-
+        loadCities()
     }
     
     
+    func loadCities() {
+        startLoadIndication()
+        Store.repository.extractCities { (cities, error, source) in
+            if source == .server {
+                // stop indication
+                self.stopLoadIndication()
+            }
+            if error == nil {
+                self.citiesData = cities
+                self.indexSelectedRow = self.citiesData[0].id
+                DispatchQueue.main.async {
+                    self.cityPickerView.reloadAllComponents()
+                }
+            }
+        }
+    }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

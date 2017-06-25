@@ -10,7 +10,7 @@ import Foundation
 import SwiftyVK
 
 
-final class APIWorker {
+final class VKAPIWorker {
     
     
     

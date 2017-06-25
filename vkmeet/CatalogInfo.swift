@@ -82,7 +82,7 @@ class CatalogInfo: UIViewController, UITableViewDataSource, UITableViewDelegate 
                         let dateStart = arrRes[i]["start"]
                         let memb = arrRes[i]["members"]
                         
-                        let eventObject = Event.init(id: id as! String, name: title as! String, image: img as! String, memb: String(describing: memb), timeStart: dateStart as! Int, activity: activity as! String, latitude: nil, longitude: nil, description: nil, url: nil)
+                        let eventObject = Event.init(id: id as! String, name: title as! String, image: img as! String, memb: "Участников: \(memb!)", timeStart: dateStart as! Int, activity: activity as! String, latitude: nil, longitude: nil, description: nil, url: nil)
                         self.eventsArr.append(eventObject)
                     }
                     

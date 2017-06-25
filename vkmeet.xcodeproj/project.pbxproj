@@ -13,7 +13,7 @@
 		CE01D5921E2A62F400C77574 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE01D5901E2A62F400C77574 /* Main.storyboard */; };
 		CE01D5941E2A62F400C77574 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE01D5931E2A62F400C77574 /* Assets.xcassets */; };
 		CE01D5A91E2A7FCE00C77574 /* VKDelegatevkmeet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01D5A81E2A7FCE00C77574 /* VKDelegatevkmeet.swift */; };
-		CE01D5AB1E2A80C100C77574 /* APIWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01D5AA1E2A80C100C77574 /* APIWorker.swift */; };
+		CE01D5AB1E2A80C100C77574 /* VKAPIWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01D5AA1E2A80C100C77574 /* VKAPIWorker.swift */; };
 		CE06DDED1EDC9C3800DCB5DB /* LaunchScreenTwo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE06DDEC1EDC9C3800DCB5DB /* LaunchScreenTwo.storyboard */; };
 		CE0DBF4F1E9AC54D0087A6C6 /* CityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3853B01E2D469200D570AE /* CityViewController.swift */; };
 		CE17D4121E7D78790021273C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE17D4111E7D78790021273C /* CustomTextField.swift */; };
@@ -24,7 +24,8 @@
 		CE32A9D61EF90B7600D60583 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9D51EF90B7600D60583 /* Event.swift */; };
 		CE32A9D81EF90DD900D60583 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9D71EF90DD900D60583 /* City.swift */; };
 		CE32A9DA1EF93D7B00D60583 /* PopupMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9D91EF93D7B00D60583 /* PopupMenuView.swift */; };
-		CE3775CB1EF2C15A0070BAB0 /* LaunchScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3775CA1EF2C15A0070BAB0 /* LaunchScreenController.swift */; };
+		CE32A9DC1EF9B22900D60583 /* MeetWayAPIWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9DB1EF9B22900D60583 /* MeetWayAPIWorker.swift */; };
+		CE32A9DE1EFA517400D60583 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9DD1EFA517400D60583 /* Repository.swift */; };
 		CE3F601A1E7CFD8600CA207C /* SettingsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F60191E7CFD8600CA207C /* SettingsNavigationController.swift */; };
 		CE503F091ED5FAC3003027D8 /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE503F081ED5FAC3003027D8 /* mapViewController.swift */; };
 		CE544E811E7FC15800503106 /* SwiftyVK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE544E801E7FC15800503106 /* SwiftyVK.framework */; };
@@ -33,6 +34,7 @@
 		CE6FECB11ED7EC13004D2E43 /* WillGoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FECB01ED7EC13004D2E43 /* WillGoButton.swift */; };
 		CE89EEF51E7C4BA90066C6FD /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE89EEF41E7C4BA90066C6FD /* Store.swift */; };
 		CE89EEF81E7C65E60066C6FD /* InternetChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE89EEF71E7C65E60066C6FD /* InternetChecker.swift */; };
+		CEA1FB231EFFA1C10068259C /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA1FB221EFFA1C00068259C /* LiveViewController.swift */; };
 		CEB4C0C81EDB1B01001582E6 /* DTZFloatingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB4C0C61EDB1B01001582E6 /* DTZFloatingActionButton.swift */; };
 		CEBE8A571E619269000089FA /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBE8A561E619269000089FA /* CustomCell.swift */; };
 /* End PBXBuildFile section */
@@ -48,7 +50,7 @@
 		CE01D5931E2A62F400C77574 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE01D5981E2A62F400C77574 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE01D5A81E2A7FCE00C77574 /* VKDelegatevkmeet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKDelegatevkmeet.swift; sourceTree = "<group>"; };
-		CE01D5AA1E2A80C100C77574 /* APIWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIWorker.swift; sourceTree = "<group>"; };
+		CE01D5AA1E2A80C100C77574 /* VKAPIWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAPIWorker.swift; sourceTree = "<group>"; };
 		CE06DDEC1EDC9C3800DCB5DB /* LaunchScreenTwo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreenTwo.storyboard; sourceTree = "<group>"; };
 		CE0C87001E73C519007E2AE4 /* vkmeet-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "vkmeet-Bridging-Header.h"; sourceTree = "<group>"; };
 		CE17D4111E7D78790021273C /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -59,17 +61,19 @@
 		CE32A9D51EF90B7600D60583 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		CE32A9D71EF90DD900D60583 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		CE32A9D91EF93D7B00D60583 /* PopupMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupMenuView.swift; sourceTree = "<group>"; };
-		CE3775CA1EF2C15A0070BAB0 /* LaunchScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenController.swift; sourceTree = "<group>"; };
+		CE32A9DB1EF9B22900D60583 /* MeetWayAPIWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetWayAPIWorker.swift; sourceTree = "<group>"; };
+		CE32A9DD1EFA517400D60583 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		CE3853B01E2D469200D570AE /* CityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityViewController.swift; sourceTree = "<group>"; };
 		CE3F60191E7CFD8600CA207C /* SettingsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNavigationController.swift; sourceTree = "<group>"; };
 		CE503F081ED5FAC3003027D8 /* mapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapViewController.swift; sourceTree = "<group>"; };
 		CE544E801E7FC15800503106 /* SwiftyVK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyVK.framework; path = "../../../Library/Developer/Xcode/DerivedData/vkmeet-genbgkzyjwtwxfabcikzugtqegmv/Build/Products/Debug-iphoneos/SwiftyVK/SwiftyVK.framework"; sourceTree = "<group>"; };
-		CE5C76231ED896A1001AE557 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		CE61BAF01E65F40300F3A796 /* TestAPIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestAPIViewController.swift; sourceTree = "<group>"; };
 		CE65651B1EC8AF930070EAB1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../Library/Developer/Xcode/DerivedData/vkmeet-genbgkzyjwtwxfabcikzugtqegmv/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		CE6FECB01ED7EC13004D2E43 /* WillGoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WillGoButton.swift; sourceTree = "<group>"; };
 		CE89EEF41E7C4BA90066C6FD /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		CE89EEF71E7C65E60066C6FD /* InternetChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetChecker.swift; sourceTree = "<group>"; };
+		CEA1FB211EFA7F090068259C /* MVC.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MVC.playground; sourceTree = "<group>"; };
+		CEA1FB221EFFA1C00068259C /* LiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
 		CEB4C0C61EDB1B01001582E6 /* DTZFloatingActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DTZFloatingActionButton.swift; path = "../../../../Downloads/DTZFloatingActionButton-master/DTZFloatingActionButton/Classes/DTZFloatingActionButton.swift"; sourceTree = "<group>"; };
 		CEBE8A561E619269000089FA /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,6 +148,7 @@
 		CE89EEF31E7C4B260066C6FD /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				CE32A9DD1EFA517400D60583 /* Repository.swift */,
 				CE89EEF41E7C4BA90066C6FD /* Store.swift */,
 			);
 			name = Store;
@@ -156,6 +161,7 @@
 				CE01D5A81E2A7FCE00C77574 /* VKDelegatevkmeet.swift */,
 				CE89EEF71E7C65E60066C6FD /* InternetChecker.swift */,
 				CE3F60191E7CFD8600CA207C /* SettingsNavigationController.swift */,
+				CEA1FB221EFFA1C00068259C /* LiveViewController.swift */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -163,15 +169,14 @@
 		CEBE8A4E1E5E0893000089FA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				CE3775CA1EF2C15A0070BAB0 /* LaunchScreenController.swift */,
+				CE3853B01E2D469200D570AE /* CityViewController.swift */,
 				CE503F081ED5FAC3003027D8 /* mapViewController.swift */,
 				CE1DFA3D1ED0BE910066AA7F /* EventDetailsViewController.swift */,
 				CE20E3F41E6F50270002D4C7 /* CatalogInfo.swift */,
-				CE3853B01E2D469200D570AE /* CityViewController.swift */,
 				CE01D58E1E2A62F400C77574 /* ViewController.swift */,
 				CE61BAF01E65F40300F3A796 /* TestAPIViewController.swift */,
 				CE17D4131E7DCA9C0021273C /* UserSettingsViewController.swift */,
-				CE5C76231ED896A1001AE557 /* MyPlayground.playground */,
+				CEA1FB211EFA7F090068259C /* MVC.playground */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -179,11 +184,12 @@
 		CEBE8A4F1E5E08E2000089FA /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CEB4C0C61EDB1B01001582E6 /* DTZFloatingActionButton.swift */,
-				CE01D5AA1E2A80C100C77574 /* APIWorker.swift */,
+				CE01D5AA1E2A80C100C77574 /* VKAPIWorker.swift */,
+				CE32A9DB1EF9B22900D60583 /* MeetWayAPIWorker.swift */,
 				CEBE8A561E619269000089FA /* CustomCell.swift */,
 				CE17D4111E7D78790021273C /* CustomTextField.swift */,
 				CE6FECB01ED7EC13004D2E43 /* WillGoButton.swift */,
+				CEB4C0C61EDB1B01001582E6 /* DTZFloatingActionButton.swift */,
 				CE32A9D51EF90B7600D60583 /* Event.swift */,
 				CE32A9D71EF90DD900D60583 /* City.swift */,
 				CE32A9D91EF93D7B00D60583 /* PopupMenuView.swift */,
@@ -344,19 +350,21 @@
 				CE0DBF4F1E9AC54D0087A6C6 /* CityViewController.swift in Sources */,
 				CE3F601A1E7CFD8600CA207C /* SettingsNavigationController.swift in Sources */,
 				CE01D58F1E2A62F400C77574 /* ViewController.swift in Sources */,
+				CE32A9DC1EF9B22900D60583 /* MeetWayAPIWorker.swift in Sources */,
 				CE17D4141E7DCA9C0021273C /* UserSettingsViewController.swift in Sources */,
 				CE01D5A91E2A7FCE00C77574 /* VKDelegatevkmeet.swift in Sources */,
 				CE61BAF11E65F40300F3A796 /* TestAPIViewController.swift in Sources */,
+				CEA1FB231EFFA1C10068259C /* LiveViewController.swift in Sources */,
 				CE32A9D81EF90DD900D60583 /* City.swift in Sources */,
 				CE32A9D61EF90B7600D60583 /* Event.swift in Sources */,
+				CE32A9DE1EFA517400D60583 /* Repository.swift in Sources */,
 				CE503F091ED5FAC3003027D8 /* mapViewController.swift in Sources */,
 				CE6FECB11ED7EC13004D2E43 /* WillGoButton.swift in Sources */,
-				CE01D5AB1E2A80C100C77574 /* APIWorker.swift in Sources */,
+				CE01D5AB1E2A80C100C77574 /* VKAPIWorker.swift in Sources */,
 				CE32A9DA1EF93D7B00D60583 /* PopupMenuView.swift in Sources */,
 				CE89EEF51E7C4BA90066C6FD /* Store.swift in Sources */,
 				CE1DFA3E1ED0BE920066AA7F /* EventDetailsViewController.swift in Sources */,
 				CE01D58D1E2A62F400C77574 /* AppDelegate.swift in Sources */,
-				CE3775CB1EF2C15A0070BAB0 /* LaunchScreenController.swift in Sources */,
 				CE17D4121E7D78790021273C /* CustomTextField.swift in Sources */,
 				CEB4C0C81EDB1B01001582E6 /* DTZFloatingActionButton.swift in Sources */,
 				CEBE8A571E619269000089FA /* CustomCell.swift in Sources */,
