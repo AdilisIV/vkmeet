@@ -46,6 +46,40 @@ class Repository {
         }
     }
     
+    
+    func fetchAllEvents(for city: String, handler: @escaping ([Event], Error?) -> Void) {
+        Alamofire.request("http://onetwomeet.ru/events/\(city)").responseJSON { (responseData) -> Void in
+            switch responseData.result {
+            case .success:
+                let swiftyJsonVar = JSON(responseData.result.value!)
+                var arrRes = [[String:AnyObject]]()
+                var eventsArr = [Event]()
+                
+                if let resData = swiftyJsonVar.arrayObject {
+                    arrRes = resData as! [[String:AnyObject]]
+                }
+                
+                for i in 0..<arrRes.count {
+                    let id = arrRes[i]["id"]
+                    let title = arrRes[i]["name"]
+                    let activity = arrRes[i]["activity"]
+                    let img = arrRes[i]["photo"]
+                    let dateStart = arrRes[i]["start"]
+                    let memb = arrRes[i]["members"]
+                    
+                    let eventObject = Event.init(id: id as! String, name: title as! String, image: img as! String, memb: "Участников: \(memb!)", timeStart: dateStart as! Int, activity: activity as! String, latitude: nil, longitude: nil, description: nil, url: nil)
+                    eventsArr.append(eventObject)
+                }
+                handler(eventsArr, nil)
+                
+            case .failure(let error):
+                handler([], error)
+            }
+            
+        }
+    }
+    
+    
     // Extract/Update cities from web
     func extractCities(handler: @escaping ([City], Error?, Source) -> Void) {
         fetchCities { (cities, error) in
@@ -53,5 +87,11 @@ class Repository {
         }
     }
     
+    // Extract/Update cities from web
+    func extractAllEvents(cityID: String, handler: @escaping ([Event], Error?, Source) -> Void) {
+        fetchAllEvents(for: cityID) { (events, error) in
+            handler(events, error, .server)
+        }
+    }
     
 }

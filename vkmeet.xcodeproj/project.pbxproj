@@ -24,7 +24,6 @@
 		CE32A9D61EF90B7600D60583 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9D51EF90B7600D60583 /* Event.swift */; };
 		CE32A9D81EF90DD900D60583 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9D71EF90DD900D60583 /* City.swift */; };
 		CE32A9DA1EF93D7B00D60583 /* PopupMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9D91EF93D7B00D60583 /* PopupMenuView.swift */; };
-		CE32A9DC1EF9B22900D60583 /* MeetWayAPIWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9DB1EF9B22900D60583 /* MeetWayAPIWorker.swift */; };
 		CE32A9DE1EFA517400D60583 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9DD1EFA517400D60583 /* Repository.swift */; };
 		CE3F601A1E7CFD8600CA207C /* SettingsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F60191E7CFD8600CA207C /* SettingsNavigationController.swift */; };
 		CE503F091ED5FAC3003027D8 /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE503F081ED5FAC3003027D8 /* mapViewController.swift */; };
@@ -61,7 +60,6 @@
 		CE32A9D51EF90B7600D60583 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		CE32A9D71EF90DD900D60583 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		CE32A9D91EF93D7B00D60583 /* PopupMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupMenuView.swift; sourceTree = "<group>"; };
-		CE32A9DB1EF9B22900D60583 /* MeetWayAPIWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetWayAPIWorker.swift; sourceTree = "<group>"; };
 		CE32A9DD1EFA517400D60583 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		CE3853B01E2D469200D570AE /* CityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityViewController.swift; sourceTree = "<group>"; };
 		CE3F60191E7CFD8600CA207C /* SettingsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNavigationController.swift; sourceTree = "<group>"; };
@@ -72,7 +70,6 @@
 		CE6FECB01ED7EC13004D2E43 /* WillGoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WillGoButton.swift; sourceTree = "<group>"; };
 		CE89EEF41E7C4BA90066C6FD /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		CE89EEF71E7C65E60066C6FD /* InternetChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetChecker.swift; sourceTree = "<group>"; };
-		CEA1FB211EFA7F090068259C /* MVC.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MVC.playground; sourceTree = "<group>"; };
 		CEA1FB221EFFA1C00068259C /* LiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
 		CEB4C0C61EDB1B01001582E6 /* DTZFloatingActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DTZFloatingActionButton.swift; path = "../../../../Downloads/DTZFloatingActionButton-master/DTZFloatingActionButton/Classes/DTZFloatingActionButton.swift"; sourceTree = "<group>"; };
 		CEBE8A561E619269000089FA /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
@@ -170,13 +167,12 @@
 			isa = PBXGroup;
 			children = (
 				CE3853B01E2D469200D570AE /* CityViewController.swift */,
+				CE20E3F41E6F50270002D4C7 /* CatalogInfo.swift */,
 				CE503F081ED5FAC3003027D8 /* mapViewController.swift */,
 				CE1DFA3D1ED0BE910066AA7F /* EventDetailsViewController.swift */,
-				CE20E3F41E6F50270002D4C7 /* CatalogInfo.swift */,
 				CE01D58E1E2A62F400C77574 /* ViewController.swift */,
 				CE61BAF01E65F40300F3A796 /* TestAPIViewController.swift */,
 				CE17D4131E7DCA9C0021273C /* UserSettingsViewController.swift */,
-				CEA1FB211EFA7F090068259C /* MVC.playground */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -185,7 +181,6 @@
 			isa = PBXGroup;
 			children = (
 				CE01D5AA1E2A80C100C77574 /* VKAPIWorker.swift */,
-				CE32A9DB1EF9B22900D60583 /* MeetWayAPIWorker.swift */,
 				CEBE8A561E619269000089FA /* CustomCell.swift */,
 				CE17D4111E7D78790021273C /* CustomTextField.swift */,
 				CE6FECB01ED7EC13004D2E43 /* WillGoButton.swift */,
@@ -350,7 +345,6 @@
 				CE0DBF4F1E9AC54D0087A6C6 /* CityViewController.swift in Sources */,
 				CE3F601A1E7CFD8600CA207C /* SettingsNavigationController.swift in Sources */,
 				CE01D58F1E2A62F400C77574 /* ViewController.swift in Sources */,
-				CE32A9DC1EF9B22900D60583 /* MeetWayAPIWorker.swift in Sources */,
 				CE17D4141E7DCA9C0021273C /* UserSettingsViewController.swift in Sources */,
 				CE01D5A91E2A7FCE00C77574 /* VKDelegatevkmeet.swift in Sources */,
 				CE61BAF11E65F40300F3A796 /* TestAPIViewController.swift in Sources */,

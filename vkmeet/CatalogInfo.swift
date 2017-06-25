@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 import SafariServices
 
-class CatalogInfo: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var CatalogTable: UITableView!
     @IBOutlet var addItemView: PopupMenuView!
@@ -21,22 +21,20 @@ class CatalogInfo: UIViewController, UITableViewDataSource, UITableViewDelegate 
     //var customCell : CustomCell?
     
     var indexSelectedRowID: String = ""
-    var selectedCityFromPrevView: String = ""
+    //var selectedCityFromPrevView: String = ""
 
     var eventsArr = [Event]()
     
     var willgoEventsID = [String]()
     
+    // получаем id города, который выбрал пользователь
+    // id в UserDefaults записывается в классе CityViewController
+    let userCity = UserDefaults.standard.string(forKey: "city")
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // получаем id города, который выбрал пользователь
-        // id в UserDefaults записывается в классе CityViewController
-        let defaults = UserDefaults.standard
-        let userCity = defaults.string(forKey: "city")
-        
-        
+
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
@@ -45,7 +43,8 @@ class CatalogInfo: UIViewController, UITableViewDataSource, UITableViewDelegate 
         navigationItem.titleView = titleLabel
         
         self.startActivityIndicator()
-        self.getEvents(city: userCity!)
+        //self.getEvents(city: userCity!)
+        self.loadEvents(city: self.userCity!)
     }
     
     
@@ -60,52 +59,35 @@ class CatalogInfo: UIViewController, UITableViewDataSource, UITableViewDelegate 
     }
     
     
-    // получаем данные, записываем в массив, обновляем данные в таблице
-    func getEvents(city: String) {
-        
-        Alamofire.request("http://onetwomeet.ru/events/\(city)").responseJSON { (responseData) -> Void in
-            if((responseData.result.value) != nil) {
-                let swiftyJsonVar = JSON(responseData.result.value!)
-                
-                var arrRes = [[String:AnyObject]]()
-                
-                if let resData = swiftyJsonVar.arrayObject {
-                    arrRes = resData as! [[String:AnyObject]]
-                }
-                
+    func loadEvents(city: String) {
+        Store.repository.extractAllEvents(cityID: city) { (events, error, source) in
+            if source == .server {
+                // stop indication
+                self.stopLoadIndication()
+                self.stopActivityIndicator()
+            }
+            if error == nil {
+                self.eventsArr = events
                 DispatchQueue.main.async {
-                    for i in 0..<arrRes.count {
-                        let id = arrRes[i]["id"]
-                        let title = arrRes[i]["name"]
-                        let activity = arrRes[i]["activity"]
-                        let img = arrRes[i]["photo"]
-                        let dateStart = arrRes[i]["start"]
-                        let memb = arrRes[i]["members"]
-                        
-                        let eventObject = Event.init(id: id as! String, name: title as! String, image: img as! String, memb: "Участников: \(memb!)", timeStart: dateStart as! Int, activity: activity as! String, latitude: nil, longitude: nil, description: nil, url: nil)
-                        self.eventsArr.append(eventObject)
-                    }
-                    
-                    self.stopActivityIndicator()
                     self.CatalogTable!.reloadData()
                 }
-
             } else {
                 self.dataLoadFailed()
             }
-            
         }
-        
     }
-    
     
     
     func dataLoadFailed() {
         let alert = UIAlertController.init(title: nil, message: "Ошибка загрузки данных. Попробовать еще раз?", preferredStyle: .alert)
         let ok = UIAlertAction.init(title: "Ок", style: .default) { action in
-            self.getEvents(city: self.selectedCityFromPrevView)
+            self.loadEvents(city: self.userCity!)
+        }
+        let cencel = UIAlertAction.init(title: "Cencel", style: .cancel) { (action) in
+            print("DataLoad Failed. Pressed Cencel Button")
         }
         alert.addAction(ok)
+        alert.addAction(cencel)
         self.present(alert, animated: true, completion: nil)
     }
 
