@@ -13,7 +13,7 @@ import SafariServices
 import GoogleMaps
 import UserNotifications
 
-class EventDetailsViewController: UIViewController {
+class EventDetailsViewController: LiveViewController {
     
     @IBOutlet var willGoOutlet: WillGoButton!
     
@@ -45,7 +45,7 @@ class EventDetailsViewController: UIViewController {
     
     var defaults = UserDefaults.standard
     
-    var stringUrl:String = ""
+    //var stringUrl:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,10 +63,8 @@ class EventDetailsViewController: UIViewController {
             
             let cancel = UIAlertAction.init(title: "Отмена", style: .cancel, handler: nil)
             let ok = UIAlertAction.init(title: "Ок", style: .default) { action in
-                
                 let userId = Store.userID
-                VKAPIWorker.uploadPostToWall(userID: userId!, activity: self.eventsObject!.activity, url: self.stringUrl, eventTitle: self.eventsObject!.name)
-                
+                VKAPIWorker.uploadPostToWall(userID: userId!, activity: self.eventsObject!.activity, url: self.eventsObject!.url, eventTitle: self.eventsObject!.name)
             }
             
             alert.addAction(cancel)
@@ -86,7 +84,8 @@ class EventDetailsViewController: UIViewController {
         print(self.checkMark)
         
         setupViews()
-        getEvents(eventID: selectedEventIDFromPrevView)
+        //getEvents(eventID: selectedEventIDFromPrevView)
+        loadEventInfo(id: selectedEventIDFromPrevView)
 
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
         titleLabel.text = "Мероприятие"
@@ -123,82 +122,71 @@ class EventDetailsViewController: UIViewController {
     }
     
     
-    func getEvents(eventID: String) {
-        
-        Alamofire.request("http://onetwomeet.ru/events/eventbyid/\(eventID)").responseJSON { (responseData) -> Void in
-            if((responseData.result.value) != nil) {
-                let swiftyJsonVar = JSON(responseData.result.value!)
+    func loadEventInfo(id: String) {
+        startLoadIndication()
+        Store.repository.extractEvent(eventID: id) { (event, error, source) in
+            if source == .server {
+                // stop indication
+                self.stopLoadIndication()
+            }
+            if error == nil {
                 
-                var arrRes = [[String:AnyObject]]()
+                self.eventsObject = event
                 
-                if let resData = swiftyJsonVar.arrayObject {
-                    arrRes = resData as! [[String:AnyObject]]
+                DispatchQueue.main.async {
+                    self.willGoOutlet.willgoID = event!.id
+                    self.dateLabel.text = event!.activity
+                    self.eventNameLabel.text = event!.name
+                    self.eventMembersLabel.text = event!.memb
+                    self.eventDescription.text = event!.description
+                    self.blurBackImage.sd_setImage(with: URL(string: event!.image), placeholderImage: #imageLiteral(resourceName: "placeholder_toload"), options: [.continueInBackground, .progressiveDownload])
+                    self.eventAvatar.sd_setImage(with: URL(string: event!.image), placeholderImage: #imageLiteral(resourceName: "placeholder_toload"), options: [.continueInBackground, .progressiveDownload])
+                    
+                    if (event!.latitude == 0) {
+                        self.mapButtonOutlet.isEnabled = false
+                        self.placeholderSmallMap.isHidden = false
+                    } else {
+                        let eventPosition = GMSCameraPosition.camera(
+                                withLatitude: event!.latitude,
+                                longitude: event!.longitude,
+                                zoom: 15,
+                                bearing: 270,
+                                viewingAngle: 45)
+                        self.smallMapView.camera = eventPosition
+                        let eventMarker = GMSMarker()
+                        let markerColor = UIColor.rgb(red: 81, green: 192, blue: 171)
+                        eventMarker.position = CLLocationCoordinate2D(
+                            latitude: event!.latitude,
+                            longitude: event!.longitude)
+                        eventMarker.icon = GMSMarker.markerImage(with: markerColor)
+                        eventMarker.map = self.smallMapView
+                    }
+                    
+                    if self.willgoEventsID.contains(self.willGoOutlet.willgoID) {
+                        self.willGoOutlet.backgroundColor = UIColor.rgb(red: 81, green: 192, blue: 171)
+                        self.checkMark = true
+                        print(self.checkMark)
+                    } else {
+                        self.willGoOutlet.backgroundColor = UIColor.rgb(red: 202, green: 219, blue: 236)
+                    }
                 }
-                
-                let id = arrRes[0]["id"]
-                let title = arrRes[0]["name"]
-                let activity = arrRes[0]["activity"]
-                let start = arrRes[0]["start"]
-                let img = arrRes[0]["photo"]
-                let memb = arrRes[0]["members"]
-                let latitude = arrRes[0]["latitude"]
-                let longitude = arrRes[0]["longitude"]
-                let description = arrRes[0]["description"]
-                let url = arrRes[0]["screenname"]
-                self.stringUrl = url as! String
-                let nsurl = URL(string: url as! String)
-                
-                self.eventsObject = Event.init(id: id as! String, name: title as! String, image: img as! String, memb: "Участников: \(memb!)", timeStart: start as! Int, activity: activity as! String, latitude: latitude as! Double, longitude: longitude as! Double, description: description as! String, url: nsurl!)
-                
-                
-                // заполнение UI
-                self.willGoOutlet.willgoID = self.eventsObject!.id
-                self.dateLabel.text = self.eventsObject?.activity
-                self.eventNameLabel.text = self.eventsObject?.name
-                self.eventMembersLabel.text = self.eventsObject?.memb
-                self.eventDescription.text = self.eventsObject?.description
-                self.blurBackImage.sd_setImage(with: URL(string: self.eventsObject!.image), placeholderImage: #imageLiteral(resourceName: "placeholder_toload"), options: [.continueInBackground, .progressiveDownload])
-                self.eventAvatar.sd_setImage(with: URL(string: self.self.eventsObject!.image), placeholderImage: #imageLiteral(resourceName: "placeholder_toload"), options: [.continueInBackground, .progressiveDownload])
-                
-                if (self.eventsObject?.latitude == 0) {
-                    self.mapButtonOutlet.isEnabled = false
-                    self.placeholderSmallMap.isHidden = false
-                } else {
-                    let eventPosition = GMSCameraPosition.camera(withLatitude: self.eventsObject!.latitude,
-                                                                 longitude: self.eventsObject!.longitude,
-                                                                 zoom: 15,
-                                                                 bearing: 270,
-                                                                 viewingAngle: 45)
-                    self.smallMapView.camera = eventPosition
-                    let eventMarker = GMSMarker()
-                    let markerColor = UIColor.rgb(red: 81, green: 192, blue: 171)
-                    eventMarker.position = CLLocationCoordinate2D(latitude: self.eventsObject!.latitude, longitude: self.eventsObject!.longitude)
-                    eventMarker.icon = GMSMarker.markerImage(with: markerColor)
-                    eventMarker.map = self.smallMapView
-                }
-                
-                if self.willgoEventsID.contains(self.willGoOutlet.willgoID) {
-                    self.willGoOutlet.backgroundColor = UIColor.rgb(red: 81, green: 192, blue: 171)
-                    self.checkMark = true
-                    print(self.checkMark)
-                } else {
-                    self.willGoOutlet.backgroundColor = UIColor.rgb(red: 202, green: 219, blue: 236)
-                }
-                
             } else {
                 self.dataLoadFailed()
             }
         }
-        
     }
     
     
     func dataLoadFailed() {
         let alert = UIAlertController.init(title: nil, message: "Ошибка загрузки данных. Попробовать еще раз?", preferredStyle: .alert)
         let ok = UIAlertAction.init(title: "Ок", style: .default) { action in
-            self.getEvents(eventID: self.selectedEventIDFromPrevView)
+            self.loadEventInfo(id: self.selectedEventIDFromPrevView)
+        }
+        let cencel = UIAlertAction.init(title: "Cencel", style: .cancel) { (action) in
+            print("DataLoad Failed. Pressed Cencel Button")
         }
         alert.addAction(ok)
+        alert.addAction(cencel)
         self.present(alert, animated: true, completion: nil)
     }
     

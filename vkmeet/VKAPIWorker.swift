@@ -11,10 +11,9 @@ import SwiftyVK
 
 
 final class VKAPIWorker {
+
     
-    
-    
-    class func uploadPostToWall(userID: String, activity: String, url: String, eventTitle: String) {
+    class func uploadPostToWall(userID: String, activity: String, url: URL, eventTitle: String) {
         
         VK.API.Wall.post([VK.Arg.ownerId: userID, VK.Arg.message: "#ПойдуНа \(eventTitle)! \(activity)", VK.Arg.attachments: "photo-147782353_456239020,\(url)"]).send(
             onSuccess: {response in print("SwiftyVK: Wall.post success \n \(response)")},
@@ -22,6 +21,7 @@ final class VKAPIWorker {
         )
         
     }
+    
     
     class func action(_ tag: Int) {
         switch tag {
@@ -33,6 +33,8 @@ final class VKAPIWorker {
             captcha()
         case 4:
             validation()
+        case 5:
+            uploadPost()
         default:
             print("Unrecognized action!")
         }
@@ -61,6 +63,15 @@ final class VKAPIWorker {
             onSuccess: {response in print("SwiftyVK: account.testValidation success \n \(response)")},
             onError: {error in print("SwiftyVK: account.testValidation fail \n \(error)")}
         )
+    }
+    
+    class func uploadPost() {
+        
+        VK.API.Wall.post([VK.Arg.ownerId: "99320303", VK.Arg.message: "#ПойдуНа!", VK.Arg.attachments: "photo-147782353_456239020"]).send(
+            onSuccess: {response in print("SwiftyVK: Wall.post success \n \(response)")},
+            onError: {error in print("SwiftyVK: Wall.post fail \n \(error)")}
+        )
+        
     }
     
 }

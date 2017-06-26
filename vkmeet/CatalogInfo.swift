@@ -43,7 +43,6 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
         navigationItem.titleView = titleLabel
         
         self.startActivityIndicator()
-        //self.getEvents(city: userCity!)
         self.loadEvents(city: self.userCity!)
     }
     
@@ -60,6 +59,7 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
     
     
     func loadEvents(city: String) {
+        startLoadIndication()
         Store.repository.extractAllEvents(cityID: city) { (events, error, source) in
             if source == .server {
                 // stop indication
