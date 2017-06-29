@@ -28,7 +28,7 @@
 		CE3F601A1E7CFD8600CA207C /* SettingsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F60191E7CFD8600CA207C /* SettingsNavigationController.swift */; };
 		CE503F091ED5FAC3003027D8 /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE503F081ED5FAC3003027D8 /* mapViewController.swift */; };
 		CE544E811E7FC15800503106 /* SwiftyVK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE544E801E7FC15800503106 /* SwiftyVK.framework */; };
-		CE61BAF11E65F40300F3A796 /* TestAPIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61BAF01E65F40300F3A796 /* TestAPIViewController.swift */; };
+		CE61BAF11E65F40300F3A796 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61BAF01E65F40300F3A796 /* FeedbackViewController.swift */; };
 		CE65651C1EC8AF930070EAB1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE65651B1EC8AF930070EAB1 /* Alamofire.framework */; };
 		CE6FECB11ED7EC13004D2E43 /* WillGoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FECB01ED7EC13004D2E43 /* WillGoButton.swift */; };
 		CE89EEF51E7C4BA90066C6FD /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE89EEF41E7C4BA90066C6FD /* Store.swift */; };
@@ -57,6 +57,7 @@
 		CE1DFA3B1ECBB8A00066AA7F /* arial-black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "arial-black.ttf"; path = "../../../Desktop/Sochi_presentation/Design/Source_All_Events_Screen/arial-black.ttf"; sourceTree = "<group>"; };
 		CE1DFA3D1ED0BE910066AA7F /* EventDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		CE20E3F41E6F50270002D4C7 /* CatalogInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogInfo.swift; sourceTree = "<group>"; };
+		CE2B140F1F038C1700285D17 /* Haxlet.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Haxlet.playground; sourceTree = "<group>"; };
 		CE32A9D51EF90B7600D60583 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		CE32A9D71EF90DD900D60583 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		CE32A9D91EF93D7B00D60583 /* PopupMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupMenuView.swift; sourceTree = "<group>"; };
@@ -65,7 +66,7 @@
 		CE3F60191E7CFD8600CA207C /* SettingsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNavigationController.swift; sourceTree = "<group>"; };
 		CE503F081ED5FAC3003027D8 /* mapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapViewController.swift; sourceTree = "<group>"; };
 		CE544E801E7FC15800503106 /* SwiftyVK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyVK.framework; path = "../../../Library/Developer/Xcode/DerivedData/vkmeet-genbgkzyjwtwxfabcikzugtqegmv/Build/Products/Debug-iphoneos/SwiftyVK/SwiftyVK.framework"; sourceTree = "<group>"; };
-		CE61BAF01E65F40300F3A796 /* TestAPIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestAPIViewController.swift; sourceTree = "<group>"; };
+		CE61BAF01E65F40300F3A796 /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		CE65651B1EC8AF930070EAB1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../Library/Developer/Xcode/DerivedData/vkmeet-genbgkzyjwtwxfabcikzugtqegmv/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		CE6FECB01ED7EC13004D2E43 /* WillGoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WillGoButton.swift; sourceTree = "<group>"; };
 		CE89EEF41E7C4BA90066C6FD /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -101,6 +102,7 @@
 		CE01D5801E2A62F400C77574 = {
 			isa = PBXGroup;
 			children = (
+				CE2B140F1F038C1700285D17 /* Haxlet.playground */,
 				CE01D58B1E2A62F400C77574 /* vkmeet */,
 				CE01D58A1E2A62F400C77574 /* Products */,
 				407CB6F566BE06E1056C9747 /* Pods */,
@@ -166,12 +168,12 @@
 		CEBE8A4E1E5E0893000089FA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CE01D58E1E2A62F400C77574 /* ViewController.swift */,
 				CE3853B01E2D469200D570AE /* CityViewController.swift */,
 				CE20E3F41E6F50270002D4C7 /* CatalogInfo.swift */,
 				CE1DFA3D1ED0BE910066AA7F /* EventDetailsViewController.swift */,
 				CE503F081ED5FAC3003027D8 /* mapViewController.swift */,
-				CE01D58E1E2A62F400C77574 /* ViewController.swift */,
-				CE61BAF01E65F40300F3A796 /* TestAPIViewController.swift */,
+				CE61BAF01E65F40300F3A796 /* FeedbackViewController.swift */,
 				CE17D4131E7DCA9C0021273C /* UserSettingsViewController.swift */,
 			);
 			name = Controllers;
@@ -347,7 +349,7 @@
 				CE01D58F1E2A62F400C77574 /* ViewController.swift in Sources */,
 				CE17D4141E7DCA9C0021273C /* UserSettingsViewController.swift in Sources */,
 				CE01D5A91E2A7FCE00C77574 /* VKDelegatevkmeet.swift in Sources */,
-				CE61BAF11E65F40300F3A796 /* TestAPIViewController.swift in Sources */,
+				CE61BAF11E65F40300F3A796 /* FeedbackViewController.swift in Sources */,
 				CEA1FB231EFFA1C10068259C /* LiveViewController.swift in Sources */,
 				CE32A9D81EF90DD900D60583 /* City.swift in Sources */,
 				CE32A9D61EF90B7600D60583 /* Event.swift in Sources */,

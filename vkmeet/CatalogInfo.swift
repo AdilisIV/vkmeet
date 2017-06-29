@@ -18,13 +18,12 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
     @IBOutlet var visualEffectView: UIVisualEffectView!
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
-    //var customCell : CustomCell?
+    var refreshControl: UIRefreshControl!
     
     var indexSelectedRowID: String = ""
-    //var selectedCityFromPrevView: String = ""
+
 
     var eventsArr = [Event]()
-    
     var willgoEventsID = [String]()
     
     // получаем id города, который выбрал пользователь
@@ -43,7 +42,13 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
         navigationItem.titleView = titleLabel
         
         self.startActivityIndicator()
-        self.loadEvents(city: self.userCity!)
+        //self.loadEvents(city: self.userCity!)
+        self.loadEvents()
+        
+        /// UIRefresh
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(CatalogInfo.loadEvents), for: UIControlEvents.valueChanged)
+        CatalogTable.insertSubview(refreshControl, at: 0)
     }
     
     
@@ -58,13 +63,14 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
     }
     
     
-    func loadEvents(city: String) {
+    func loadEvents() {
         startLoadIndication()
-        Store.repository.extractAllEvents(cityID: city) { (events, error, source) in
+        Store.repository.extractAllEvents(cityID: self.userCity!) { (events, error, source) in
             if source == .server {
                 // stop indication
                 self.stopLoadIndication()
                 self.stopActivityIndicator()
+                self.refreshControl.endRefreshing()
             }
             if error == nil {
                 self.eventsArr = events
@@ -72,25 +78,12 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
                     self.CatalogTable!.reloadData()
                 }
             } else {
-                self.dataLoadFailed()
+                let errorMessage = error?.localizedDescription as! String
+                self.presentNotification(parentViewController: self, notificationTitle: "Сетевой запрос", notificationMessage: "Ошибка при обновлении данных: \(errorMessage)", completion: nil)
             }
         }
     }
     
-    
-    func dataLoadFailed() {
-        let alert = UIAlertController.init(title: nil, message: "Ошибка загрузки данных. Попробовать еще раз?", preferredStyle: .alert)
-        let ok = UIAlertAction.init(title: "Ок", style: .default) { action in
-            self.loadEvents(city: self.userCity!)
-        }
-        let cencel = UIAlertAction.init(title: "Cencel", style: .cancel) { (action) in
-            print("DataLoad Failed. Pressed Cencel Button")
-        }
-        alert.addAction(ok)
-        alert.addAction(cencel)
-        self.present(alert, animated: true, completion: nil)
-    }
-
 
     @IBAction func willGoButton(_ sender: Any) {}
 
@@ -106,9 +99,6 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
     }
     
     
-    
-    
-    
     // start and stop activityIndicator
     func startActivityIndicator() {
         activityIndicator.frame = CGRect(x: 0.0, y: 0.0, width: 40.0, height: 40.0);
@@ -120,9 +110,6 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
         activityIndicator.startAnimating()
         //UIApplication.shared.beginIgnoringInteractionEvents()
     }
-    
-    
-    
     func stopActivityIndicator() {
         activityIndicator.stopAnimating()
     }

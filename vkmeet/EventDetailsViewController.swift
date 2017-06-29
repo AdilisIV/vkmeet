@@ -84,7 +84,6 @@ class EventDetailsViewController: LiveViewController {
         print(self.checkMark)
         
         setupViews()
-        //getEvents(eventID: selectedEventIDFromPrevView)
         loadEventInfo(id: selectedEventIDFromPrevView)
 
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
@@ -114,12 +113,12 @@ class EventDetailsViewController: LiveViewController {
     }
     
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        guard let viewControllers = navigationController?.viewControllers,
-            let index = viewControllers.index(of: self) else { return }
-        navigationController?.viewControllers.remove(at: index)
-    }
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//        guard let viewControllers = navigationController?.viewControllers,
+//            let index = viewControllers.index(of: self) else { return }
+//        navigationController?.viewControllers.remove(at: index)
+//    }
     
     
     func loadEventInfo(id: String) {
@@ -171,25 +170,11 @@ class EventDetailsViewController: LiveViewController {
                     }
                 }
             } else {
-                self.dataLoadFailed()
+                let errorMessage = error?.localizedDescription as! String
+                self.presentNotification(parentViewController: self, notificationTitle: "Сетевой запрос", notificationMessage: "Ошибка при обновлении данных: \(errorMessage)", completion: nil)
             }
         }
     }
-    
-    
-    func dataLoadFailed() {
-        let alert = UIAlertController.init(title: nil, message: "Ошибка загрузки данных. Попробовать еще раз?", preferredStyle: .alert)
-        let ok = UIAlertAction.init(title: "Ок", style: .default) { action in
-            self.loadEventInfo(id: self.selectedEventIDFromPrevView)
-        }
-        let cencel = UIAlertAction.init(title: "Cencel", style: .cancel) { (action) in
-            print("DataLoad Failed. Pressed Cencel Button")
-        }
-        alert.addAction(ok)
-        alert.addAction(cencel)
-        self.present(alert, animated: true, completion: nil)
-    }
-    
     
     
     @IBAction func goToVKAction(_ sender: Any) {

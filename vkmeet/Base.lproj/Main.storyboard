@@ -119,10 +119,10 @@
             </objects>
             <point key="canvasLocation" x="508.69565217391306" y="34.239130434782609"/>
         </scene>
-        <!--TestAPI View Controller-->
+        <!--Feedback View Controller-->
         <scene sceneID="AOQ-zW-4w5">
             <objects>
-                <viewController storyboardIdentifier="sendEmail" id="nG9-9b-0d9" customClass="TestAPIViewController" customModule="vkmeet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="sendEmail" id="nG9-9b-0d9" customClass="FeedbackViewController" customModule="vkmeet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nxl-Fa-4ba"/>
                         <viewControllerLayoutGuide type="bottom" id="DOs-2S-uzV"/>
@@ -199,7 +199,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="5yw-qz-yKf">
-                        <barButtonItem key="leftBarButtonItem" image="BackButton" style="plain" id="FNC-gQ-NbT">
+                        <barButtonItem key="leftBarButtonItem" image="BackButton" id="FNC-gQ-NbT">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="backButton:" destination="nG9-9b-0d9" id="Nha-r0-Xzh"/>
@@ -1057,8 +1057,8 @@
         <image name="vkmeet_logo" width="177" height="177"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CIV-7l-Kvg"/>
-        <segue reference="QxA-yO-EOW"/>
-        <segue reference="ljR-DR-2oW"/>
+        <segue reference="2Bt-K9-lcS"/>
+        <segue reference="Ksu-dl-RKH"/>
+        <segue reference="2PW-xb-Rid"/>
     </inferredMetricsTieBreakers>
 </document>
