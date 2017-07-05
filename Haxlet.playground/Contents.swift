@@ -178,23 +178,220 @@ import Foundation
 
 /// Наблюдатели (property observers)
 
-class StepCounter {
-    var totalSteps:Int = 0 {
-        willSet(newTotalSteps) {
-            print("About to set totalSteps to \(newTotalSteps)")
-        }
-        didSet {
-            if totalSteps > oldValue {
-                print("Added \(totalSteps - oldValue) steps")
-            }
-        }
+//class StepCounter {
+//    var totalSteps:Int = 0 {
+//        willSet(newTotalSteps) {
+//            print("About to set totalSteps to \(newTotalSteps)")
+//        }
+//        didSet {
+//            if totalSteps > oldValue {
+//                print("Added \(totalSteps - oldValue) steps")
+//            }
+//        }
+//    }
+//}
+//
+//let stepCounter = StepCounter()
+//stepCounter.totalSteps = 200
+//
+//stepCounter.totalSteps = 360
+
+
+/// Свойства типа. Урок 21
+
+//struct SomeStructure {
+//    static var storedTypeProperty = "Some value"
+//    static var computedTypePropery: Int {
+//        return 100 // return an Int
+//    }
+//}
+//
+//enum SomeEnumeration {
+//    static var storedTypeProperty = "Some value"
+//    static var computedTypeProperty: Int {
+//        return 100 // return an Int
+//    }
+//}
+//
+//class SomeClass {
+//    class var computedTypePropety: Int {
+//        return 100 // return an Int
+//    }
+//    class func someTypeMethod() {
+//        // type method code
+//    }
+//}
+
+
+/// Мутирующие (mutating) методы
+/// structurs and enums are value types, they can't be modified from within their instance methods
+
+//struct Point {
+//    var x = 0.0, y = 0.0
+//    mutating func moveByX(deltaX: Double, deltaY: Double) {
+//        x += deltaX
+//        y += deltaY
+//    }
+//}
+//
+//var somePoint = Point(x: 1.0, y: 1.0)
+//somePoint.moveByX(deltaX: 2.0, deltaY: 3.0)
+//somePoint.x
+//somePoint.y
+//
+//let fixedPoint = Point(x: 1.0, y: 1.0)
+// fixedPoint.moveByX(deltaX: 2.0, deltaY: 3.0)
+
+
+///  Сабскрипты (subscripts). Урок 24
+
+//struct SomeStruct {
+//    subscript(index: Int) -> String {
+//        get { return "Return something" }
+//        set (newValue) { "Set something" }
+//    }
+//}
+//
+//struct TimesTable {
+//    let multiplier: Int
+//    subscript(index: Int) -> Int {
+//        return multiplier * index
+//    }
+//}
+//
+//let threeTimesTable = TimesTable(multiplier: 3)
+//threeTimesTable[10]
+
+
+/// Наследование. Урок 25
+
+//final class Vehicle {
+//    var numberOfWheels: Int
+//    var maxPassengers: Int
+//    var speed: Double
+//    
+//    func description() -> String {
+//        return "\(numberOfWheels) wheels; up to \(maxPassengers) passengers"
+//    }
+//    
+//    init() {
+//        numberOfWheels = 0
+//        maxPassengers = 1
+//        speed = 20
+//    }
+//}
+//
+//class Bicycle: Vehicle {
+//    override var speed: Double {
+//        get {
+//            return super.speed
+//        }
+//        set {
+//            super.speed = min(newValue, 50.0)
+//        }
+//    }
+//    override init() {
+//        super.init()
+//        numberOfWheels = 2
+//    }
+//    
+//    override func description() -> String {
+//        return super.description() + "; " + " and it's a bicycle!"
+//    }
+//}
+
+
+/// Инициализаторы. Урок 26
+
+//struct Color {
+//    var red = 0.0, green = 0.0, blue = 0.0
+//    let alpha: Double?
+//    
+//    init(red: Double, green: Double, blue: Double) {
+//        self.red = red
+//        self.green = green
+//        self.blue = blue
+//        self.alpha = 10.0
+//    }
+//}
+//
+//let magenta = Color(red: 1.0, green: 0.0, blue: 1.0)
+//// let wrong = Color(0.0, 0.2, 0.3)
+//
+//class ShoppingListItem {
+//    var name: String?
+//    var quantity = 1
+//    var purchased = false
+//}
+//
+//var item = ShoppingListItem()
+//item.quantity = 10
+
+
+/// ARC (Automatic reference counting). Урок 28
+
+//class Person {
+//    let name: String
+//    init (name: String) {
+//        self.name = name
+//        print("\(name) is being initialized")
+//    }
+//    deinit {
+//        print("\(name) is being deinitialized")
+//    }
+//}
+//
+//var ref1: Person?
+//var ref2: Person?
+//var ref3: Person?
+//
+//ref1 = Person(name: "Jake")
+//
+//ref2 = ref1
+//ref3 = ref1
+//
+//ref1 = nil
+//ref2 = nil
+//ref3 = nil
+
+
+/// Расширения (extension). Урок 29
+
+struct SomeStruct {
+    var someProp = 1.0
+}
+
+extension SomeStruct {
+    init(prop: Double) {
+        let newProp = prop + 42
+        self.init(someProp: newProp)
     }
 }
 
-let stepCounter = StepCounter()
-stepCounter.totalSteps = 200
+var a = SomeStruct(prop: 2)
 
-stepCounter.totalSteps = 360
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

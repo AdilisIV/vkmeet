@@ -11,33 +11,28 @@ import UIKit
 class CustomCell: UITableViewCell {
     
     
-    @IBOutlet var willgoButtonOutlet: WillGoButton!
+    @IBOutlet weak var willgoButtonOutlet: WillGoButton!
     
-    @IBOutlet var cellImage: UIImageView!
-    @IBOutlet var cellName: UITextView!
-    @IBOutlet var countOfMembers: UILabel!
-    @IBOutlet var eventbgImage: UIImageView!
-    @IBOutlet var eventDateLabel: UILabel!
+    @IBOutlet weak var cellImage: UIImageView!
+    @IBOutlet weak var cellName: UITextView!
+    @IBOutlet weak var countOfMembers: UILabel!
+    @IBOutlet weak var eventbgImage: UIImageView!
+    @IBOutlet weak var eventDateLabel: UILabel!
     
-    @IBOutlet var outerImageView: UIImageView!
+    @IBOutlet weak var outerImageView: UIImageView!
     
-    @IBOutlet var outerBackImage: UIImageView!
+    @IBOutlet weak var outerBackImage: UIImageView!
     
-    @IBOutlet var eventBlock: UIImageView!
+    @IBOutlet weak var eventBlock: UIImageView!
     
     
     func setupViews() {
-        
-        // willgoButtonOutlet
-        
-        
         
         // textView
         cellName.frame = CGRect(x: 0, y: 0, width: cellName.frame.width, height: 49)
         cellName.isUserInteractionEnabled = false
         cellName.textContainer.maximumNumberOfLines = 2
         cellName.textContainer.lineBreakMode = NSLineBreakMode.byClipping
-        
         
         
         // set avatar shadow
@@ -50,7 +45,6 @@ class CustomCell: UITableViewCell {
         outerImageView.layer.shadowPath = UIBezierPath(roundedRect: outerImageView.bounds, cornerRadius: 10).cgPath
         
         
-        
         // set eventBlock shadow
         outerBackImage.frame = CGRect(x: 56, y: 23, width: outerBackImage.frame.width, height: outerBackImage.frame.height)
         outerBackImage.clipsToBounds = false
@@ -60,13 +54,11 @@ class CustomCell: UITableViewCell {
         outerBackImage.layer.shadowPath = UIBezierPath(roundedRect: outerBackImage.bounds, cornerRadius: 10).cgPath
         
         
-        
         // eventsImageView
         cellImage.layer.cornerRadius = 10
         cellImage.layer.masksToBounds = true
         //eventbgImage.layer.cornerRadius = 47
         //eventbgImage.layer.masksToBounds = true
-        
         
         
         // eventDateLabel

@@ -15,30 +15,30 @@ import UserNotifications
 
 class EventDetailsViewController: LiveViewController {
     
-    @IBOutlet var willGoOutlet: WillGoButton!
+    @IBOutlet weak var willGoOutlet: WillGoButton!
     
-    @IBOutlet var addItemView: PopupMenuView!
-    @IBOutlet var visualEffectView: UIVisualEffectView!
+    @IBOutlet weak var addItemView: PopupMenuView!
+    @IBOutlet weak var visualEffectView: UIVisualEffectView!
     
-    @IBOutlet var blurBackImage: UIImageView!
-    @IBOutlet var eventAvatar: UIImageView!
-    @IBOutlet var dateLabel: UILabel!
-    @IBOutlet var eventNameLabel: UILabel!
-    @IBOutlet var eventMembersLabel: UILabel!
-    @IBOutlet var eventDescription: UITextView!
+    @IBOutlet weak var blurBackImage: UIImageView!
+    @IBOutlet weak var eventAvatar: UIImageView!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var eventNameLabel: UILabel!
+    @IBOutlet weak var eventMembersLabel: UILabel!
+    @IBOutlet weak var eventDescription: UITextView!
     
-    @IBOutlet var smallMapView: GMSMapView!
-    @IBOutlet var placeholderSmallMap: UIImageView!
-    @IBOutlet var mapButtonOutlet: UIButton!
+    @IBOutlet weak var smallMapView: GMSMapView!
+    @IBOutlet weak var placeholderSmallMap: UIImageView!
+    @IBOutlet weak var mapButtonOutlet: UIButton!
     
-    @IBOutlet var dateShadow: UIImageView!
+    @IBOutlet weak var dateShadow: UIImageView!
 
     
-    var selectedEventIDFromPrevView: String = ""
+    //var selectedEventIDFromPrevView: String = ""
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
-    var eventsObject: Event?
+    weak var eventsObject: Event!
 
     var willgoEventsID = [String]()
     var checkMark:Bool!
@@ -50,13 +50,15 @@ class EventDetailsViewController: LiveViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        prepareUI(event: eventsObject)
+        
         let actionButton = DTZFloatingActionButton(frame:CGRect(
             x: view.frame.size.width - 56 - 14,
             y: view.frame.size.height - 56 - 14,
             width: 56,
             height: 56
         ))
-        actionButton.handler = {
+        actionButton.handler = { [weak self]
             button in
             
             let alert = UIAlertController.init(title: nil, message: "Вы уверены, что хотите поделиться этим мероприятием с друзьями?", preferredStyle: .alert)
@@ -64,17 +66,18 @@ class EventDetailsViewController: LiveViewController {
             let cancel = UIAlertAction.init(title: "Отмена", style: .cancel, handler: nil)
             let ok = UIAlertAction.init(title: "Ок", style: .default) { action in
                 let userId = Store.userID
-                VKAPIWorker.uploadPostToWall(userID: userId!, activity: self.eventsObject!.activity, url: self.eventsObject!.url, eventTitle: self.eventsObject!.name)
+                VKAPIWorker.uploadPostToWall(userID: userId!, activity: (self?.eventsObject!.activity)!, url: (self?.eventsObject!.url)!, eventTitle: (self?.eventsObject!.name)!)
             }
             
             alert.addAction(cancel)
             alert.addAction(ok)
             
-            self.present(alert, animated: true, completion: nil)
+            self?.present(alert, animated: true, completion: nil)
             
         }
         actionButton.isScrollView = true
         self.view.addSubview(actionButton)
+        
         
         if self.defaults.value(forKey: "willgoevents") != nil {
             self.willgoEventsID = self.defaults.array(forKey: "willgoevents") as! [String]
@@ -84,7 +87,6 @@ class EventDetailsViewController: LiveViewController {
         print(self.checkMark)
         
         setupViews()
-        loadEventInfo(id: selectedEventIDFromPrevView)
 
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
         titleLabel.text = "Мероприятие"
@@ -100,6 +102,10 @@ class EventDetailsViewController: LiveViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    deinit {
+        print("DetailsController is deinit")
+    }
+    
     
     @IBAction func mapButton(_ sender: Any) {
         performSegue(withIdentifier: "goToMapView", sender: self)
@@ -113,65 +119,42 @@ class EventDetailsViewController: LiveViewController {
     }
     
     
-//    override func viewDidDisappear(_ animated: Bool) {
-//        super.viewDidDisappear(animated)
-//        guard let viewControllers = navigationController?.viewControllers,
-//            let index = viewControllers.index(of: self) else { return }
-//        navigationController?.viewControllers.remove(at: index)
-//    }
-    
-    
-    func loadEventInfo(id: String) {
-        startLoadIndication()
-        Store.repository.extractEvent(eventID: id) { (event, error, source) in
-            if source == .server {
-                // stop indication
-                self.stopLoadIndication()
-            }
-            if error == nil {
-                
-                self.eventsObject = event
-                
-                DispatchQueue.main.async {
-                    self.willGoOutlet.willgoID = event!.id
-                    self.dateLabel.text = event!.activity
-                    self.eventNameLabel.text = event!.name
-                    self.eventMembersLabel.text = event!.memb
-                    self.eventDescription.text = event!.description
-                    self.blurBackImage.sd_setImage(with: URL(string: event!.image), placeholderImage: #imageLiteral(resourceName: "placeholder_toload"), options: [.continueInBackground, .progressiveDownload])
-                    self.eventAvatar.sd_setImage(with: URL(string: event!.image), placeholderImage: #imageLiteral(resourceName: "placeholder_toload"), options: [.continueInBackground, .progressiveDownload])
-                    
-                    if (event!.latitude == 0) {
-                        self.mapButtonOutlet.isEnabled = false
-                        self.placeholderSmallMap.isHidden = false
-                    } else {
-                        let eventPosition = GMSCameraPosition.camera(
-                                withLatitude: event!.latitude,
-                                longitude: event!.longitude,
-                                zoom: 15,
-                                bearing: 270,
-                                viewingAngle: 45)
-                        self.smallMapView.camera = eventPosition
-                        let eventMarker = GMSMarker()
-                        let markerColor = UIColor.rgb(red: 81, green: 192, blue: 171)
-                        eventMarker.position = CLLocationCoordinate2D(
-                            latitude: event!.latitude,
-                            longitude: event!.longitude)
-                        eventMarker.icon = GMSMarker.markerImage(with: markerColor)
-                        eventMarker.map = self.smallMapView
-                    }
-                    
-                    if self.willgoEventsID.contains(self.willGoOutlet.willgoID) {
-                        self.willGoOutlet.backgroundColor = UIColor.rgb(red: 81, green: 192, blue: 171)
-                        self.checkMark = true
-                        print(self.checkMark)
-                    } else {
-                        self.willGoOutlet.backgroundColor = UIColor.rgb(red: 202, green: 219, blue: 236)
-                    }
-                }
+    func prepareUI(event: Event!) {
+        DispatchQueue.main.async {
+            self.willGoOutlet.willgoID = event!.id
+            self.dateLabel.text = event!.activity
+            self.eventNameLabel.text = event!.name
+            self.eventMembersLabel.text = event!.memb
+            self.eventDescription.text = event!.description
+            self.blurBackImage.sd_setImage(with: URL(string: event!.image), placeholderImage: #imageLiteral(resourceName: "placeholder_toload"), options: [.continueInBackground, .progressiveDownload])
+            self.eventAvatar.sd_setImage(with: URL(string: event!.image), placeholderImage: #imageLiteral(resourceName: "placeholder_toload"), options: [.continueInBackground, .progressiveDownload])
+            
+            if (event!.latitude == 0) {
+                self.mapButtonOutlet.isEnabled = false
+                self.placeholderSmallMap.isHidden = false
             } else {
-                let errorMessage = error?.localizedDescription as! String
-                self.presentNotification(parentViewController: self, notificationTitle: "Сетевой запрос", notificationMessage: "Ошибка при обновлении данных: \(errorMessage)", completion: nil)
+                let eventPosition = GMSCameraPosition.camera(
+                    withLatitude: event!.latitude,
+                    longitude: event!.longitude,
+                    zoom: 15,
+                    bearing: 270,
+                    viewingAngle: 45)
+                self.smallMapView.camera = eventPosition
+                let eventMarker = GMSMarker()
+                let markerColor = UIColor.rgb(red: 81, green: 192, blue: 171)
+                eventMarker.position = CLLocationCoordinate2D(
+                    latitude: event!.latitude,
+                    longitude: event!.longitude)
+                eventMarker.icon = GMSMarker.markerImage(with: markerColor)
+                eventMarker.map = self.smallMapView
+            }
+            
+            if self.willgoEventsID.contains(self.willGoOutlet.willgoID) {
+                self.willGoOutlet.backgroundColor = UIColor.rgb(red: 81, green: 192, blue: 171)
+                self.checkMark = true
+                print(self.checkMark)
+            } else {
+                self.willGoOutlet.backgroundColor = UIColor.rgb(red: 202, green: 219, blue: 236)
             }
         }
     }
@@ -197,11 +180,13 @@ class EventDetailsViewController: LiveViewController {
     
     
     @IBAction func addItem(_ sender: Any) {
-        addItemView.animateIn(parrentView: self.view, popupView: addItemView, visualEffect: visualEffectView)
+        let view = self.view
+        addItemView.animateIn(parrentView: view!, popupView: addItemView, visualEffect: visualEffectView)
     }
     
     @IBAction func dismissPopUp(_ sender: Any) {
-        addItemView.animateOut(parrentView: self.view, popupView: addItemView, visualEffect: visualEffectView)
+        let view = self.view
+        addItemView.animateOut(parrentView: view!, popupView: addItemView, visualEffect: visualEffectView)
     }
     
     
@@ -226,7 +211,7 @@ class EventDetailsViewController: LiveViewController {
                 self.defaults.set(self.willgoEventsID, forKey: "willgoevents")
                 print("UserDefaults for key:willdoevents - \(self.defaults.array(forKey: "willgoevents") as! [String])")
                 
-                self.scheduleNotification(inSeconds: TimeInterval(time), id: self.selectedEventIDFromPrevView, subtitle: self.eventsObject!.name, body: self.eventsObject!.activity, completion: { (success) in
+                self.scheduleNotification(inSeconds: TimeInterval(time), id: self.eventsObject.id, subtitle: self.eventsObject!.name, body: self.eventsObject!.activity, completion: { (success) in
                     if success {
                         print("We send this Notification")
                     } else {
@@ -246,7 +231,7 @@ class EventDetailsViewController: LiveViewController {
         } else {
             let alert = UIAlertController.init(title: nil, message: "Удалить напоминание о мероприятиии?", preferredStyle: .alert)
             let ok = UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
-                self.removeNotifications(withIdentifiers: [self.selectedEventIDFromPrevView])
+                self.removeNotifications(withIdentifiers: [self.eventsObject.id])
                 self.willGoOutlet.backgroundColor = UIColor.rgb(red: 202, green: 219, blue: 236)
                 let indexOfEvent = self.willgoEventsID.index(of: self.eventsObject!.id)
                 self.willgoEventsID.remove(at: indexOfEvent!)

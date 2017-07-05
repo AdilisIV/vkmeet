@@ -13,15 +13,12 @@ import SafariServices
 
 class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet var CatalogTable: UITableView!
-    @IBOutlet var addItemView: PopupMenuView!
-    @IBOutlet var visualEffectView: UIVisualEffectView!
+    @IBOutlet weak var CatalogTable: UITableView!
+    @IBOutlet weak var addItemView: PopupMenuView!
+    @IBOutlet weak var visualEffectView: UIVisualEffectView!
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     var refreshControl: UIRefreshControl!
-    
-    var indexSelectedRowID: String = ""
-
 
     var eventsArr = [Event]()
     var willgoEventsID = [String]()
@@ -33,6 +30,9 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        CatalogTable.delegate = self
+        CatalogTable.dataSource = self
 
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
@@ -47,6 +47,7 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
         
         /// UIRefresh
         refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor.rgb(red: 255, green: 255, blue: 255)
         refreshControl.addTarget(self, action: #selector(CatalogInfo.loadEvents), for: UIControlEvents.valueChanged)
         CatalogTable.insertSubview(refreshControl, at: 0)
     }
@@ -65,37 +66,23 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
     
     func loadEvents() {
         startLoadIndication()
-        Store.repository.extractAllEvents(cityID: self.userCity!) { (events, error, source) in
+        Store.repository.extractAllEvents(cityID: self.userCity!) { [weak self] (events, error, source) in
             if source == .server {
                 // stop indication
-                self.stopLoadIndication()
-                self.stopActivityIndicator()
-                self.refreshControl.endRefreshing()
+                self?.stopLoadIndication()
+                self?.stopActivityIndicator()
+                self?.refreshControl.endRefreshing()
             }
             if error == nil {
-                self.eventsArr = events
+                self?.eventsArr = events
                 DispatchQueue.main.async {
-                    self.CatalogTable!.reloadData()
+                    self?.CatalogTable!.reloadData()
                 }
             } else {
                 let errorMessage = error?.localizedDescription as! String
-                self.presentNotification(parentViewController: self, notificationTitle: "Сетевой запрос", notificationMessage: "Ошибка при обновлении данных: \(errorMessage)", completion: nil)
+                self?.presentNotification(parentViewController: self!, notificationTitle: "Сетевой запрос", notificationMessage: "Ошибка при обновлении данных: \(errorMessage)", completion: nil)
             }
         }
-    }
-    
-
-    @IBAction func willGoButton(_ sender: Any) {}
-
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        navigationItem.backBarButtonItem = backItem
-        
-        if segue.identifier == "goToEventDetails" {
-            (segue.destination as! EventDetailsViewController).selectedEventIDFromPrevView = indexSelectedRowID
-        }
-        
     }
     
     
@@ -108,7 +95,6 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
         view.addSubview(activityIndicator)
         
         activityIndicator.startAnimating()
-        //UIApplication.shared.beginIgnoringInteractionEvents()
     }
     func stopActivityIndicator() {
         activityIndicator.stopAnimating()
@@ -136,7 +122,7 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = self.CatalogTable.dequeueReusableCell(withIdentifier: "catalogCell", for: indexPath) as! CustomCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "catalogCell", for: indexPath) as! CustomCell
         
         cell.cellName.text = eventsArr[indexPath.row].name
         cell.countOfMembers.text = eventsArr[indexPath.row].memb
@@ -157,12 +143,28 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "goToEventDetails", sender: eventsArr[indexPath.row])
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let selectedEvent = eventsArr[indexPath.row]
-        self.indexSelectedRowID = selectedEvent.id
+        if segue.identifier == "goToEventDetails" {
+            let event = sender as! Event
+            let dvc = segue.destination as! EventDetailsViewController
+            dvc.eventsObject = event
+            
+            let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+            navigationItem.backBarButtonItem = backItem
+        } else if segue.identifier == "toCitySegue" {
+            self.dismiss(animated: true, completion: nil)
+        }
         
-        performSegue(withIdentifier: "goToEventDetails", sender: self)
-        
+    }
+    
+    deinit {
+        print("CatalogController is deinit")
     }
 
 }

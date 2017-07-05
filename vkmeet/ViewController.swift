@@ -11,8 +11,8 @@ import SwiftyVK
 
 class ViewController: UIViewController, VKAuthorizationObserver {
     
-    @IBOutlet var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet var loginButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var loginButton: UIButton!
     
     //let appDelegate = UIApplication.shared.delegate as! AppDelegate
     

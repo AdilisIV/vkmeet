@@ -18,9 +18,6 @@ class CityViewController: LiveViewController,  UIPickerViewDelegate, UIPickerVie
     
     @IBOutlet weak var cityPickerView: UIPickerView!
     
-    
-    var indexSelectedRow = ""
-    
     var citiesData = [City]()
     
     
@@ -36,16 +33,15 @@ class CityViewController: LiveViewController,  UIPickerViewDelegate, UIPickerVie
     
     func loadCities() {
         startLoadIndication()
-        Store.repository.extractCities { (cities, error, source) in
+        Store.repository.extractCities { [weak self] (cities, error, source) in
             if source == .server {
                 // stop indication
-                self.stopLoadIndication()
+                self?.stopLoadIndication()
             }
             if error == nil {
-                self.citiesData = cities
-                self.indexSelectedRow = self.citiesData[0].id
+                self?.citiesData = cities
                 DispatchQueue.main.async {
-                    self.cityPickerView.reloadAllComponents()
+                    self?.cityPickerView.reloadAllComponents()
                 }
             }
         }
@@ -55,29 +51,31 @@ class CityViewController: LiveViewController,  UIPickerViewDelegate, UIPickerVie
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
-    }
-    
-    
-    
-    @IBAction func goToEventsBtn(_ sender: Any) {
-        let defaults = UserDefaults.standard
-        defaults.set(self.indexSelectedRow, forKey: "city")
         
-        performSegue(withIdentifier: "goToEventsView", sender: self)
+        if segue.identifier == "goToEventsView" {
+            citiesData = []
+        }
     }
     
+    
+    
+//    @IBAction func goToEventsBtn(_ sender: Any) {
+//        performSegue(withIdentifier: "goToEventsView", sender: nil)
+//    }
     
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-            self.indexSelectedRow = self.citiesData[row].id
+            //self.indexSelectedRow = self.citiesData[row].id
+        let defaults = UserDefaults.standard
+        defaults.set(citiesData[row].id, forKey: "city")
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return self.citiesData[row].title
+        return citiesData[row].title
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.citiesData.count
+        return citiesData.count
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {

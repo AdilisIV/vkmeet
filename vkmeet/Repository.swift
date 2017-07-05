@@ -66,8 +66,13 @@ class Repository {
                     let img = arrRes[i]["photo"]
                     let dateStart = arrRes[i]["start"]
                     let memb = arrRes[i]["members"]
+                    let latitude = arrRes[0]["latitude"]
+                    let longitude = arrRes[0]["longitude"]
+                    let description = arrRes[0]["description"]
+                    let url = arrRes[0]["screenname"]
+                    let nsurl = URL(string: url as! String)
                     
-                    let eventObject = Event.init(id: id as! String, name: title as! String, image: img as! String, memb: "Участников: \(memb!)", timeStart: dateStart as! Int, activity: activity as! String, latitude: nil, longitude: nil, description: nil, url: nil)
+                    let eventObject = Event.init(id: id as! String, name: title as! String, image: img as! String, memb: "Участников: \(memb!)", timeStart: dateStart as! Int, activity: activity as! String, latitude: latitude as! Double, longitude: longitude as! Double, description: description as! String, url: nsurl)
                     eventsArr.append(eventObject)
                 }
                 handler(eventsArr, nil)
