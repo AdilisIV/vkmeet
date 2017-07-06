@@ -21,15 +21,6 @@ class FeedbackViewController: UIViewController, MFMailComposeViewControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        backItem.tintColor = UIColor.white
-        navigationItem.backBarButtonItem = backItem
-        
-        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
-        titleLabel.text = ""
-        titleLabel.textColor = UIColor.white
-        navigationItem.titleView = titleLabel
-        
         Body.delegate = self
         Subject.delegate = self
         

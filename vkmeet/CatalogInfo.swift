@@ -155,8 +155,6 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
             let dvc = segue.destination as! EventDetailsViewController
             dvc.eventsObject = event
             
-            let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-            navigationItem.backBarButtonItem = backItem
         } else if segue.identifier == "toCitySegue" {
             self.dismiss(animated: true, completion: nil)
         }

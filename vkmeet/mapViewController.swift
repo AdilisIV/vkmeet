@@ -40,11 +40,5 @@ class mapViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    @IBAction func backButton(_ sender: Any) {
-        if let nvc = navigationController {
-            nvc.popViewController(animated: true)
-        }
-    }
 
 }

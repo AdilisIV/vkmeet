@@ -49,19 +49,10 @@ class CityViewController: LiveViewController,  UIPickerViewDelegate, UIPickerVie
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        navigationItem.backBarButtonItem = backItem
-        
         if segue.identifier == "goToEventsView" {
             citiesData = []
         }
     }
-    
-    
-    
-//    @IBAction func goToEventsBtn(_ sender: Any) {
-//        performSegue(withIdentifier: "goToEventsView", sender: nil)
-//    }
     
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

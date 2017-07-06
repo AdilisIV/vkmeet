@@ -110,14 +110,7 @@ class EventDetailsViewController: LiveViewController {
     @IBAction func mapButton(_ sender: Any) {
         performSegue(withIdentifier: "goToMapView", sender: self)
     }
-    
 
-    @IBAction func backButton(_ sender: Any) {
-        if let nvc = navigationController {
-            nvc.popViewController(animated: true)
-        }
-    }
-    
     
     func prepareUI(event: Event!) {
         DispatchQueue.main.async {

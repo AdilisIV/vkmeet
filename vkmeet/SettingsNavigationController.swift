@@ -13,8 +13,8 @@ class SettingsNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //self.navigationBar.barTintColor = UIColor(red: 23/255.0, green: 146/255.0, blue: 164/255.0, alpha: 1.0)
-        //self.navigationBar.tintColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0)
+        self.navigationBar.barTintColor = UIColor(red: 23/255.0, green: 146/255.0, blue: 164/255.0, alpha: 1.0)
+        self.navigationBar.tintColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0)
         
         self.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationBar.shadowImage = UIImage()
