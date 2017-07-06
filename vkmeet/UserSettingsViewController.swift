@@ -8,19 +8,14 @@
 
 import UIKit
 
-class UserSettingsViewController: UIViewController {
+class UserSettingsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
-        titleLabel.text = "Настройки"
-        titleLabel.textColor = UIColor.white
-        navigationItem.titleView = titleLabel
     }
 
     
-    @IBAction func logoutButton(_ sender: UIBarButtonItem) {
+    @IBAction func logoutButton(_ sender: UIButton) {
         
         let alert = UIAlertController.init(title: nil, message: "Вы уверены, что хотите выйти?", preferredStyle: .alert)
         
@@ -44,15 +39,6 @@ class UserSettingsViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
         
     }
-    
-    
-    
-    @IBAction func backButton(_ sender: Any) {
-        if let nvc = navigationController {
-            nvc.popViewController(animated: true)
-        }
-    }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

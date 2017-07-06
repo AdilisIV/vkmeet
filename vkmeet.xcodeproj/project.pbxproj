@@ -34,8 +34,6 @@
 		CE89EEF51E7C4BA90066C6FD /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE89EEF41E7C4BA90066C6FD /* Store.swift */; };
 		CE89EEF81E7C65E60066C6FD /* InternetChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE89EEF71E7C65E60066C6FD /* InternetChecker.swift */; };
 		CEA1FB231EFFA1C10068259C /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA1FB221EFFA1C00068259C /* LiveViewController.swift */; };
-		CEB3F7C31F05799F00F6E1B5 /* CustomFloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3F7C21F05799F00F6E1B5 /* CustomFloatingButton.swift */; };
-		CEB3F7C51F057CAC00F6E1B5 /* FloatingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3F7C41F057CAB00F6E1B5 /* FloatingActionButton.swift */; };
 		CEB4C0C81EDB1B01001582E6 /* DTZFloatingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB4C0C61EDB1B01001582E6 /* DTZFloatingActionButton.swift */; };
 		CEBE8A571E619269000089FA /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBE8A561E619269000089FA /* CustomCell.swift */; };
 /* End PBXBuildFile section */
@@ -74,8 +72,6 @@
 		CE89EEF41E7C4BA90066C6FD /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		CE89EEF71E7C65E60066C6FD /* InternetChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetChecker.swift; sourceTree = "<group>"; };
 		CEA1FB221EFFA1C00068259C /* LiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
-		CEB3F7C21F05799F00F6E1B5 /* CustomFloatingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFloatingButton.swift; sourceTree = "<group>"; };
-		CEB3F7C41F057CAB00F6E1B5 /* FloatingActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingActionButton.swift; sourceTree = "<group>"; };
 		CEB4C0C61EDB1B01001582E6 /* DTZFloatingActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DTZFloatingActionButton.swift; path = "../../../Downloads/DTZFloatingActionButton-master/DTZFloatingActionButton/Classes/DTZFloatingActionButton.swift"; sourceTree = "<group>"; };
 		CEBE8A561E619269000089FA /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -174,7 +170,6 @@
 			isa = PBXGroup;
 			children = (
 				CEBE8A561E619269000089FA /* CustomCell.swift */,
-				CEB3F7C21F05799F00F6E1B5 /* CustomFloatingButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -196,7 +191,6 @@
 		CEBE8A4F1E5E08E2000089FA /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CEB3F7C41F057CAB00F6E1B5 /* FloatingActionButton.swift */,
 				CE01D5AA1E2A80C100C77574 /* VKAPIWorker.swift */,
 				CE17D4111E7D78790021273C /* CustomTextField.swift */,
 				CE6FECB01ED7EC13004D2E43 /* WillGoButton.swift */,
@@ -376,8 +370,6 @@
 				CE1DFA3E1ED0BE920066AA7F /* EventDetailsViewController.swift in Sources */,
 				CE01D58D1E2A62F400C77574 /* AppDelegate.swift in Sources */,
 				CE17D4121E7D78790021273C /* CustomTextField.swift in Sources */,
-				CEB3F7C31F05799F00F6E1B5 /* CustomFloatingButton.swift in Sources */,
-				CEB3F7C51F057CAC00F6E1B5 /* FloatingActionButton.swift in Sources */,
 				CEB4C0C81EDB1B01001582E6 /* DTZFloatingActionButton.swift in Sources */,
 				CEBE8A571E619269000089FA /* CustomCell.swift in Sources */,
 				CE89EEF81E7C65E60066C6FD /* InternetChecker.swift in Sources */,

@@ -175,7 +175,6 @@ class EventDetailsViewController: LiveViewController {
             controller.longitude = self.eventsObject!.longitude
             controller.eventName = self.eventsObject!.name
         }
-
     }
     
     

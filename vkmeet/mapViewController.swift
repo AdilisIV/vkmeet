@@ -11,12 +11,6 @@ import GoogleMaps
 
 class mapViewController: UIViewController {
     
-    @IBAction func backButton(_ sender: Any) {
-        if let nvc = navigationController {
-            nvc.popViewController(animated: true)
-        }
-    }
-    
     var latitude: Double? = nil
     var longitude: Double? = nil
     var eventName = ""
@@ -47,5 +41,10 @@ class mapViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func backButton(_ sender: Any) {
+        if let nvc = navigationController {
+            nvc.popViewController(animated: true)
+        }
+    }
 
 }
