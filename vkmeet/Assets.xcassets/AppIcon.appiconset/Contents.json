@@ -13,35 +13,33 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "29pt @1x.png",
+      "filename" : "29pt @1x-1.png",
       "scale" : "1x"
     },
     {
+      "idiom" : "iphone",
       "size" : "29x29",
-      "idiom" : "iphone",
-      "filename" : "58 @2x.png",
-      "scale" : "2x"
-    },
-    {
-      "size" : "29x29",
-      "idiom" : "iphone",
-      "filename" : "87 @3x.png",
-      "scale" : "3x"
-    },
-    {
-      "idiom" : "iphone",
-      "size" : "40x40",
       "scale" : "2x"
     },
     {
       "idiom" : "iphone",
+      "size" : "29x29",
+      "scale" : "3x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "iphone",
+      "filename" : "40pt @2x-1.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "iphone",
       "size" : "40x40",
       "scale" : "3x"
     },
     {
+      "idiom" : "iphone",
       "size" : "57x57",
-      "idiom" : "iphone",
-      "filename" : "57pt @1x.png",
       "scale" : "1x"
     },
     {
@@ -53,7 +51,7 @@
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "120pt @2x.png",
+      "filename" : "120pt @2x-1.png",
       "scale" : "2x"
     },
     {
@@ -73,13 +71,15 @@
       "scale" : "2x"
     },
     {
-      "idiom" : "ipad",
       "size" : "29x29",
+      "idiom" : "ipad",
+      "filename" : "29pt @1x.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "ipad",
       "size" : "29x29",
+      "idiom" : "ipad",
+      "filename" : "58pt @2x-1.png",
       "scale" : "2x"
     },
     {
@@ -136,6 +136,16 @@
       "scale" : "2x"
     },
     {
+      "idiom" : "car",
+      "size" : "60x60",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "car",
+      "size" : "60x60",
+      "scale" : "3x"
+    },
+    {
       "size" : "24x24",
       "idiom" : "watch",
       "scale" : "2x",
@@ -164,7 +174,6 @@
     {
       "size" : "40x40",
       "idiom" : "watch",
-      "filename" : "40pt @2x.png",
       "scale" : "2x",
       "role" : "appLauncher",
       "subtype" : "38mm"
@@ -184,9 +193,8 @@
       "subtype" : "42mm"
     },
     {
-      "size" : "16x16",
       "idiom" : "mac",
-      "filename" : "16 @1x.png",
+      "size" : "16x16",
       "scale" : "1x"
     },
     {
@@ -195,9 +203,8 @@
       "scale" : "2x"
     },
     {
-      "size" : "32x32",
       "idiom" : "mac",
-      "filename" : "32 @1x.png",
+      "size" : "32x32",
       "scale" : "1x"
     },
     {
@@ -206,9 +213,8 @@
       "scale" : "2x"
     },
     {
-      "size" : "128x128",
       "idiom" : "mac",
-      "filename" : "128 @1x.png",
+      "size" : "128x128",
       "scale" : "1x"
     },
     {
@@ -217,9 +223,8 @@
       "scale" : "2x"
     },
     {
-      "size" : "256x256",
       "idiom" : "mac",
-      "filename" : "256 @1x.png",
+      "size" : "256x256",
       "scale" : "1x"
     },
     {
@@ -228,72 +233,14 @@
       "scale" : "2x"
     },
     {
-      "size" : "512x512",
       "idiom" : "mac",
-      "filename" : "512pt @1x.png",
+      "size" : "512x512",
       "scale" : "1x"
     },
     {
       "idiom" : "mac",
       "size" : "512x512",
       "scale" : "2x"
-    },
-    {
-      "size" : "29x29",
-      "idiom" : "iphone",
-      "filename" : "58pt @2x.png",
-      "unassigned" : true,
-      "scale" : "2x"
-    },
-    {
-      "size" : "29x29",
-      "idiom" : "iphone",
-      "filename" : "87pt @3x.png",
-      "unassigned" : true,
-      "scale" : "3x"
-    },
-    {
-      "size" : "60x60",
-      "idiom" : "iphone",
-      "filename" : "80pt @2x.png",
-      "unassigned" : true,
-      "scale" : "2x"
-    },
-    {
-      "filename" : "48 @1x.png",
-      "unassigned" : true
-    },
-    {
-      "filename" : "55 @1x.png",
-      "unassigned" : true
-    },
-    {
-      "filename" : "60pt @1x.png",
-      "unassigned" : true
-    },
-    {
-      "filename" : "64 @1x.png",
-      "unassigned" : true
-    },
-    {
-      "filename" : "80 @1x.png",
-      "unassigned" : true
-    },
-    {
-      "filename" : "88 @1x.png",
-      "unassigned" : true
-    },
-    {
-      "filename" : "120pt @1x.png",
-      "unassigned" : true
-    },
-    {
-      "filename" : "172 @1x.png",
-      "unassigned" : true
-    },
-    {
-      "filename" : "196 @1x.png",
-      "unassigned" : true
     }
   ],
   "info" : {

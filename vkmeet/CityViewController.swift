@@ -31,6 +31,7 @@ class CityViewController: LiveViewController,  UIPickerViewDelegate, UIPickerVie
     }
     
     
+    
     func loadCities() {
         startLoadIndication()
         Store.repository.extractCities { [weak self] (cities, error, source) in
@@ -56,7 +57,6 @@ class CityViewController: LiveViewController,  UIPickerViewDelegate, UIPickerVie
     
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-            //self.indexSelectedRow = self.citiesData[row].id
         let defaults = UserDefaults.standard
         defaults.set(citiesData[row].id, forKey: "city")
     }
@@ -78,6 +78,18 @@ class CityViewController: LiveViewController,  UIPickerViewDelegate, UIPickerVie
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
+    
+    
+    @IBAction func chooseBtnPressed(_ sender: UIButton) {
+        let defaults = UserDefaults.standard
+        if defaults.string(forKey: "city") == nil {
+            presentNotification(parentViewController: self, notificationTitle: "Ошибка", notificationMessage: "Не выбран город", completion: nil)
+        } else {
+            performSegue(withIdentifier: "goToEventsView", sender: nil)
+        }
+    }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

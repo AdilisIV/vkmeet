@@ -15,7 +15,7 @@ final class VKAPIWorker {
     
     class func uploadPostToWall(userID: String, activity: String, url: URL, eventTitle: String) {
         
-        VK.API.Wall.post([VK.Arg.ownerId: userID, VK.Arg.message: "#ПойдуНа \(eventTitle)! \(activity)", VK.Arg.attachments: "photo-147782353_456239020,\(url)"]).send(
+        VK.API.Wall.post([VK.Arg.ownerId: userID, VK.Arg.message: "#ПойдуНа \(eventTitle)! \(activity)", VK.Arg.attachments: "photo-147782353_456239021,\(url)"]).send(
             onSuccess: {response in print("SwiftyVK: Wall.post success \n \(response)")},
             onError: {error in print("SwiftyVK: Wall.post fail \n \(error)")}
         )

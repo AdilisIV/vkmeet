@@ -130,7 +130,7 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
         cell.willgoButtonOutlet.willgoID = eventsArr[indexPath.row].id
         
         if self.willgoEventsID.contains(cell.willgoButtonOutlet.willgoID) {
-            cell.willgoButtonOutlet.backgroundColor = UIColor.rgb(red: 81, green: 192, blue: 171)
+            cell.willgoButtonOutlet.backgroundColor = UIColor.rgb(red: 76, green: 163, blue: 248)
         } else {
             cell.willgoButtonOutlet.backgroundColor = UIColor.rgb(red: 202, green: 219, blue: 236)
         }

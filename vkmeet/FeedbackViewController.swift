@@ -16,8 +16,8 @@ class FeedbackViewController: UIViewController, MFMailComposeViewControllerDeleg
     @IBOutlet var Subject: UITextField!
     @IBOutlet var Body: UITextView!
     
-    let tintColor = UIColor(red: 87/255.0, green: 197/255.0, blue: 171/255.0, alpha: 0.5)
-
+    let tintColor = UIColor.rgb(red: 76, green: 163, blue: 248)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

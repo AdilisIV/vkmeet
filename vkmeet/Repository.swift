@@ -37,6 +37,8 @@ class Repository {
                     citiesData.append(cityObject)
                     print(citiesData[i].title)
                 }
+                let item = City.init(id: "00", title: "Выберите город")
+                citiesData.insert(item, at: 0)
                 handler(citiesData, nil)
                 
             case .failure(let error):

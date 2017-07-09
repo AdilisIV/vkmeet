@@ -134,7 +134,7 @@ class EventDetailsViewController: LiveViewController {
                     viewingAngle: 45)
                 self.smallMapView.camera = eventPosition
                 let eventMarker = GMSMarker()
-                let markerColor = UIColor.rgb(red: 81, green: 192, blue: 171)
+                let markerColor = UIColor.rgb(red: 76, green: 163, blue: 248)
                 eventMarker.position = CLLocationCoordinate2D(
                     latitude: event!.latitude,
                     longitude: event!.longitude)
@@ -143,7 +143,7 @@ class EventDetailsViewController: LiveViewController {
             }
             
             if self.willgoEventsID.contains(self.willGoOutlet.willgoID) {
-                self.willGoOutlet.backgroundColor = UIColor.rgb(red: 81, green: 192, blue: 171)
+                self.willGoOutlet.backgroundColor = UIColor.rgb(red: 76, green: 163, blue: 248)
                 self.checkMark = true
                 print(self.checkMark)
             } else {
@@ -195,7 +195,7 @@ class EventDetailsViewController: LiveViewController {
                 let nowDateInSeconds = Int(timeInterval)
                 let time = self.eventsObject!.timeStart - nowDateInSeconds - 4900
                 
-                self.willGoOutlet.backgroundColor = UIColor.rgb(red: 81, green: 192, blue: 171)
+                self.willGoOutlet.backgroundColor = UIColor.rgb(red: 76, green: 163, blue: 248)
                 
                 self.willgoEventsID.append(self.eventsObject!.id)
                 print("Добавление в willgoEventsID элемента - \(self.eventsObject!.id)")
