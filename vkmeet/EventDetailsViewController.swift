@@ -12,6 +12,7 @@ import SwiftyJSON
 import SafariServices
 import GoogleMaps
 import UserNotifications
+import NotificationBannerSwift
 
 class EventDetailsViewController: LiveViewController {
     
@@ -183,59 +184,66 @@ class EventDetailsViewController: LiveViewController {
     
     
     @IBAction func willGoClick(_ sender: Any) {
-        self.checkMark = self.willGoOutlet.willgoToggle(checkMark: self.checkMark)
-        print(self.checkMark)
-        if self.checkMark {
-            
-            let alert = UIAlertController.init(title: nil, message: "Создать напоминание о мероприятии?", preferredStyle: .alert)
-            let ok = UIAlertAction.init(title: "ОK", style: .default) { action in
-                
-                let nowDate = Date()
-                let timeInterval = nowDate.timeIntervalSince1970
-                let nowDateInSeconds = Int(timeInterval)
-                let time = self.eventsObject!.timeStart - nowDateInSeconds - 4900
-                
-                self.willGoOutlet.backgroundColor = UIColor.rgb(red: 76, green: 163, blue: 248)
-                
-                self.willgoEventsID.append(self.eventsObject!.id)
-                print("Добавление в willgoEventsID элемента - \(self.eventsObject!.id)")
-                print("willgoEventsID: \(self.willgoEventsID)")
-                self.defaults.set(self.willgoEventsID, forKey: "willgoevents")
-                print("UserDefaults for key:willdoevents - \(self.defaults.array(forKey: "willgoevents") as! [String])")
-                
-                self.scheduleNotification(inSeconds: TimeInterval(time), id: self.eventsObject.id, subtitle: self.eventsObject!.name, body: self.eventsObject!.activity, completion: { (success) in
-                    if success {
-                        print("We send this Notification")
-                    } else {
-                        print("Failed")
-                    }
-                })
-                
-            }
-            let cencel = UIAlertAction.init(title: "Cancel", style: .cancel) { (action) in
-                self.checkMark = self.willGoOutlet.willgoToggle(checkMark: self.checkMark)
-                print("Добавление Уведомления отменено")
-            }
-            alert.addAction(ok)
-            alert.addAction(cencel)
-            self.present(alert, animated: true, completion: nil)
-            
+        let notificationValue = UserDefaultsService.isNotificationEnabled
+        print("willGoClick.notificationValue - \(notificationValue)")
+        if notificationValue == false {
+            let banner = NotificationBanner(title: "Уведомления отключены", subtitle: "Включите уведомления в настройках приложения", style: .warning)
+            banner.show()
         } else {
-            let alert = UIAlertController.init(title: nil, message: "Удалить напоминание о мероприятиии?", preferredStyle: .alert)
-            let ok = UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
-                self.removeNotifications(withIdentifiers: [self.eventsObject.id])
-                self.willGoOutlet.backgroundColor = UIColor.rgb(red: 202, green: 219, blue: 236)
-                let indexOfEvent = self.willgoEventsID.index(of: self.eventsObject!.id)
-                self.willgoEventsID.remove(at: indexOfEvent!)
-                self.defaults.set(self.willgoEventsID, forKey: "willgoevents")
-            })
-            let cancel = UIAlertAction.init(title: "Cancel", style: .cancel, handler: { (action) in
-                self.checkMark = self.willGoOutlet.willgoToggle(checkMark: self.checkMark)
-                print("Удаление напоминания отменено!")
-            })
-            alert.addAction(ok)
-            alert.addAction(cancel)
-            self.present(alert, animated: true, completion: nil)
+            self.checkMark = self.willGoOutlet.willgoToggle(checkMark: self.checkMark)
+            print(self.checkMark)
+            if self.checkMark {
+                
+                let alert = UIAlertController.init(title: nil, message: "Создать напоминание о мероприятии?", preferredStyle: .alert)
+                let ok = UIAlertAction.init(title: "ОK", style: .default) { action in
+                    
+                    let nowDate = Date()
+                    let timeInterval = nowDate.timeIntervalSince1970
+                    let nowDateInSeconds = Int(timeInterval)
+                    let time = self.eventsObject!.timeStart - nowDateInSeconds - 4900
+                    
+                    self.willGoOutlet.backgroundColor = UIColor.rgb(red: 76, green: 163, blue: 248)
+                    
+                    self.willgoEventsID.append(self.eventsObject!.id)
+                    print("Добавление в willgoEventsID элемента - \(self.eventsObject!.id)")
+                    print("willgoEventsID: \(self.willgoEventsID)")
+                    self.defaults.set(self.willgoEventsID, forKey: "willgoevents")
+                    print("UserDefaults for key:willdoevents - \(self.defaults.array(forKey: "willgoevents") as! [String])")
+                    
+                    self.scheduleNotification(inSeconds: TimeInterval(time), id: self.eventsObject.id, subtitle: self.eventsObject!.name, body: self.eventsObject!.activity, completion: { (success) in
+                        if success {
+                            print("We send this Notification")
+                        } else {
+                            print("Failed")
+                        }
+                    })
+                    
+                }
+                let cencel = UIAlertAction.init(title: "Cancel", style: .cancel) { (action) in
+                    self.checkMark = self.willGoOutlet.willgoToggle(checkMark: self.checkMark)
+                    print("Добавление Уведомления отменено")
+                }
+                alert.addAction(ok)
+                alert.addAction(cencel)
+                self.present(alert, animated: true, completion: nil)
+                
+            } else {
+                let alert = UIAlertController.init(title: nil, message: "Удалить напоминание о мероприятиии?", preferredStyle: .alert)
+                let ok = UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
+                    self.removeNotifications(withIdentifiers: [self.eventsObject.id])
+                    self.willGoOutlet.backgroundColor = UIColor.rgb(red: 202, green: 219, blue: 236)
+                    let indexOfEvent = self.willgoEventsID.index(of: self.eventsObject!.id)
+                    self.willgoEventsID.remove(at: indexOfEvent!)
+                    self.defaults.set(self.willgoEventsID, forKey: "willgoevents")
+                })
+                let cancel = UIAlertAction.init(title: "Cancel", style: .cancel, handler: { (action) in
+                    self.checkMark = self.willGoOutlet.willgoToggle(checkMark: self.checkMark)
+                    print("Удаление напоминания отменено!")
+                })
+                alert.addAction(ok)
+                alert.addAction(cancel)
+                self.present(alert, animated: true, completion: nil)
+            }
         }
 
     }

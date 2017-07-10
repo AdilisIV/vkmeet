@@ -1,14 +1,19 @@
 PODS:
-  - Alamofire (4.4.0)
+  - Alamofire (4.5.0)
   - AwesomeTextField (0.1.0)
-  - GoogleMaps (2.2.0):
-    - GoogleMaps/Maps (= 2.2.0)
-  - GoogleMaps/Base (2.2.0)
-  - GoogleMaps/Maps (2.2.0):
+  - GoogleMaps (2.3.1):
+    - GoogleMaps/Maps (= 2.3.1)
+  - GoogleMaps/Base (2.3.1)
+  - GoogleMaps/Maps (2.3.1):
     - GoogleMaps/Base
+  - MarqueeLabel/Swift (3.1.0)
+  - NotificationBannerSwift (1.4.0):
+    - MarqueeLabel/Swift
+    - SnapKit (~> 3.2)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
+  - SnapKit (3.2.0)
   - SwiftyJSON (3.1.4)
   - SwiftyVK (2.0.8)
 
@@ -16,6 +21,7 @@ DEPENDENCIES:
   - Alamofire
   - AwesomeTextField
   - GoogleMaps
+  - NotificationBannerSwift
   - SDWebImage (~> 3.8)
   - SwiftyJSON
   - SwiftyVK (from `https://github.com/WE-St0r/SwiftyVK.git`)
@@ -26,17 +32,20 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SwiftyVK:
-    :commit: ed375b7a6f64539335627eb898b8bfc1bf0cf6e4
+    :commit: 6588f364b117d98478982e0e61cde5ffb99131dd
     :git: https://github.com/WE-St0r/SwiftyVK.git
 
 SPEC CHECKSUMS:
-  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   AwesomeTextField: 9539cb8dfc2741abf624f3e58ee6a151e1aaf670
-  GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
+  GoogleMaps: c66a71058b9b1294bcdd5463a68e357fa50c079f
+  MarqueeLabel: 061d04687ee5485ac035b45c8e292274a87afe01
+  NotificationBannerSwift: b2a81c9f0f816851686ca2e802058afd65676adc
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwiftyVK: 81d1aa08ee5a5a09d4bd152b0cf1fd4ee46441c6
 
-PODFILE CHECKSUM: 958f5732b9c2a8f1fa98c9281a25d315fc5fdeb2
+PODFILE CHECKSUM: e3b88007c8ba15d082ddd557705ecd6fa620514a
 
 COCOAPODS: 1.1.1

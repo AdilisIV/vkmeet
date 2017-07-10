@@ -9,9 +9,13 @@
 import UIKit
 
 class SettingsTableViewController: UITableViewController {
+    
+    @IBOutlet weak var NotificationSwitch: UISwitch!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let notificationValue = UserDefaultsService.isNotificationEnabled
+        NotificationSwitch.setOn(notificationValue!, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,15 +26,12 @@ class SettingsTableViewController: UITableViewController {
     
     // MARK: - Actions
     func changeNotificationSettings() {
-        if UserDefaultsService.isNotificationEnabled == nil {
-            UserDefaultsService.isNotificationEnabled = false
-            print("isNotificationEnabled = nil")
-        } else if UserDefaultsService.isNotificationEnabled! {
-            print("isNotificationEnabled = true")
+        if UserDefaultsService.isNotificationEnabled! {
+            print("isNotificationEnabled = false")
             UserDefaultsService.isNotificationEnabled = false
             NotificationService.cancelNotification()
         } else {
-            print("isNotificationEnabled = false")
+            print("isNotificationEnabled = true")
             UserDefaultsService.isNotificationEnabled = true
         }
     }

@@ -6,7 +6,6 @@
 //  Copyright © 2017 Ski. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import UserNotifications
 

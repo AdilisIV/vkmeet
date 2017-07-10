@@ -576,6 +576,9 @@
                                         <rect key="frame" x="203" y="367" width="55" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="settings"/>
+                                        <connections>
+                                            <segue destination="VYX-1g-FRM" kind="show" id="SCb-V8-mQA"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="города" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yL-lN-CNR">
                                         <rect key="frame" x="57" y="325" width="59" height="21"/>
@@ -1044,6 +1047,9 @@
                             </tableViewSection>
                         </sections>
                     </tableView>
+                    <connections>
+                        <outlet property="NotificationSwitch" destination="2ED-jA-PTQ" id="tue-3g-6Fq"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="duM-hU-43K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1088,7 +1094,8 @@
         <image name="vkmeet_logo" width="177" height="177"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sap-38-SS3"/>
-        <segue reference="3XS-ax-wnS"/>
+        <segue reference="CIV-7l-Kvg"/>
+        <segue reference="ljR-DR-2oW"/>
+        <segue reference="SCb-V8-mQA"/>
     </inferredMetricsTieBreakers>
 </document>

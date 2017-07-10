@@ -16,4 +16,6 @@ target 'vkmeet' do
 
 	pod 'GoogleMaps'
 
+	pod 'NotificationBannerSwift'
+
 end

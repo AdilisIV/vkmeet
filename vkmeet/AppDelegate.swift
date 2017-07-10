@@ -52,6 +52,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "authorization")
         }
         
+        if UserDefaultsService.isNotificationEnabled == nil {
+            UserDefaultsService.isNotificationEnabled = true
+            print("isNotificationEnabled = true")
+        }
+        
         window?.makeKeyAndVisible()
         
         application.statusBarStyle = .lightContent
