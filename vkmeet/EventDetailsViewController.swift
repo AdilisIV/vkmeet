@@ -41,7 +41,7 @@ class EventDetailsViewController: LiveViewController {
     
     weak var eventsObject: Event!
 
-    var checkMark:Bool!
+    //var checkMark:Bool!
     
     var defaults = UserDefaults.standard
     
@@ -78,8 +78,8 @@ class EventDetailsViewController: LiveViewController {
         actionButton.isScrollView = true
         self.view.addSubview(actionButton)
         
-        self.checkMark = false
-        print(self.checkMark)
+//        self.checkMark = false
+//        print("CHECK_MARK - \(self.checkMark)")
         
         setupViews()
 
@@ -138,11 +138,10 @@ class EventDetailsViewController: LiveViewController {
             }
             
             if UserDefaultsService.willgoEventIDs.contains(self.willGoOutlet.willgoID) {
-                self.willGoOutlet.backgroundColor = UIColor.rgb(red: 76, green: 163, blue: 248)
-                self.checkMark = true
-                print(self.checkMark)
+                self.willGoOutlet.backgroundColor = self.willGoOutlet.activeColor
+                self.willGoOutlet.status = true
             } else {
-                self.willGoOutlet.backgroundColor = UIColor.rgb(red: 202, green: 219, blue: 236)
+                self.willGoOutlet.backgroundColor = self.willGoOutlet.passiveColor
             }
         }
     }
@@ -185,8 +184,8 @@ class EventDetailsViewController: LiveViewController {
             banner.show()
         } else {
             
-            self.checkMark = self.willGoOutlet.willgoToggle(checkMark: self.checkMark)
-            if self.checkMark {
+            self.willGoOutlet.status = self.willGoOutlet.statusToogle()
+            if self.willGoOutlet.status {
                 
                 let alert = UIAlertController.init(title: nil, message: "Создать напоминание о мероприятии?", preferredStyle: .alert)
                 let ok = UIAlertAction.init(title: "ОK", style: .default) { action in
@@ -195,7 +194,7 @@ class EventDetailsViewController: LiveViewController {
                     
                 }
                 let cencel = UIAlertAction.init(title: "Cancel", style: .cancel) { (action) in
-                    self.checkMark = self.willGoOutlet.willgoToggle(checkMark: self.checkMark)
+                    self.willGoOutlet.status = self.willGoOutlet.statusToogle()
                 }
                 alert.addAction(ok)
                 alert.addAction(cencel)
@@ -210,7 +209,7 @@ class EventDetailsViewController: LiveViewController {
                     UserDefaultsService.willgoEventIDs.remove(at: indexOfEvent!)
                 })
                 let cancel = UIAlertAction.init(title: "Cancel", style: .cancel, handler: { (action) in
-                    self.checkMark = self.willGoOutlet.willgoToggle(checkMark: self.checkMark)
+                    self.willGoOutlet.status = self.willGoOutlet.statusToogle()
                     print("Удаление напоминания отменено!")
                 })
                 alert.addAction(ok)
