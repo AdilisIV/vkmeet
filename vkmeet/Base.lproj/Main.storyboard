@@ -120,12 +120,10 @@
                     </view>
                     <connections>
                         <outlet property="cityPickerView" destination="Xa1-pp-BRs" id="70S-1z-SPc"/>
-                        <segue destination="sEC-q8-Fbw" kind="unwind" unwindAction="toCityUnwindWithUnwindSegue:" id="lnW-rE-B6d"/>
                         <segue destination="5gB-od-qP7" kind="showDetail" identifier="goToEventsView" id="usK-IC-3rx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TBz-V1-7Hi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="sEC-q8-Fbw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="508.69565217391306" y="34.239130434782609"/>
         </scene>
@@ -556,7 +554,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="compass"/>
                                         <connections>
-                                            <segue destination="CNV-I4-lvT" kind="show" id="CIV-7l-Kvg"/>
+                                            <segue destination="CNV-I4-lvT" kind="show" identifier="toCitySegue" id="CIV-7l-Kvg"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dyx-af-uZZ">
@@ -564,7 +562,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="information"/>
                                         <connections>
-                                            <segue destination="nG9-9b-0d9" kind="show" id="ljR-DR-2oW"/>
+                                            <segue destination="nG9-9b-0d9" kind="show" identifier="goToFeedbackVC" id="ljR-DR-2oW"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Gf-xu-hK7">
@@ -577,7 +575,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="settings"/>
                                         <connections>
-                                            <segue destination="VYX-1g-FRM" kind="show" id="dZZ-kF-mpX"/>
+                                            <segue destination="VYX-1g-FRM" kind="show" identifier="goToSettingsVC" id="dZZ-kF-mpX"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="города" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yL-lN-CNR">
@@ -869,7 +867,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="information"/>
                                         <connections>
-                                            <segue destination="nG9-9b-0d9" kind="show" id="3XS-ax-wnS"/>
+                                            <segue destination="nG9-9b-0d9" kind="show" identifier="goToFeedbackVC" id="3XS-ax-wnS"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JPm-OK-Vh2">
@@ -882,7 +880,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="settings"/>
                                         <connections>
-                                            <segue destination="VYX-1g-FRM" kind="show" id="spj-ry-rkT"/>
+                                            <segue destination="VYX-1g-FRM" kind="show" identifier="goToSettingsVC" id="spj-ry-rkT"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="города" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPD-VC-UHl">
@@ -1030,7 +1028,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Выбрать другой город"/>
                                                     <connections>
-                                                        <segue destination="CNV-I4-lvT" kind="show" id="sap-38-SS3"/>
+                                                        <segue destination="CNV-I4-lvT" kind="show" identifier="goToBackToCitiesVC" id="sap-38-SS3"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

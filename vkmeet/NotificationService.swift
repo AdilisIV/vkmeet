@@ -47,19 +47,17 @@ class NotificationService: NSObject {
     }
     
     
-    class func setTimeNotification(button: WillGoButton, id: String, subtitle name: String, body activity: String) {
+    class func setTimeNotification(button: WillGoButton, timeStart: Int, id: String, subtitle name: String, body activity: String) {
         let nowDate = Date()
         let timeInterval = nowDate.timeIntervalSince1970
         let nowDateInSeconds = Int(timeInterval)
-        //let time = self.eventsObject!.timeStart - nowDateInSeconds - 4900
+        let time = timeStart - nowDateInSeconds - 4900
         
-        button.backgroundColor = UIColor.rgb(red: 76, green: 163, blue: 248)
+        button.backgroundColor = button.activeColor
         
-        //self.willgoEventsID.append(id)
         UserDefaultsService.willgoEventIDs.append(id)
-        //UserDefaultsService.willgoEventIDs = self.willgoEventsID
         
-        NotificationService.scheduleNotification(inSeconds: 20, id: id, subtitle: name, body: activity, completion: { (success) in
+        NotificationService.scheduleNotification(inSeconds: TimeInterval(time), id: id, subtitle: name, body: activity, completion: { (success) in
             if success {
                 print("We send this Notification")
             } else {

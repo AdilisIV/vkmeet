@@ -20,7 +20,6 @@ class UserDefaultsService {
         }
     }
     
-    //self.defaults.set(self.willgoEventsID, forKey: "willgoevents")
     
     static var willgoEventIDs: [String]! {
         get {

@@ -41,8 +41,6 @@ class EventDetailsViewController: LiveViewController {
     
     weak var eventsObject: Event!
 
-    //var checkMark:Bool!
-    
     var defaults = UserDefaults.standard
     
     //var stringUrl:String = ""
@@ -77,9 +75,6 @@ class EventDetailsViewController: LiveViewController {
         }
         actionButton.isScrollView = true
         self.view.addSubview(actionButton)
-        
-//        self.checkMark = false
-//        print("CHECK_MARK - \(self.checkMark)")
         
         setupViews()
 
@@ -177,47 +172,7 @@ class EventDetailsViewController: LiveViewController {
     
     
     @IBAction func willGoClick(_ sender: Any) {
-        let notificationValue = UserDefaultsService.isNotificationEnabled
-        print("willGoClick.notificationValue - \(notificationValue)")
-        if notificationValue == false {
-            let banner = NotificationBanner(title: "Уведомления отключены", subtitle: "Включите уведомления в настройках приложения", style: .warning)
-            banner.show()
-        } else {
-            
-            self.willGoOutlet.status = self.willGoOutlet.statusToogle()
-            if self.willGoOutlet.status {
-                
-                let alert = UIAlertController.init(title: nil, message: "Создать напоминание о мероприятии?", preferredStyle: .alert)
-                let ok = UIAlertAction.init(title: "ОK", style: .default) { action in
-                    
-                    NotificationService.setTimeNotification(button: self.willGoOutlet, id: self.eventsObject.id, subtitle: self.eventsObject!.name, body: self.eventsObject!.activity)
-                    
-                }
-                let cencel = UIAlertAction.init(title: "Cancel", style: .cancel) { (action) in
-                    self.willGoOutlet.status = self.willGoOutlet.statusToogle()
-                }
-                alert.addAction(ok)
-                alert.addAction(cencel)
-                self.present(alert, animated: true, completion: nil)
-                
-            } else {
-                let alert = UIAlertController.init(title: nil, message: "Удалить напоминание о мероприятиии?", preferredStyle: .alert)
-                let ok = UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
-                    NotificationService.removeNotifications(withIdentifiers: [self.eventsObject.id])
-                    self.willGoOutlet.backgroundColor = UIColor.rgb(red: 202, green: 219, blue: 236)
-                    let indexOfEvent = UserDefaultsService.willgoEventIDs.index(of: self.eventsObject!.id)
-                    UserDefaultsService.willgoEventIDs.remove(at: indexOfEvent!)
-                })
-                let cancel = UIAlertAction.init(title: "Cancel", style: .cancel, handler: { (action) in
-                    self.willGoOutlet.status = self.willGoOutlet.statusToogle()
-                    print("Удаление напоминания отменено!")
-                })
-                alert.addAction(ok)
-                alert.addAction(cancel)
-                self.present(alert, animated: true, completion: nil)
-            }
-        }
-
+        WillGoButton.setupNote(parrentViewController: self, button: self.willGoOutlet, eventsID: self.eventsObject.id, eventsName: self.eventsObject.name, eventsActivity: self.eventsObject.activity, eventsTime: self.eventsObject.timeStart)
     }
     
     

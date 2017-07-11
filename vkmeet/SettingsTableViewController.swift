@@ -15,7 +15,6 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let notificationValue = UserDefaultsService.isNotificationEnabled {
-            print("notificationValue - \(notificationValue)")
             NotificationSwitch.setOn(notificationValue, animated: false)
         } else {
             NotificationSwitch.setOn(true, animated: false)
@@ -31,11 +30,9 @@ class SettingsTableViewController: UITableViewController {
     // MARK: - Actions
     func changeNotificationSettings() {
         if UserDefaultsService.isNotificationEnabled! {
-            print("isNotificationEnabled = false")
             UserDefaultsService.isNotificationEnabled = false
             NotificationService.cancelNotification()
         } else {
-            print("isNotificationEnabled = true")
             UserDefaultsService.isNotificationEnabled = true
         }
     }
@@ -47,7 +44,6 @@ class SettingsTableViewController: UITableViewController {
     
     
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
-        print("logoutButtonPressed")
         
         let alert = UIAlertController.init(title: nil, message: "Вы уверены, что хотите выйти?", preferredStyle: .alert)
         

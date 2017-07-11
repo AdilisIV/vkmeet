@@ -19,8 +19,6 @@ class PopupMenuView: UIView {
         
         parrentView.addSubview(popupView)
         popupView.center = parrentView.center
-        //let point = CGPoint(x: 0, y: 0)
-        //popupView.frame = CGRect(origin: point, size: parrentView.bounds.size)
         popupView.transform = self.affineTransorm
         popupView.alpha = 0
         

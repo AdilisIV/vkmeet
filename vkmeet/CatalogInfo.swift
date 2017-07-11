@@ -74,11 +74,11 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
                     self?.CatalogTable!.reloadData()
                 }
             } else {
-                let errorMessage = error?.localizedDescription as! String
-                self?.presentNotification(parentViewController: self!, notificationTitle: "Сетевой запрос", notificationMessage: "Ошибка при обновлении данных: \(errorMessage)", completion: nil)
+                let errorMessage = error?.localizedDescription
+                self?.presentNotification(parentViewController: self!, notificationTitle: "Сетевой запрос", notificationMessage: "Ошибка при обновлении данных: \(String(describing: errorMessage))", completion: nil)
             }
         }
-    }
+    }// string interpolation produces a debug description for an optional value; did you mean to make this explicit?
     
     
     // start and stop activityIndicator
@@ -149,11 +149,10 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
             let event = sender as! Event
             let dvc = segue.destination as! EventDetailsViewController
             dvc.eventsObject = event
-            
         } else if segue.identifier == "toCitySegue" {
             self.dismiss(animated: true, completion: nil)
         }
-        
+    
     }
     
     deinit {
