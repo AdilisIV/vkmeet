@@ -10,7 +10,11 @@ import UIKit
 
 class WillGoButton: UIButton {
     
+    
     var willgoID: String = ""
+    
+    let activeColor = UIColor.rgb(red: 76, green: 163, blue: 248)
+    
     
     func willgoToggle(checkMark: Bool) -> Bool {
         var value = checkMark
@@ -18,4 +22,5 @@ class WillGoButton: UIButton {
         return value
     }
 
+    
 }

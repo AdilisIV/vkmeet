@@ -41,7 +41,6 @@ class EventDetailsViewController: LiveViewController {
     
     weak var eventsObject: Event!
 
-    var willgoEventsID = [String]()
     var checkMark:Bool!
     
     var defaults = UserDefaults.standard
@@ -78,11 +77,6 @@ class EventDetailsViewController: LiveViewController {
         }
         actionButton.isScrollView = true
         self.view.addSubview(actionButton)
-        
-        
-        if self.defaults.value(forKey: "willgoevents") != nil {
-            self.willgoEventsID = self.defaults.array(forKey: "willgoevents") as! [String]
-        }
         
         self.checkMark = false
         print(self.checkMark)
@@ -143,7 +137,7 @@ class EventDetailsViewController: LiveViewController {
                 eventMarker.map = self.smallMapView
             }
             
-            if self.willgoEventsID.contains(self.willGoOutlet.willgoID) {
+            if UserDefaultsService.willgoEventIDs.contains(self.willGoOutlet.willgoID) {
                 self.willGoOutlet.backgroundColor = UIColor.rgb(red: 76, green: 163, blue: 248)
                 self.checkMark = true
                 print(self.checkMark)
@@ -190,38 +184,18 @@ class EventDetailsViewController: LiveViewController {
             let banner = NotificationBanner(title: "Уведомления отключены", subtitle: "Включите уведомления в настройках приложения", style: .warning)
             banner.show()
         } else {
+            
             self.checkMark = self.willGoOutlet.willgoToggle(checkMark: self.checkMark)
-            print(self.checkMark)
             if self.checkMark {
                 
                 let alert = UIAlertController.init(title: nil, message: "Создать напоминание о мероприятии?", preferredStyle: .alert)
                 let ok = UIAlertAction.init(title: "ОK", style: .default) { action in
                     
-                    let nowDate = Date()
-                    let timeInterval = nowDate.timeIntervalSince1970
-                    let nowDateInSeconds = Int(timeInterval)
-                    let time = self.eventsObject!.timeStart - nowDateInSeconds - 4900
-                    
-                    self.willGoOutlet.backgroundColor = UIColor.rgb(red: 76, green: 163, blue: 248)
-                    
-                    self.willgoEventsID.append(self.eventsObject!.id)
-                    print("Добавление в willgoEventsID элемента - \(self.eventsObject!.id)")
-                    print("willgoEventsID: \(self.willgoEventsID)")
-                    self.defaults.set(self.willgoEventsID, forKey: "willgoevents")
-                    print("UserDefaults for key:willdoevents - \(self.defaults.array(forKey: "willgoevents") as! [String])")
-                    
-                    self.scheduleNotification(inSeconds: TimeInterval(time), id: self.eventsObject.id, subtitle: self.eventsObject!.name, body: self.eventsObject!.activity, completion: { (success) in
-                        if success {
-                            print("We send this Notification")
-                        } else {
-                            print("Failed")
-                        }
-                    })
+                    NotificationService.setTimeNotification(button: self.willGoOutlet, id: self.eventsObject.id, subtitle: self.eventsObject!.name, body: self.eventsObject!.activity)
                     
                 }
                 let cencel = UIAlertAction.init(title: "Cancel", style: .cancel) { (action) in
                     self.checkMark = self.willGoOutlet.willgoToggle(checkMark: self.checkMark)
-                    print("Добавление Уведомления отменено")
                 }
                 alert.addAction(ok)
                 alert.addAction(cencel)
@@ -230,11 +204,10 @@ class EventDetailsViewController: LiveViewController {
             } else {
                 let alert = UIAlertController.init(title: nil, message: "Удалить напоминание о мероприятиии?", preferredStyle: .alert)
                 let ok = UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
-                    self.removeNotifications(withIdentifiers: [self.eventsObject.id])
+                    NotificationService.removeNotifications(withIdentifiers: [self.eventsObject.id])
                     self.willGoOutlet.backgroundColor = UIColor.rgb(red: 202, green: 219, blue: 236)
-                    let indexOfEvent = self.willgoEventsID.index(of: self.eventsObject!.id)
-                    self.willgoEventsID.remove(at: indexOfEvent!)
-                    self.defaults.set(self.willgoEventsID, forKey: "willgoevents")
+                    let indexOfEvent = UserDefaultsService.willgoEventIDs.index(of: self.eventsObject!.id)
+                    UserDefaultsService.willgoEventIDs.remove(at: indexOfEvent!)
                 })
                 let cancel = UIAlertAction.init(title: "Cancel", style: .cancel, handler: { (action) in
                     self.checkMark = self.willGoOutlet.willgoToggle(checkMark: self.checkMark)
@@ -246,36 +219,6 @@ class EventDetailsViewController: LiveViewController {
             }
         }
 
-    }
-    
-    
-    func scheduleNotification(inSeconds seconds: TimeInterval, id: String, subtitle: String, body: String, completion: (Bool) -> ()) {
-        
-        removeNotifications(withIdentifiers: [id])
-        
-        let date = Date(timeIntervalSinceNow: seconds)
-        
-        let content = UNMutableNotificationContent()
-        content.title = "Уже завтра состоится мероприятие:"
-        content.subtitle = subtitle
-        content.body = body
-        let badgeCount = UIApplication.shared.applicationIconBadgeNumber
-        content.badge = badgeCount + 1 as NSNumber
-        content.sound = UNNotificationSound.default()
-        
-        let calendar = Calendar(identifier: .gregorian)
-        let components = calendar.dateComponents([.month, .hour, .minute, .second], from: date)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
-        let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
-        
-        let center = UNUserNotificationCenter.current()
-        center.add(request, withCompletionHandler: nil)
-    }
-    
-    
-    func removeNotifications(withIdentifiers identifiers: [String]) {
-        let center = UNUserNotificationCenter.current()
-        center.removePendingNotificationRequests(withIdentifiers: identifiers)
     }
     
     

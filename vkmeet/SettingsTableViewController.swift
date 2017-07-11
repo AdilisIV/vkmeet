@@ -14,8 +14,12 @@ class SettingsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let notificationValue = UserDefaultsService.isNotificationEnabled
-        NotificationSwitch.setOn(notificationValue!, animated: false)
+        if let notificationValue = UserDefaultsService.isNotificationEnabled {
+            print("notificationValue - \(notificationValue)")
+            NotificationSwitch.setOn(notificationValue, animated: false)
+        } else {
+            NotificationSwitch.setOn(true, animated: false)
+        }
     }
 
     override func didReceiveMemoryWarning() {

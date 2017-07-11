@@ -21,7 +21,6 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
     var refreshControl: UIRefreshControl!
 
     var eventsArr = [Event]()
-    var willgoEventsID = [String]()
     
     // получаем id города, который выбрал пользователь
     // id в UserDefaults записывается в классе CityViewController
@@ -56,10 +55,6 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
     // при каждом показе View обновляем данные, сверяясь с UserDefaults
     // и делая willGoButton активной (зеленой), есди event добавлен в UserDefaults
     override func viewWillAppear(_ animated: Bool) {
-        let defaults = UserDefaults.standard
-        if defaults.value(forKey: "willgoevents") != nil {
-            willgoEventsID = defaults.array(forKey: "willgoevents") as! [String]
-        }
         self.CatalogTable!.reloadData()
     }
     
@@ -129,7 +124,7 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
         cell.eventDateLabel.text = eventsArr[indexPath.row].activity
         cell.willgoButtonOutlet.willgoID = eventsArr[indexPath.row].id
         
-        if self.willgoEventsID.contains(cell.willgoButtonOutlet.willgoID) {
+        if UserDefaultsService.willgoEventIDs.contains(cell.willgoButtonOutlet.willgoID) {
             cell.willgoButtonOutlet.backgroundColor = UIColor.rgb(red: 76, green: 163, blue: 248)
         } else {
             cell.willgoButtonOutlet.backgroundColor = UIColor.rgb(red: 202, green: 219, blue: 236)

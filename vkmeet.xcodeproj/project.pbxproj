@@ -183,13 +183,13 @@
 		CEBE8A4E1E5E0893000089FA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				CE6274451F11311E0073C676 /* SettingsTableViewController.swift */,
 				CE01D58E1E2A62F400C77574 /* ViewController.swift */,
 				CE3853B01E2D469200D570AE /* CityViewController.swift */,
 				CE20E3F41E6F50270002D4C7 /* CatalogInfo.swift */,
 				CE1DFA3D1ED0BE910066AA7F /* EventDetailsViewController.swift */,
 				CE503F081ED5FAC3003027D8 /* mapViewController.swift */,
 				CE61BAF01E65F40300F3A796 /* FeedbackViewController.swift */,
+				CE6274451F11311E0073C676 /* SettingsTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

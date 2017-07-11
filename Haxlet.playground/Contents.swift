@@ -357,18 +357,18 @@ import Foundation
 
 /// Расширения (extension). Урок 29
 
-struct SomeStruct {
-    var someProp = 1.0
-}
-
-extension SomeStruct {
-    init(prop: Double) {
-        let newProp = prop + 42
-        self.init(someProp: newProp)
-    }
-}
-
-var a = SomeStruct(prop: 2)
+//struct SomeStruct {
+//    var someProp = 1.0
+//}
+//
+//extension SomeStruct {
+//    init(prop: Double) {
+//        let newProp = prop + 42
+//        self.init(someProp: newProp)
+//    }
+//}
+//
+//var a = SomeStruct(prop: 2)
 
 
 

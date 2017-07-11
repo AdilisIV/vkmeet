@@ -20,4 +20,16 @@ class UserDefaultsService {
         }
     }
     
+    //self.defaults.set(self.willgoEventsID, forKey: "willgoevents")
+    
+    static var willgoEventIDs: [String]! {
+        get {
+            return UserDefaults.standard.array(forKey: "willgoevents") as! [String]
+        }
+        set(value) {
+            UserDefaults.standard.set(value, forKey: "willgoevents")
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
 }
