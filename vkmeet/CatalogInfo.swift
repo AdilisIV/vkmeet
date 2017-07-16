@@ -147,6 +147,10 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
         
         if segue.identifier == "goToEventDetails" {
             let event = sender as! Event
+            print("latitude: \(event.latitude)")
+            print("longitude: \(event.longitude)")
+            print("description: \(event.description)")
+            print("url: \(event.url)")
             let dvc = segue.destination as! EventDetailsViewController
             dvc.eventsObject = event
         } else if segue.identifier == "toCitySegue" {

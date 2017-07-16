@@ -33,6 +33,10 @@
 		CE62744A1F1227B90073C676 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6274491F1227B90073C676 /* NotificationService.swift */; };
 		CE65651C1EC8AF930070EAB1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE65651B1EC8AF930070EAB1 /* Alamofire.framework */; };
 		CE6FECB11ED7EC13004D2E43 /* WillGoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FECB01ED7EC13004D2E43 /* WillGoButton.swift */; };
+		CE78071C1F19E79F00A3BD07 /* AlignableUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78071B1F19E79F00A3BD07 /* AlignableUILabel.swift */; };
+		CE7807601F1B0D2900A3BD07 /* PMAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78075B1F1B0D2900A3BD07 /* PMAlertAction.swift */; };
+		CE7807611F1B0D2900A3BD07 /* PMAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78075C1F1B0D2900A3BD07 /* PMAlertController.swift */; };
+		CE7807621F1B0D2900A3BD07 /* PMAlertController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE78075D1F1B0D2900A3BD07 /* PMAlertController.xib */; };
 		CE89EEF51E7C4BA90066C6FD /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE89EEF41E7C4BA90066C6FD /* Store.swift */; };
 		CE89EEF81E7C65E60066C6FD /* InternetChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE89EEF71E7C65E60066C6FD /* InternetChecker.swift */; };
 		CEA1FB231EFFA1C10068259C /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA1FB221EFFA1C00068259C /* LiveViewController.swift */; };
@@ -58,7 +62,6 @@
 		CE1DFA3B1ECBB8A00066AA7F /* arial-black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "arial-black.ttf"; path = "../../../Desktop/Sochi_presentation/Design/Source_All_Events_Screen/arial-black.ttf"; sourceTree = "<group>"; };
 		CE1DFA3D1ED0BE910066AA7F /* EventDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		CE20E3F41E6F50270002D4C7 /* CatalogInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogInfo.swift; sourceTree = "<group>"; };
-		CE2B140F1F038C1700285D17 /* Haxlet.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Haxlet.playground; sourceTree = "<group>"; };
 		CE32A9D51EF90B7600D60583 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		CE32A9D71EF90DD900D60583 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		CE32A9D91EF93D7B00D60583 /* PopupMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupMenuView.swift; sourceTree = "<group>"; };
@@ -73,10 +76,14 @@
 		CE6274491F1227B90073C676 /* NotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		CE65651B1EC8AF930070EAB1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../Library/Developer/Xcode/DerivedData/vkmeet-genbgkzyjwtwxfabcikzugtqegmv/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		CE6FECB01ED7EC13004D2E43 /* WillGoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WillGoButton.swift; sourceTree = "<group>"; };
+		CE78071B1F19E79F00A3BD07 /* AlignableUILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignableUILabel.swift; sourceTree = "<group>"; };
+		CE78075B1F1B0D2900A3BD07 /* PMAlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PMAlertAction.swift; path = Library/PMAlertAction.swift; sourceTree = "<group>"; };
+		CE78075C1F1B0D2900A3BD07 /* PMAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PMAlertController.swift; path = Library/PMAlertController.swift; sourceTree = "<group>"; };
+		CE78075D1F1B0D2900A3BD07 /* PMAlertController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PMAlertController.xib; path = Library/PMAlertController.xib; sourceTree = "<group>"; };
 		CE89EEF41E7C4BA90066C6FD /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		CE89EEF71E7C65E60066C6FD /* InternetChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetChecker.swift; sourceTree = "<group>"; };
 		CEA1FB221EFFA1C00068259C /* LiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
-		CEB4C0C61EDB1B01001582E6 /* DTZFloatingActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DTZFloatingActionButton.swift; path = "../../../Downloads/DTZFloatingActionButton-master/DTZFloatingActionButton/Classes/DTZFloatingActionButton.swift"; sourceTree = "<group>"; };
+		CEB4C0C61EDB1B01001582E6 /* DTZFloatingActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DTZFloatingActionButton.swift; path = "../../../../Downloads/DTZFloatingActionButton-master/DTZFloatingActionButton/Classes/DTZFloatingActionButton.swift"; sourceTree = "<group>"; };
 		CEBE8A561E619269000089FA /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,7 +113,6 @@
 		CE01D5801E2A62F400C77574 = {
 			isa = PBXGroup;
 			children = (
-				CE2B140F1F038C1700285D17 /* Haxlet.playground */,
 				CE01D58B1E2A62F400C77574 /* vkmeet */,
 				CE01D58A1E2A62F400C77574 /* Products */,
 				407CB6F566BE06E1056C9747 /* Pods */,
@@ -131,6 +137,7 @@
 				CEBE8A4F1E5E08E2000089FA /* Models */,
 				CE1DFA3A1ECBB8810066AA7F /* Fonts */,
 				CEBE8A4E1E5E0893000089FA /* Controllers */,
+				CE7807591F1B0D2900A3BD07 /* PMAlertController */,
 				CE01D5901E2A62F400C77574 /* Main.storyboard */,
 				CE01D5931E2A62F400C77574 /* Assets.xcassets */,
 				CE01D5981E2A62F400C77574 /* Info.plist */,
@@ -147,6 +154,16 @@
 			);
 			name = Fonts;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		CE7807591F1B0D2900A3BD07 /* PMAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				CE78075B1F1B0D2900A3BD07 /* PMAlertAction.swift */,
+				CE78075C1F1B0D2900A3BD07 /* PMAlertController.swift */,
+				CE78075D1F1B0D2900A3BD07 /* PMAlertController.xib */,
+			);
+			path = PMAlertController;
 			sourceTree = "<group>";
 		};
 		CE89EEF31E7C4B260066C6FD /* Store */ = {
@@ -176,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				CEBE8A561E619269000089FA /* CustomCell.swift */,
+				CE78071B1F19E79F00A3BD07 /* AlignableUILabel.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -197,6 +215,7 @@
 		CEBE8A4F1E5E08E2000089FA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CEB4C0C61EDB1B01001582E6 /* DTZFloatingActionButton.swift */,
 				CE01D5AA1E2A80C100C77574 /* VKAPIWorker.swift */,
 				CE17D4111E7D78790021273C /* CustomTextField.swift */,
 				CE6FECB01ED7EC13004D2E43 /* WillGoButton.swift */,
@@ -210,7 +229,6 @@
 		E040139ED2F28F22750D4B81 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CEB4C0C61EDB1B01001582E6 /* DTZFloatingActionButton.swift */,
 				CE65651B1EC8AF930070EAB1 /* Alamofire.framework */,
 				CE544E801E7FC15800503106 /* SwiftyVK.framework */,
 				70812B322C9AD2DB3A6DF08D /* Pods_vkmeet.framework */,
@@ -286,6 +304,7 @@
 				CE06DDED1EDC9C3800DCB5DB /* LaunchScreenTwo.storyboard in Resources */,
 				CE1DFA3C1ECBB8BE0066AA7F /* arial-black.ttf in Resources */,
 				CE01D5941E2A62F400C77574 /* Assets.xcassets in Resources */,
+				CE7807621F1B0D2900A3BD07 /* PMAlertController.xib in Resources */,
 				CE01D5921E2A62F400C77574 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,12 +381,14 @@
 				CE3F601A1E7CFD8600CA207C /* SettingsNavigationController.swift in Sources */,
 				CE01D58F1E2A62F400C77574 /* ViewController.swift in Sources */,
 				CE01D5A91E2A7FCE00C77574 /* VKDelegatevkmeet.swift in Sources */,
+				CE7807611F1B0D2900A3BD07 /* PMAlertController.swift in Sources */,
 				CE61BAF11E65F40300F3A796 /* FeedbackViewController.swift in Sources */,
 				CEA1FB231EFFA1C10068259C /* LiveViewController.swift in Sources */,
 				CE32A9D81EF90DD900D60583 /* City.swift in Sources */,
 				CE32A9D61EF90B7600D60583 /* Event.swift in Sources */,
 				CE32A9DE1EFA517400D60583 /* Repository.swift in Sources */,
 				CE503F091ED5FAC3003027D8 /* mapViewController.swift in Sources */,
+				CE78071C1F19E79F00A3BD07 /* AlignableUILabel.swift in Sources */,
 				CE6FECB11ED7EC13004D2E43 /* WillGoButton.swift in Sources */,
 				CE6274481F1223E80073C676 /* UserDefaultsService.swift in Sources */,
 				CE01D5AB1E2A80C100C77574 /* VKAPIWorker.swift in Sources */,
@@ -376,6 +397,7 @@
 				CE1DFA3E1ED0BE920066AA7F /* EventDetailsViewController.swift in Sources */,
 				CE01D58D1E2A62F400C77574 /* AppDelegate.swift in Sources */,
 				CE62744A1F1227B90073C676 /* NotificationService.swift in Sources */,
+				CE7807601F1B0D2900A3BD07 /* PMAlertAction.swift in Sources */,
 				CE17D4121E7D78790021273C /* CustomTextField.swift in Sources */,
 				CEB4C0C81EDB1B01001582E6 /* DTZFloatingActionButton.swift in Sources */,
 				CEBE8A571E619269000089FA /* CustomCell.swift in Sources */,

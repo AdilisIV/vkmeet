@@ -17,6 +17,7 @@ class SettingsNavigationController: UINavigationController {
         self.navigationBar.tintColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0)
         
         self.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        //self.navigationBar.setBackgroundImage(UIImage.init(named: "navigationBarBackground.png"), for: .topAttached, barMetrics: .default)
         self.navigationBar.shadowImage = UIImage()
         self.navigationBar.isTranslucent = true
         self.view.backgroundColor = UIColor.clear

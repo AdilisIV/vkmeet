@@ -14,7 +14,7 @@ class CustomCell: UITableViewCell {
     @IBOutlet weak var willgoButtonOutlet: WillGoButton!
     
     @IBOutlet weak var cellImage: UIImageView!
-    @IBOutlet weak var cellName: UITextView!
+    @IBOutlet weak var cellName: AlignableUILabel!
     @IBOutlet weak var countOfMembers: UILabel!
     @IBOutlet weak var eventbgImage: UIImageView!
     @IBOutlet weak var eventDateLabel: UILabel!
@@ -29,10 +29,12 @@ class CustomCell: UITableViewCell {
     func setupViews() {
         
         // textView
-        cellName.frame = CGRect(x: 0, y: 0, width: cellName.frame.width, height: 49)
-        cellName.isUserInteractionEnabled = false
-        cellName.textContainer.maximumNumberOfLines = 2
-        cellName.textContainer.lineBreakMode = NSLineBreakMode.byClipping
+        //cellName.frame = CGRect(x: 0, y: 0, width: cellName.frame.width, height: 49)
+        //cellName.isUserInteractionEnabled = false
+        cellName.contentMode = UIViewContentMode.top
+        //cellName.contentMode = .topLeft
+        //cellName.textContainer.maximumNumberOfLines = 2
+        //cellName.textContainer.lineBreakMode = NSLineBreakMode.byClipping
         
         
         // set avatar shadow

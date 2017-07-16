@@ -14,6 +14,7 @@ import GoogleMaps
 import UserNotifications
 import NotificationBannerSwift
 
+
 class EventDetailsViewController: LiveViewController {
     
     @IBOutlet weak var willGoOutlet: WillGoButton!
@@ -59,18 +60,36 @@ class EventDetailsViewController: LiveViewController {
         actionButton.handler = { [weak self]
             button in
             
-            let alert = UIAlertController.init(title: nil, message: "Вы уверены, что хотите поделиться этим мероприятием с друзьями?", preferredStyle: .alert)
-            
-            let cancel = UIAlertAction.init(title: "Отмена", style: .cancel, handler: nil)
-            let ok = UIAlertAction.init(title: "Ок", style: .default) { action in
-                let userId = Store.userID
-                VKAPIWorker.uploadPostToWall(userID: userId!, activity: (self?.eventsObject!.activity)!, url: (self?.eventsObject!.url)!, eventTitle: (self?.eventsObject!.name)!)
+            if let title = self?.eventsObject!.name {
+                if let activity = self?.eventsObject!.activity {
+                    let alertVC = PMAlertController(title: "Отправить на стену?", description: "#ПойдуНа \(title)! \(activity)", image: UIImage(named: "photoToWallPost.png"), style: .alert)
+                    
+                    alertVC.addAction(PMAlertAction(title: "Отмена", style: .cancel, action: { () -> Void in
+                        print("Capture action Cancel")
+                    }))
+                    
+                    alertVC.addAction(PMAlertAction(title: "Отправить", style: .default, action: { () in
+                        print("Capture action OK")
+                    }))
+                    
+                    DispatchQueue.main.async {
+                        self?.present(alertVC, animated: true, completion: nil)
+                    }
+                }
             }
             
-            alert.addAction(cancel)
-            alert.addAction(ok)
-            
-            self?.present(alert, animated: true, completion: nil)
+//            let alert = UIAlertController.init(title: nil, message: "Вы уверены, что хотите поделиться этим мероприятием с друзьями?", preferredStyle: .alert)
+//            
+//            let cancel = UIAlertAction.init(title: "Отмена", style: .cancel, handler: nil)
+//            let ok = UIAlertAction.init(title: "Ок", style: .default) { action in
+//                let userId = Store.userID
+//                VKAPIWorker.uploadPostToWall(userID: userId!, activity: (self?.eventsObject!.activity)!, url: (self?.eventsObject!.url)!, eventTitle: (self?.eventsObject!.name)!)
+//            }
+//            
+//            alert.addAction(cancel)
+//            alert.addAction(ok)
+//            
+//            self?.present(alert, animated: true, completion: nil)
             
         }
         actionButton.isScrollView = true

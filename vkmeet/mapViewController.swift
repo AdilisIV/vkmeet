@@ -31,7 +31,7 @@ class mapViewController: UIViewController {
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
         marker.title = eventName
-        let markerColor = UIColor.rgb(red: 81, green: 192, blue: 171)
+        let markerColor = UIColor.rgb(red: 76, green: 163, blue: 248)
         marker.icon = GMSMarker.markerImage(with: markerColor)
         marker.map = mapView
     }
