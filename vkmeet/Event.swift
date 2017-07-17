@@ -20,9 +20,10 @@ class Event {
     var longitude: Double!
     var description: String!
     var url: URL!
+    var commerce: Bool
     
     
-    init(id: String, name: String, image: String, memb: String, timeStart: Int, activity: String, latitude: Double!, longitude: Double!, description: String!, url: URL!) {
+    init(id: String, name: String, image: String, memb: String, timeStart: Int, activity: String, latitude: Double!, longitude: Double!, description: String!, url: URL!, commerce: Bool) {
         self.id = id
         self.name = name
         self.image = image
@@ -33,6 +34,7 @@ class Event {
         self.longitude = longitude
         self.description = description
         self.url = url
+        self.commerce = commerce
     }
     
 }

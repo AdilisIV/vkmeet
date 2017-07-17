@@ -25,17 +25,13 @@ class CustomCell: UITableViewCell {
     
     @IBOutlet weak var eventBlock: UIImageView!
     
+    var isCommercePlacement: Bool = false
     
     func setupViews() {
         
-        // textView
-        //cellName.frame = CGRect(x: 0, y: 0, width: cellName.frame.width, height: 49)
-        //cellName.isUserInteractionEnabled = false
+        // cellName
         cellName.contentMode = UIViewContentMode.top
-        //cellName.contentMode = .topLeft
-        //cellName.textContainer.maximumNumberOfLines = 2
-        //cellName.textContainer.lineBreakMode = NSLineBreakMode.byClipping
-        
+    
         
         // set avatar shadow
         outerImageView.frame = CGRect(x: 17, y: 9, width: outerImageView.frame.width, height: outerImageView.frame.height)
@@ -59,8 +55,6 @@ class CustomCell: UITableViewCell {
         // eventsImageView
         cellImage.layer.cornerRadius = 10
         cellImage.layer.masksToBounds = true
-        //eventbgImage.layer.cornerRadius = 47
-        //eventbgImage.layer.masksToBounds = true
         
         
         // eventDateLabel
@@ -76,8 +70,25 @@ class CustomCell: UITableViewCell {
     }
     
     
+    func cancelCommerce() {
+        eventBlock.backgroundColor = UIColor.rgb(red: 251, green: 253, blue: 255)
+        eventBlock.layer.borderColor = UIColor.rgb(red: 241, green: 241, blue: 241).cgColor
+        eventDateLabel.textColor = UIColor.rgb(red: 75, green: 108, blue: 139)
+        cellName.textColor = UIColor.rgb(red: 33, green: 33, blue: 33)
+        willgoButtonOutlet.backgroundColor = UIColor.rgb(red: 202, green: 219, blue: 236)
+        outerBackImage.layer.shadowColor = UIColor.black.cgColor
+        outerBackImage.layer.shadowOpacity = 0.15
+    }
     
-    
+    func takeCommerce() {
+        eventBlock.backgroundColor = UIColor.rgb(red: 80, green: 95, blue: 125)
+        eventBlock.layer.borderColor = UIColor.rgb(red: 80, green: 95, blue: 125).cgColor
+        eventDateLabel.textColor = UIColor.rgb(red: 202, green: 219, blue: 236)
+        cellName.textColor = UIColor.rgb(red: 255, green: 255, blue: 255)
+        willgoButtonOutlet.backgroundColor = UIColor.rgb(red: 167, green: 182, blue: 199)
+        outerBackImage.layer.shadowColor = UIColor.rgb(red: 62, green: 143, blue: 246).cgColor
+        outerBackImage.layer.shadowOpacity = 0.21
+    }
     
     
     override func awakeFromNib() {

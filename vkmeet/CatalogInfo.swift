@@ -119,6 +119,12 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "catalogCell", for: indexPath) as! CustomCell
         
+        if eventsArr[indexPath.row].commerce {
+            cell.takeCommerce()
+        } else {
+            cell.cancelCommerce()
+        }
+        
         cell.cellName.text = eventsArr[indexPath.row].name
         cell.countOfMembers.text = eventsArr[indexPath.row].memb
         cell.eventDateLabel.text = eventsArr[indexPath.row].activity
@@ -127,7 +133,7 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
         if UserDefaultsService.willgoEventIDs.contains(cell.willgoButtonOutlet.willgoID) {
             cell.willgoButtonOutlet.backgroundColor = UIColor.rgb(red: 76, green: 163, blue: 248)
         } else {
-            cell.willgoButtonOutlet.backgroundColor = UIColor.rgb(red: 202, green: 219, blue: 236)
+            cell.willgoButtonOutlet.backgroundColor = UIColor.rgb(red: 196, green: 212, blue: 228)
         }
         
         cell.cellImage.sd_setImage(with: URL(string: eventsArr[indexPath.row].image), placeholderImage: #imageLiteral(resourceName: "placeholder_toload"), options: [.continueInBackground, .progressiveDownload])

@@ -73,8 +73,9 @@ class Repository {
                     let description = arrRes[i]["description"]
                     let url = arrRes[i]["screenname"]
                     let nsurl = URL(string: url as! String)
+                    let commerce = arrRes[i]["commerce"]
                     
-                    let eventObject = Event.init(id: id as! String, name: title as! String, image: img as! String, memb: "Участников: \(memb!)", timeStart: dateStart as! Int, activity: activity as! String, latitude: latitude as! Double, longitude: longitude as! Double, description: description as! String, url: nsurl)
+                    let eventObject = Event.init(id: id as! String, name: title as! String, image: img as! String, memb: "Участников: \(memb!)", timeStart: dateStart as! Int, activity: activity as! String, latitude: latitude as! Double, longitude: longitude as! Double, description: description as! String, url: nsurl, commerce: commerce as! Bool)
                     eventsArr.append(eventObject)
                 }
                 handler(eventsArr, nil)
@@ -108,8 +109,9 @@ class Repository {
                 let description = arrRes[0]["description"]
                 let url = arrRes[0]["screenname"]
                 let nsurl = URL(string: url as! String)
+                let commerce = arrRes[0]["commerce"]
                 
-                let eventsObject = Event.init(id: id as! String, name: title as! String, image: img as! String, memb: "Участников: \(memb!)", timeStart: start as! Int, activity: activity as! String, latitude: latitude as! Double, longitude: longitude as! Double, description: description as! String, url: nsurl!)
+                let eventsObject = Event.init(id: id as! String, name: title as! String, image: img as! String, memb: "Участников: \(memb!)", timeStart: start as! Int, activity: activity as! String, latitude: latitude as! Double, longitude: longitude as! Double, description: description as! String, url: nsurl!, commerce: commerce as! Bool)
                 handler(eventsObject, nil)
                 
             case .failure(let error):
