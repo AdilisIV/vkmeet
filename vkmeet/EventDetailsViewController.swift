@@ -78,20 +78,8 @@ class EventDetailsViewController: LiveViewController {
                 }
             }
             
-//            let alert = UIAlertController.init(title: nil, message: "Вы уверены, что хотите поделиться этим мероприятием с друзьями?", preferredStyle: .alert)
-//            
-//            let cancel = UIAlertAction.init(title: "Отмена", style: .cancel, handler: nil)
-//            let ok = UIAlertAction.init(title: "Ок", style: .default) { action in
-//                let userId = Store.userID
-//                VKAPIWorker.uploadPostToWall(userID: userId!, activity: (self?.eventsObject!.activity)!, url: (self?.eventsObject!.url)!, eventTitle: (self?.eventsObject!.name)!)
-//            }
-//            
-//            alert.addAction(cancel)
-//            alert.addAction(ok)
-//            
-//            self?.present(alert, animated: true, completion: nil)
-            
         }
+        
         actionButton.isScrollView = true
         self.view.addSubview(actionButton)
         
@@ -196,18 +184,20 @@ class EventDetailsViewController: LiveViewController {
     
     
     func setupViews() {
-        // eventAvatar
-        eventAvatar.layer.cornerRadius = 10
-        eventAvatar.layer.masksToBounds = true
-        
-        // dateShadow
-        dateShadow.frame = CGRect(x: 141, y: -16, width: dateShadow.frame.width, height: dateShadow.frame.height)
-        dateShadow.clipsToBounds = false
-        dateShadow.layer.shadowColor = UIColor.black.cgColor
-        dateShadow.layer.shadowOpacity = 0.30
-        dateShadow.layer.shadowRadius = 5
-        dateShadow.layer.shadowOffset = CGSize.zero
-        dateShadow.layer.shadowPath = UIBezierPath(rect: dateShadow.bounds).cgPath
+        DispatchQueue.main.async {
+            // eventAvatar
+            self.eventAvatar.layer.cornerRadius = 10
+            self.eventAvatar.layer.masksToBounds = true
+            
+            // dateShadow
+            self.dateShadow.frame = CGRect(x: 141, y: -16, width: self.dateShadow.frame.width, height: self.dateShadow.frame.height)
+            self.dateShadow.clipsToBounds = false
+            self.dateShadow.layer.shadowColor = UIColor.black.cgColor
+            self.dateShadow.layer.shadowOpacity = 0.30
+            self.dateShadow.layer.shadowRadius = 5
+            self.dateShadow.layer.shadowOffset = CGSize.zero
+            self.dateShadow.layer.shadowPath = UIBezierPath(rect: self.dateShadow.bounds).cgPath
+        }
     }
     
 

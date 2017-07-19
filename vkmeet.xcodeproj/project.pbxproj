@@ -20,6 +20,12 @@
 		CE1B4C891E7592DD005647F1 /* CatalogInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE20E3F41E6F50270002D4C7 /* CatalogInfo.swift */; };
 		CE1DFA3C1ECBB8BE0066AA7F /* arial-black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE1DFA3B1ECBB8A00066AA7F /* arial-black.ttf */; };
 		CE1DFA3E1ED0BE920066AA7F /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1DFA3D1ED0BE910066AA7F /* EventDetailsViewController.swift */; };
+		CE2766CD1F1E5D870086BD9E /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2766C71F1E5D870086BD9E /* Configuration.swift */; };
+		CE2766CE1F1E5D870086BD9E /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2766C81F1E5D870086BD9E /* DayCell.swift */; };
+		CE2766CF1F1E5D870086BD9E /* DayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE2766C91F1E5D870086BD9E /* DayCell.xib */; };
+		CE2766D01F1E5D870086BD9E /* LoadableFromXibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2766CA1F1E5D870086BD9E /* LoadableFromXibView.swift */; };
+		CE2766D11F1E5D870086BD9E /* ScrollableDatepicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2766CB1F1E5D870086BD9E /* ScrollableDatepicker.swift */; };
+		CE2766D21F1E5D870086BD9E /* ScrollableDatepicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE2766CC1F1E5D870086BD9E /* ScrollableDatepicker.xib */; };
 		CE32A9D61EF90B7600D60583 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9D51EF90B7600D60583 /* Event.swift */; };
 		CE32A9D81EF90DD900D60583 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9D71EF90DD900D60583 /* City.swift */; };
 		CE32A9DA1EF93D7B00D60583 /* PopupMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9D91EF93D7B00D60583 /* PopupMenuView.swift */; };
@@ -62,6 +68,12 @@
 		CE1DFA3B1ECBB8A00066AA7F /* arial-black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "arial-black.ttf"; path = "../../../Desktop/Sochi_presentation/Design/Source_All_Events_Screen/arial-black.ttf"; sourceTree = "<group>"; };
 		CE1DFA3D1ED0BE910066AA7F /* EventDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		CE20E3F41E6F50270002D4C7 /* CatalogInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogInfo.swift; sourceTree = "<group>"; };
+		CE2766C71F1E5D870086BD9E /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		CE2766C81F1E5D870086BD9E /* DayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
+		CE2766C91F1E5D870086BD9E /* DayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayCell.xib; sourceTree = "<group>"; };
+		CE2766CA1F1E5D870086BD9E /* LoadableFromXibView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadableFromXibView.swift; sourceTree = "<group>"; };
+		CE2766CB1F1E5D870086BD9E /* ScrollableDatepicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableDatepicker.swift; sourceTree = "<group>"; };
+		CE2766CC1F1E5D870086BD9E /* ScrollableDatepicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScrollableDatepicker.xib; sourceTree = "<group>"; };
 		CE32A9D51EF90B7600D60583 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		CE32A9D71EF90DD900D60583 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		CE32A9D91EF93D7B00D60583 /* PopupMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupMenuView.swift; sourceTree = "<group>"; };
@@ -138,6 +150,7 @@
 				CE1DFA3A1ECBB8810066AA7F /* Fonts */,
 				CEBE8A4E1E5E0893000089FA /* Controllers */,
 				CE7807591F1B0D2900A3BD07 /* PMAlertController */,
+				CE2766C51F1E5D3C0086BD9E /* ScrollableDatePicker */,
 				CE01D5901E2A62F400C77574 /* Main.storyboard */,
 				CE01D5931E2A62F400C77574 /* Assets.xcassets */,
 				CE01D5981E2A62F400C77574 /* Info.plist */,
@@ -154,6 +167,27 @@
 			);
 			name = Fonts;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		CE2766C51F1E5D3C0086BD9E /* ScrollableDatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				CE2766C61F1E5D870086BD9E /* Sources */,
+			);
+			name = ScrollableDatePicker;
+			sourceTree = "<group>";
+		};
+		CE2766C61F1E5D870086BD9E /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				CE2766C71F1E5D870086BD9E /* Configuration.swift */,
+				CE2766C81F1E5D870086BD9E /* DayCell.swift */,
+				CE2766C91F1E5D870086BD9E /* DayCell.xib */,
+				CE2766CA1F1E5D870086BD9E /* LoadableFromXibView.swift */,
+				CE2766CB1F1E5D870086BD9E /* ScrollableDatepicker.swift */,
+				CE2766CC1F1E5D870086BD9E /* ScrollableDatepicker.xib */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		CE7807591F1B0D2900A3BD07 /* PMAlertController */ = {
@@ -301,10 +335,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE2766D21F1E5D870086BD9E /* ScrollableDatepicker.xib in Resources */,
 				CE06DDED1EDC9C3800DCB5DB /* LaunchScreenTwo.storyboard in Resources */,
 				CE1DFA3C1ECBB8BE0066AA7F /* arial-black.ttf in Resources */,
 				CE01D5941E2A62F400C77574 /* Assets.xcassets in Resources */,
 				CE7807621F1B0D2900A3BD07 /* PMAlertController.xib in Resources */,
+				CE2766CF1F1E5D870086BD9E /* DayCell.xib in Resources */,
 				CE01D5921E2A62F400C77574 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,6 +415,7 @@
 			files = (
 				CE0DBF4F1E9AC54D0087A6C6 /* CityViewController.swift in Sources */,
 				CE3F601A1E7CFD8600CA207C /* SettingsNavigationController.swift in Sources */,
+				CE2766CD1F1E5D870086BD9E /* Configuration.swift in Sources */,
 				CE01D58F1E2A62F400C77574 /* ViewController.swift in Sources */,
 				CE01D5A91E2A7FCE00C77574 /* VKDelegatevkmeet.swift in Sources */,
 				CE7807611F1B0D2900A3BD07 /* PMAlertController.swift in Sources */,
@@ -396,14 +433,17 @@
 				CE89EEF51E7C4BA90066C6FD /* Store.swift in Sources */,
 				CE1DFA3E1ED0BE920066AA7F /* EventDetailsViewController.swift in Sources */,
 				CE01D58D1E2A62F400C77574 /* AppDelegate.swift in Sources */,
+				CE2766D01F1E5D870086BD9E /* LoadableFromXibView.swift in Sources */,
 				CE62744A1F1227B90073C676 /* NotificationService.swift in Sources */,
 				CE7807601F1B0D2900A3BD07 /* PMAlertAction.swift in Sources */,
+				CE2766D11F1E5D870086BD9E /* ScrollableDatepicker.swift in Sources */,
 				CE17D4121E7D78790021273C /* CustomTextField.swift in Sources */,
 				CEB4C0C81EDB1B01001582E6 /* DTZFloatingActionButton.swift in Sources */,
 				CEBE8A571E619269000089FA /* CustomCell.swift in Sources */,
 				CE89EEF81E7C65E60066C6FD /* InternetChecker.swift in Sources */,
 				CE6274461F11311E0073C676 /* SettingsTableViewController.swift in Sources */,
 				CE1B4C891E7592DD005647F1 /* CatalogInfo.swift in Sources */,
+				CE2766CE1F1E5D870086BD9E /* DayCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

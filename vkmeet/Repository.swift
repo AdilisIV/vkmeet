@@ -87,6 +87,47 @@ class Repository {
         }
     }
     
+    
+    // Fetchs events by time from server
+    func fetchEventsByTime(for city: String, timeOn: Int, timeOff: Int, handler: @escaping ([Event], Error?) -> Void) {
+        Alamofire.request("http://onetwomeet.ru/events/eventsByTime/\(city)/\(timeOn)/\(timeOff)").responseJSON { (responseData) -> Void in
+            switch responseData.result {
+            case .success:
+                let swiftyJsonVar = JSON(responseData.result.value!)
+                var arrRes = [[String:AnyObject]]()
+                var eventsArr = [Event]()
+                
+                if let resData = swiftyJsonVar.arrayObject {
+                    arrRes = resData as! [[String:AnyObject]]
+                }
+                
+                for i in 0..<arrRes.count {
+                    let id = arrRes[i]["id"]
+                    let title = arrRes[i]["name"]
+                    let activity = arrRes[i]["activity"]
+                    let img = arrRes[i]["photo"]
+                    let dateStart = arrRes[i]["start"]
+                    let memb = arrRes[i]["members"]
+                    let latitude = arrRes[i]["latitude"]
+                    let longitude = arrRes[i]["longitude"]
+                    let description = arrRes[i]["description"]
+                    let url = arrRes[i]["screenname"]
+                    let nsurl = URL(string: url as! String)
+                    let commerce = arrRes[i]["commerce"]
+                    
+                    let eventObject = Event.init(id: id as! String, name: title as! String, image: img as! String, memb: "Участников: \(memb!)", timeStart: dateStart as! Int, activity: activity as! String, latitude: latitude as! Double, longitude: longitude as! Double, description: description as! String, url: nsurl, commerce: commerce as! Bool)
+                    eventsArr.append(eventObject)
+                }
+                handler(eventsArr, nil)
+                
+            case .failure(let error):
+                handler([], error)
+            }
+            
+        }
+    }
+    
+    
     // Fetchs event's description from server
     func fetchEvent(with eventID: String, handler: @escaping (Event?, Error?) -> Void) {
         Alamofire.request("http://onetwomeet.ru/events/eventbyid/\(eventID)").responseJSON { (responseData) -> Void in
@@ -133,6 +174,16 @@ class Repository {
         fetchAllEvents(for: cityID) { (events, error) in
             handler(events, error, .server)
         }
+    }
+    
+    // Extract/Update EventsByTime from web
+    func extractEventsByTime(cityID: String, timeOn: Int, timeOff: Int, handler: @escaping ([Event], Error?, Source) -> Void) {
+        fetchEventsByTime(for: cityID, timeOn: timeOn, timeOff: timeOff) { (events, error) in
+            handler(events, error, .server)
+        }
+//        fetchAllEvents(for: cityID) { (events, error) in
+//            handler(events, error, .server)
+//        }
     }
     
     // Extract/Update Event from web

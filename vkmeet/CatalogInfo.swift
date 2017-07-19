@@ -16,15 +16,47 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
     @IBOutlet weak var CatalogTable: UITableView!
     @IBOutlet weak var addItemView: PopupMenuView!
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
+    @IBOutlet weak var showallbuttonImage: UIImageView!
+    @IBOutlet weak var showallButton: UIButton!
+    
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     var refreshControl: UIRefreshControl!
 
     var eventsArr = [Event]()
     
-    // получаем id города, который выбрал пользователь
-    // id в UserDefaults записывается в классе CityViewController
+    /// получаем id города, который выбрал пользователь
+    /// id в UserDefaults записывается в классе CityViewController
     let userCity = UserDefaults.standard.string(forKey: "city")
+    
+    
+    
+    
+    @IBOutlet weak var datepicker: ScrollableDatepicker! {
+        didSet {
+            var dates = [Date]()
+            for day in 0...15 {
+                dates.append(Date(timeIntervalSinceNow: Double(day * 86400)))
+            }
+            
+            datepicker.dates = dates
+            datepicker.selectedDate = Date()
+            datepicker.delegate = self
+            
+            var configuration = Configuration()
+            
+            /// weekend customization
+            configuration.weekendDayStyle.dateTextColor = UIColor(red: 76.0/255.0, green: 163.0/255.0, blue: 248.0/255.0, alpha: 1.0)
+            configuration.weekendDayStyle.dateTextFont = UIFont.boldSystemFont(ofSize: 20)
+            configuration.weekendDayStyle.weekDayTextColor = UIColor(red: 76.0/255.0, green: 163.0/255.0, blue: 248.0/255.0, alpha: 1.0)
+            
+            /// selected date customization
+            //configuration.selectedDayStyle.backgroundColor = UIColor(white: 0.9, alpha: 1)
+            configuration.daySizeCalculation = .numberOfVisibleItems(5)
+            
+            datepicker.configuration = configuration
+        }
+    }
     
     
     override func viewDidLoad() {
@@ -41,47 +73,76 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
         navigationItem.titleView = titleLabel
         
         self.startActivityIndicator()
-        //self.loadEvents(city: self.userCity!)
-        self.loadEvents()
         
         /// UIRefresh
-        refreshControl = UIRefreshControl()
-        refreshControl.tintColor = UIColor.rgb(red: 255, green: 255, blue: 255)
-        refreshControl.addTarget(self, action: #selector(CatalogInfo.loadEvents), for: UIControlEvents.valueChanged)
-        CatalogTable.insertSubview(refreshControl, at: 0)
+        DispatchQueue.main.async {
+            self.refreshControl = UIRefreshControl()
+            self.refreshControl.tintColor = UIColor.rgb(red: 0, green: 0, blue: 0)
+            self.refreshControl.addTarget(self, action: #selector(CatalogInfo.showSelectedDate), for: UIControlEvents.valueChanged)
+            self.CatalogTable.insertSubview(self.refreshControl, at: 50)
+        }
+        
+        /// Установка значения datepicker. Загрузка events
+        DispatchQueue.main.async {
+            self.showSelectedDate()
+            self.datepicker.scrollToSelectedDate(animated: false)
+        }
     }
     
     
-    // при каждом показе View обновляем данные, сверяясь с UserDefaults
-    // и делая willGoButton активной (зеленой), есди event добавлен в UserDefaults
+    @objc fileprivate func showSelectedDate() {
+        guard let selectedDate = datepicker.selectedDate else {
+            return
+        }
+        DispatchQueue.main.async {
+            self.showallbuttonImage.isHidden = true
+            self.showallButton.isHidden = true
+        }
+        
+        let timestamp = selectedDate.timeIntervalSince1970
+        let timeOn = Int(timestamp)
+        let timeOff = timeOn + 86400
+        
+        self.loadEvents(timeOn: timeOn, timeOff: timeOff)
+    }
+    
+    
+    /// при каждом показе View обновляем данные, сверяясь с UserDefaults
+    /// и делая willGoButton активной (зеленой), есди event добавлен в UserDefaults
     override func viewWillAppear(_ animated: Bool) {
         self.CatalogTable!.reloadData()
     }
     
     
-    func loadEvents() {
+    func loadEvents(timeOn: Int, timeOff: Int) {
         startLoadIndication()
-        Store.repository.extractAllEvents(cityID: self.userCity!) { [weak self] (events, error, source) in
+        Store.repository.extractEventsByTime(cityID: self.userCity!, timeOn: timeOn, timeOff: timeOff) { [weak self] (events, error, source) in
             if source == .server {
-                // stop indication
-                self?.stopLoadIndication()
-                self?.stopActivityIndicator()
-                self?.refreshControl.endRefreshing()
+                /// stop indication
+                DispatchQueue.main.async {
+                    self?.stopLoadIndication()
+                    self?.stopActivityIndicator()
+                    self?.refreshControl.endRefreshing()
+                }
             }
             if error == nil {
                 self?.eventsArr = events
                 DispatchQueue.main.async {
                     self?.CatalogTable!.reloadData()
+                    if events.count <= 3 {
+                        self?.showallbuttonImage.isHidden = false
+                        self?.showallButton.isHidden = false
+                    }
                 }
             } else {
                 let errorMessage = error?.localizedDescription
                 self?.presentNotification(parentViewController: self!, notificationTitle: "Сетевой запрос", notificationMessage: "Ошибка при обновлении данных: \(String(describing: errorMessage))", completion: nil)
             }
         }
-    }// string interpolation produces a debug description for an optional value; did you mean to make this explicit?
+    }
     
     
-    // start and stop activityIndicator
+    /// start and stop activityIndicator
     func startActivityIndicator() {
         activityIndicator.frame = CGRect(x: 0.0, y: 0.0, width: 40.0, height: 40.0);
         activityIndicator.center = self.view.center
@@ -94,6 +155,37 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
     func stopActivityIndicator() {
         activityIndicator.stopAnimating()
     }
+    
+    
+    @IBAction func showAllButtonPressed(_ sender: UIButton) {
+        
+        startLoadIndication()
+        Store.repository.extractAllEvents(cityID: self.userCity!) { [weak self] (events, error, source) in
+            if source == .server {
+                /// stop indication
+                DispatchQueue.main.async {
+                    self?.stopLoadIndication()
+                    self?.stopActivityIndicator()
+                    self?.refreshControl.endRefreshing()
+                }
+            }
+            if error == nil {
+                self?.eventsArr = events
+                DispatchQueue.main.async {
+                    self?.CatalogTable!.reloadData()
+                }
+            } else {
+                let errorMessage = error?.localizedDescription
+                self?.presentNotification(parentViewController: self!, notificationTitle: "Сетевой запрос", notificationMessage: "Ошибка при обновлении данных: \(String(describing: errorMessage))", completion: nil)
+            }
+        }
+        DispatchQueue.main.async {
+            self.showallbuttonImage.isHidden = true
+            self.showallButton.isHidden = true
+        }
+        
+    }
+    
     
     
     @IBAction func addItem(_ sender: Any) {
@@ -153,10 +245,6 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
         
         if segue.identifier == "goToEventDetails" {
             let event = sender as! Event
-            print("latitude: \(event.latitude)")
-            print("longitude: \(event.longitude)")
-            print("description: \(event.description)")
-            print("url: \(event.url)")
             let dvc = segue.destination as! EventDetailsViewController
             dvc.eventsObject = event
         } else if segue.identifier == "toCitySegue" {
@@ -175,5 +263,26 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
 extension CatalogInfo: SFSafariViewControllerDelegate {
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
         controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+
+// MARK: - ScrollableDatepickerDelegate
+
+extension CatalogInfo: ScrollableDatepickerDelegate {
+    
+    func datepicker(_ datepicker: ScrollableDatepicker, didSelectDate date: Date) {
+        showSelectedDate()
+    }
+    
+}
+
+extension Double {
+    func toInt() -> Int? {
+        if self > Double(Int.min) && self < Double(Int.max) {
+            return Int(self)
+        } else {
+            return nil
+        }
     }
 }
