@@ -70,6 +70,8 @@ class EventDetailsViewController: LiveViewController {
                     
                     alertVC.addAction(PMAlertAction(title: "Отправить", style: .default, action: { () in
                         print("Capture action OK")
+                        let userId = Store.userID
+                        VKAPIWorker.uploadPostToWall(userID: userId!, activity: (self?.eventsObject!.activity)!, url: (self?.eventsObject!.url)!, eventTitle: (self?.eventsObject!.name)!)
                     }))
                     
                     DispatchQueue.main.async {
@@ -130,6 +132,7 @@ class EventDetailsViewController: LiveViewController {
                     bearing: 270,
                     viewingAngle: 45)
                 self.smallMapView.camera = eventPosition
+                
                 let eventMarker = GMSMarker()
                 let markerColor = UIColor.rgb(red: 76, green: 163, blue: 248)
                 eventMarker.position = CLLocationCoordinate2D(
@@ -139,9 +142,11 @@ class EventDetailsViewController: LiveViewController {
                 eventMarker.map = self.smallMapView
             }
             
-            if UserDefaultsService.willgoEventIDs.contains(self.willGoOutlet.willgoID) {
-                self.willGoOutlet.backgroundColor = self.willGoOutlet.activeColor
-                self.willGoOutlet.status = true
+            if let userDefWillGo = UserDefaultsService.willgoEventIDs {
+                if userDefWillGo.contains(self.willGoOutlet.willgoID) {
+                    self.willGoOutlet.backgroundColor = self.willGoOutlet.activeColor
+                    self.willGoOutlet.status = true
+                }
             } else {
                 self.willGoOutlet.backgroundColor = self.willGoOutlet.passiveColor
             }
@@ -149,6 +154,7 @@ class EventDetailsViewController: LiveViewController {
     }
     
     
+    @available(iOS 9.0, *)
     @IBAction func goToVKAction(_ sender: Any) {
         let safaryVC = SFSafariViewController(url: self.eventsObject!.url)
         safaryVC.delegate = self
@@ -205,6 +211,7 @@ class EventDetailsViewController: LiveViewController {
 
 
 extension EventDetailsViewController: SFSafariViewControllerDelegate {
+    @available(iOS 9.0, *)
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
         controller.dismiss(animated: true, completion: nil)
     }

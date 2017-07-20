@@ -21,13 +21,21 @@ public struct Configuration {
     public var defaultDayStyle: DayStyleConfiguration = {
         var configuration = DayStyleConfiguration()
 
-        configuration.dateTextFont = .systemFont(ofSize: 20, weight: UIFontWeightThin)
+        if #available(iOS 8.2, *) {
+            configuration.dateTextFont = .systemFont(ofSize: 20, weight: UIFontWeightThin)
+        } else {
+            // Fallback on earlier versions
+        }
         configuration.dateTextColor = .black
 
 //        configuration.weekDayTextFont = .systemFont(ofSize: 8, weight: UIFontWeightThin)
 //        configuration.weekDayTextColor = .black
 
-        configuration.monthTextFont = .systemFont(ofSize: 8, weight: UIFontWeightLight)
+        if #available(iOS 8.2, *) {
+            configuration.monthTextFont = .systemFont(ofSize: 8, weight: UIFontWeightLight)
+        } else {
+            // Fallback on earlier versions
+        }
         configuration.monthTextColor = .gray
 
         configuration.selectorColor = .clear // цвет полоски
@@ -38,7 +46,11 @@ public struct Configuration {
 
     public var weekendDayStyle: DayStyleConfiguration = {
         var configuration = DayStyleConfiguration()
-        configuration.weekDayTextFont = .systemFont(ofSize: 8, weight: UIFontWeightBold)
+        if #available(iOS 8.2, *) {
+            configuration.weekDayTextFont = .systemFont(ofSize: 8, weight: UIFontWeightBold)
+        } else {
+            // Fallback on earlier versions
+        }
         return configuration
     }()
 

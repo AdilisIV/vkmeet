@@ -42,7 +42,12 @@ class WillGoButton: UIButton {
                 let alert = UIAlertController.init(title: nil, message: "Создать напоминание о мероприятии?", preferredStyle: .alert)
                 let ok = UIAlertAction.init(title: "ОK", style: .default) { action in
                     
-                    NotificationService.setTimeNotification(button: button, timeStart: time, id: id, subtitle: name, body: activity)
+                    if #available(iOS 10.0, *) {
+                        NotificationService.setTimeNotification(button: button, timeStart: time, id: id, subtitle: name, body: activity)
+                    } else {
+                        let banner = NotificationBanner(title: "Уведомления отключены", subtitle: "Включите уведомления в настройках приложения", style: .warning)
+                        banner.show()
+                    }
                     
                 }
                 let cencel = UIAlertAction.init(title: "Cancel", style: .cancel) { (action) in
@@ -55,7 +60,11 @@ class WillGoButton: UIButton {
             } else {
                 let alert = UIAlertController.init(title: nil, message: "Удалить напоминание о мероприятиии?", preferredStyle: .alert)
                 let ok = UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
-                    NotificationService.removeNotifications(withIdentifiers: [id])
+                    if #available(iOS 10.0, *) {
+                        NotificationService.removeNotifications(withIdentifiers: [id])
+                    } else {
+                        // Fallback on earlier versions
+                    }
                     button.backgroundColor = button.passiveColor
                     let indexOfEvent = UserDefaultsService.willgoEventIDs.index(of: id)
                     UserDefaultsService.willgoEventIDs.remove(at: indexOfEvent!)

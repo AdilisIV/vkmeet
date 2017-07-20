@@ -129,7 +129,7 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
                 self?.eventsArr = events
                 DispatchQueue.main.async {
                     self?.CatalogTable!.reloadData()
-                    if events.count <= 3 {
+                    if events.count <= 2 {
                         self?.showallbuttonImage.isHidden = false
                         self?.showallButton.isHidden = false
                     }
@@ -222,8 +222,12 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
         cell.eventDateLabel.text = eventsArr[indexPath.row].activity
         cell.willgoButtonOutlet.willgoID = eventsArr[indexPath.row].id
         
-        if UserDefaultsService.willgoEventIDs.contains(cell.willgoButtonOutlet.willgoID) {
-            cell.willgoButtonOutlet.backgroundColor = UIColor.rgb(red: 76, green: 163, blue: 248)
+        if let userDefWillGo = UserDefaultsService.willgoEventIDs {
+            if userDefWillGo.contains(cell.willgoButtonOutlet.willgoID) {
+                cell.willgoButtonOutlet.backgroundColor = UIColor.rgb(red: 76, green: 163, blue: 248)
+            } else {
+                cell.willgoButtonOutlet.backgroundColor = UIColor.rgb(red: 196, green: 212, blue: 228)
+            }
         } else {
             cell.willgoButtonOutlet.backgroundColor = UIColor.rgb(red: 196, green: 212, blue: 228)
         }

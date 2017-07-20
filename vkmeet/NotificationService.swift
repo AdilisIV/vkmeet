@@ -10,6 +10,7 @@ import UIKit
 import UserNotifications
 
 
+@available(iOS 10.0, *)
 class NotificationService: NSObject {
     
     class func cancelNotification() {

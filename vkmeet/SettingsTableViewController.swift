@@ -31,7 +31,14 @@ class SettingsTableViewController: UITableViewController {
     func changeNotificationSettings() {
         if UserDefaultsService.isNotificationEnabled! {
             UserDefaultsService.isNotificationEnabled = false
-            NotificationService.cancelNotification()
+            if #available(iOS 10.0, *) {
+                NotificationService.cancelNotification()
+            } else {
+                let alert = UIAlertController.init(title: "К сожаления уведомления доступны с версии iOS 10.0", message: "Для использования данной функции, выполните обновление, установив iOs 10.0.", preferredStyle: .alert)
+                let ok = UIAlertAction.init(title: "ОК", style: .default) { action in }
+                alert.addAction(ok)
+                self.present(alert, animated: true, completion: nil)
+            }
         } else {
             UserDefaultsService.isNotificationEnabled = true
         }

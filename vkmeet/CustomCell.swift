@@ -71,7 +71,7 @@ class CustomCell: UITableViewCell {
     
     
     func cancelCommerce() {
-        eventBlock.backgroundColor = UIColor.rgb(red: 251, green: 253, blue: 255)
+        //eventBlock.backgroundColor = UIColor.rgb(red: 251, green: 253, blue: 255)
         eventBlock.layer.borderColor = UIColor.rgb(red: 241, green: 241, blue: 241).cgColor
         eventDateLabel.textColor = UIColor.rgb(red: 75, green: 108, blue: 139)
         cellName.textColor = UIColor.rgb(red: 33, green: 33, blue: 33)

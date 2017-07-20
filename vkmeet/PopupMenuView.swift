@@ -22,6 +22,10 @@ class PopupMenuView: UIView {
         popupView.transform = self.affineTransorm
         popupView.alpha = 0
         
+        popupView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[view]-0-|", options: .directionLeadingToTrailing, metrics: nil, views: ["view": popupView]))
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[view]-0-|", options: .directionLeadingToTrailing, metrics: nil, views: ["view": popupView]))
+        
 
         UIView.animate(withDuration: 0.4, animations: {
             visualEffect.effect = self.effect

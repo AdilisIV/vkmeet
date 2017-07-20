@@ -88,6 +88,9 @@ class FeedbackViewController: UIViewController, MFMailComposeViewControllerDeleg
             self.showSendMailErrorAlert()
         }
         
+        Body.text = ""
+        Subject.text = ""
+        
     }
     
     

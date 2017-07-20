@@ -29,9 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //vkDelegateReference = VKDelegatevkmeet()
         
-        let center = UNUserNotificationCenter.current()
-        center.requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
-        })
+        if #available(iOS 10.0, *) {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
+            })
+        } else {
+            // Fallback on earlier versions
+        }
         
         GMSServices.provideAPIKey("AIzaSyAsUExqj_siAnA7Pnsll0GbU49s_KumQ1I")
         

@@ -13,6 +13,7 @@ import UIKit
     case walkthrough //The alert will adopt a width of the screen size minus 18 (from the left and right side). This style is designed to accommodate localization, push notifications and more.
 }
 
+
 @objc open class PMAlertController: UIViewController {
     
     // MARK: Properties
@@ -215,6 +216,7 @@ import UIKit
     }
 }
 
+@available(iOS 9.0, *)
 extension PMAlertController: UITextFieldDelegate {
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

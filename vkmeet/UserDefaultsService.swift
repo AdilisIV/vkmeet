@@ -23,7 +23,11 @@ class UserDefaultsService {
     
     static var willgoEventIDs: [String]! {
         get {
-            return UserDefaults.standard.array(forKey: "willgoevents") as! [String]
+            if let willgoeventsUserDef = UserDefaults.standard.array(forKey: "willgoevents") {
+                return willgoeventsUserDef as! [String]
+            } else {
+                return []
+            }
         }
         set(value) {
             UserDefaults.standard.set(value, forKey: "willgoevents")

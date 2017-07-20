@@ -9,7 +9,6 @@ import UIKit
 open class DayCell: UICollectionViewCell {
 
     @IBOutlet public weak var dateLabel: UILabel!
-    //@IBOutlet public weak var weekDayLabel: UILabel!
     @IBOutlet public weak var monthLabel: UILabel!
     @IBOutlet public weak var selectorView: UIView!
 
@@ -29,11 +28,6 @@ open class DayCell: UICollectionViewCell {
         dateLabel.text = formatter.string(from: date)
         dateLabel.font = style.dateTextFont ?? dateLabel.font
         dateLabel.textColor = style.dateTextColor ?? dateLabel.textColor
-
-//        formatter.dateFormat = "EEE"
-//        weekDayLabel.text = formatter.string(from: date).uppercased()
-//        weekDayLabel.font = style.weekDayTextFont ?? weekDayLabel.font
-//        weekDayLabel.textColor = style.weekDayTextColor ?? weekDayLabel.textColor
 
         formatter.dateFormat = "MMM"
         monthLabel.text = formatter.string(from: date).uppercased()
