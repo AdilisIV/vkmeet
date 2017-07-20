@@ -26,11 +26,7 @@
 		CE2766D01F1E5D870086BD9E /* LoadableFromXibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2766CA1F1E5D870086BD9E /* LoadableFromXibView.swift */; };
 		CE2766D11F1E5D870086BD9E /* ScrollableDatepicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2766CB1F1E5D870086BD9E /* ScrollableDatepicker.swift */; };
 		CE2766D21F1E5D870086BD9E /* ScrollableDatepicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE2766CC1F1E5D870086BD9E /* ScrollableDatepicker.xib */; };
-		CE2766D51F1F53A20086BD9E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = CE2766D41F1F53A20086BD9E /* LICENSE */; };
-		CE2766D71F1F53B50086BD9E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = CE2766D61F1F53B50086BD9E /* README.md */; };
-		CE2766DA1F1F53F70086BD9E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = CE2766D81F1F53F70086BD9E /* LICENSE */; };
-		CE2766DB1F1F53F70086BD9E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = CE2766D91F1F53F70086BD9E /* README.md */; };
-		CE2766DD1F1F54C10086BD9E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = CE2766DC1F1F54C10086BD9E /* LICENSE */; };
+		CE3102EA1F209F9A0028833E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = CE3102E91F209F9A0028833E /* LICENSE */; };
 		CE32A9D61EF90B7600D60583 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9D51EF90B7600D60583 /* Event.swift */; };
 		CE32A9D81EF90DD900D60583 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9D71EF90DD900D60583 /* City.swift */; };
 		CE32A9DA1EF93D7B00D60583 /* PopupMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9D91EF93D7B00D60583 /* PopupMenuView.swift */; };
@@ -79,11 +75,7 @@
 		CE2766CA1F1E5D870086BD9E /* LoadableFromXibView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadableFromXibView.swift; sourceTree = "<group>"; };
 		CE2766CB1F1E5D870086BD9E /* ScrollableDatepicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableDatepicker.swift; sourceTree = "<group>"; };
 		CE2766CC1F1E5D870086BD9E /* ScrollableDatepicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScrollableDatepicker.xib; sourceTree = "<group>"; };
-		CE2766D41F1F53A20086BD9E /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		CE2766D61F1F53B50086BD9E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		CE2766D81F1F53F70086BD9E /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		CE2766D91F1F53F70086BD9E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		CE2766DC1F1F54C10086BD9E /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		CE3102E91F209F9A0028833E /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		CE32A9D51EF90B7600D60583 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		CE32A9D71EF90DD900D60583 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		CE32A9D91EF93D7B00D60583 /* PopupMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupMenuView.swift; sourceTree = "<group>"; };
@@ -197,8 +189,7 @@
 				CE2766CA1F1E5D870086BD9E /* LoadableFromXibView.swift */,
 				CE2766CB1F1E5D870086BD9E /* ScrollableDatepicker.swift */,
 				CE2766CC1F1E5D870086BD9E /* ScrollableDatepicker.xib */,
-				CE2766D81F1F53F70086BD9E /* LICENSE */,
-				CE2766D91F1F53F70086BD9E /* README.md */,
+				CE3102E91F209F9A0028833E /* LICENSE */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -207,7 +198,6 @@
 			isa = PBXGroup;
 			children = (
 				CEB4C0C61EDB1B01001582E6 /* DTZFloatingActionButton.swift */,
-				CE2766DC1F1F54C10086BD9E /* LICENSE */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -218,8 +208,6 @@
 				CE78075B1F1B0D2900A3BD07 /* PMAlertAction.swift */,
 				CE78075C1F1B0D2900A3BD07 /* PMAlertController.swift */,
 				CE78075D1F1B0D2900A3BD07 /* PMAlertController.xib */,
-				CE2766D41F1F53A20086BD9E /* LICENSE */,
-				CE2766D61F1F53B50086BD9E /* README.md */,
 			);
 			path = PMAlertController;
 			sourceTree = "<group>";
@@ -324,7 +312,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Ski;
 				TargetAttributes = {
 					CE01D5881E2A62F400C77574 = {
@@ -360,12 +348,10 @@
 			files = (
 				CE2766D21F1E5D870086BD9E /* ScrollableDatepicker.xib in Resources */,
 				CE06DDED1EDC9C3800DCB5DB /* LaunchScreenTwo.storyboard in Resources */,
-				CE2766D51F1F53A20086BD9E /* LICENSE in Resources */,
+				CE3102EA1F209F9A0028833E /* LICENSE in Resources */,
 				CE1DFA3C1ECBB8BE0066AA7F /* arial-black.ttf in Resources */,
-				CE2766DD1F1F54C10086BD9E /* LICENSE in Resources */,
 				CE01D5941E2A62F400C77574 /* Assets.xcassets in Resources */,
 				CE7807621F1B0D2900A3BD07 /* PMAlertController.xib in Resources */,
-				CE2766DA1F1F53F70086BD9E /* LICENSE in Resources */,
 				CE2766CF1F1E5D870086BD9E /* DayCell.xib in Resources */,
 				CE01D5921E2A62F400C77574 /* Main.storyboard in Resources */,
 			);
@@ -448,7 +434,6 @@
 				CE61BAF11E65F40300F3A796 /* FeedbackViewController.swift in Sources */,
 				CEA1FB231EFFA1C10068259C /* LiveViewController.swift in Sources */,
 				CE32A9D81EF90DD900D60583 /* City.swift in Sources */,
-				CE2766DB1F1F53F70086BD9E /* README.md in Sources */,
 				CE32A9D61EF90B7600D60583 /* Event.swift in Sources */,
 				CE32A9DE1EFA517400D60583 /* Repository.swift in Sources */,
 				CE503F091ED5FAC3003027D8 /* mapViewController.swift in Sources */,
@@ -462,7 +447,6 @@
 				CE01D58D1E2A62F400C77574 /* AppDelegate.swift in Sources */,
 				CE2766D01F1E5D870086BD9E /* LoadableFromXibView.swift in Sources */,
 				CE62744A1F1227B90073C676 /* NotificationService.swift in Sources */,
-				CE2766D71F1F53B50086BD9E /* README.md in Sources */,
 				CE7807601F1B0D2900A3BD07 /* PMAlertAction.swift in Sources */,
 				CE2766D11F1E5D870086BD9E /* ScrollableDatepicker.swift in Sources */,
 				CE17D4121E7D78790021273C /* CustomTextField.swift in Sources */,
@@ -584,6 +568,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7FD178047183D6A59BF475D1 /* Pods-vkmeet.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Ilia Fedorov (47LD6JNQ7M)";
@@ -610,6 +595,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 096D43D64079D3783F63D4A3 /* Pods-vkmeet.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Ilia Fedorov (Q6Y429W25C)";
