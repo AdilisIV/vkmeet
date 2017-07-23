@@ -23,11 +23,16 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     var refreshControl: UIRefreshControl!
 
-    var eventsArr = [Event]()
+    var eventsArr: [Event] = [] {
+        didSet {
+            self.CatalogTable!.reloadData()
+        }
+    }
     
     /// получаем id города, который выбрал пользователь
     /// id в UserDefaults записывается в классе CityViewController
-    let userCity = UserDefaults.standard.string(forKey: "city")
+    //let userCity = UserDefaults.standard.string(forKey: "city")
+    let userCity = UserDefaultsService.userCity
     
     
     
@@ -128,7 +133,6 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
             if error == nil {
                 self?.eventsArr = events
                 DispatchQueue.main.async {
-                    self?.CatalogTable!.reloadData()
                     if events.count <= 2 {
                         self?.showallbuttonImage.isHidden = false
                         self?.showallButton.isHidden = false

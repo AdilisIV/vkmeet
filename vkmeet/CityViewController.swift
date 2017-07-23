@@ -18,7 +18,11 @@ class CityViewController: LiveViewController,  UIPickerViewDelegate, UIPickerVie
     
     @IBOutlet weak var cityPickerView: UIPickerView!
     
-    var citiesData = [City]()
+    var citiesData: [City] = [] {
+        didSet {
+            cityPickerView.reloadAllComponents()
+        }
+    }
     
     
     override func viewDidLoad() {
@@ -41,24 +45,13 @@ class CityViewController: LiveViewController,  UIPickerViewDelegate, UIPickerVie
             }
             if error == nil {
                 self?.citiesData = cities
-                DispatchQueue.main.async {
-                    self?.cityPickerView.reloadAllComponents()
-                }
             }
         }
     }
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToEventsView" {
-            citiesData = []
-        }
-    }
-    
-    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let defaults = UserDefaults.standard
-        defaults.set(citiesData[row].id, forKey: "city")
+        UserDefaultsService.userCity = citiesData[row].id
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -81,8 +74,7 @@ class CityViewController: LiveViewController,  UIPickerViewDelegate, UIPickerVie
     
     
     @IBAction func chooseBtnPressed(_ sender: UIButton) {
-        let defaults = UserDefaults.standard
-        if defaults.string(forKey: "city") == nil {
+        if UserDefaultsService.userCity == "" {
             presentNotification(parentViewController: self, notificationTitle: "Ошибка", notificationMessage: "Не выбран город", completion: nil)
         } else {
             performSegue(withIdentifier: "goToEventsView", sender: nil)
