@@ -12,6 +12,9 @@ public protocol ScrollableDatepickerDelegate: class {
 
 
 open class ScrollableDatepicker: LoadableFromXibView {
+    
+    public weak var delegate: ScrollableDatepickerDelegate? // delegate
+    
 
     @IBOutlet public weak var collectionView: UICollectionView! {
         didSet {
@@ -30,8 +33,7 @@ open class ScrollableDatepicker: LoadableFromXibView {
 
 
     // MARK: Configuration properties
-
-    public weak var delegate: ScrollableDatepickerDelegate?
+    
     public var cellConfiguration: ((_ cell: DayCell, _ isWeekend: Bool, _ isSelected: Bool) -> Void)? {
         didSet {
             collectionView.reloadData()
@@ -143,12 +145,12 @@ extension ScrollableDatepicker: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemWidth: CGFloat
         switch configuration.daySizeCalculation {
-        case .constantWidth(let width):
-            itemWidth = width
-            break
-        case .numberOfVisibleItems(let count):
-            itemWidth = collectionView.frame.width / CGFloat(count)
-            break
+            case .constantWidth(let width):
+                itemWidth = width
+                break
+            case .numberOfVisibleItems(let count):
+                itemWidth = collectionView.frame.width / CGFloat(count)
+                break
         }
         return CGSize(width: itemWidth, height: collectionView.frame.height)
     }

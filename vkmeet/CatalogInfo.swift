@@ -36,29 +36,13 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
     
     // MARK: - datepicker config
     /// конфигурируем datepicker
-    @IBOutlet weak var datepicker: ScrollableDatepicker! {
+    //@IBOutlet weak var datepicker: ScrollableDateCollection!
+    
+    var datepicker: ScrollableDateCollection! {
         didSet {
-            var dates = [Date]()
-            for day in 0...15 {
-                dates.append(Date(timeIntervalSinceNow: Double(day * 86400)))
-            }
-            
-            datepicker.dates = dates
-            datepicker.selectedDate = Date()
-            datepicker.delegate = self
-            
-            var configuration = Configuration()
-            
-            /// weekend customization
-            configuration.weekendDayStyle.dateTextColor = UIColor(red: 76.0/255.0, green: 163.0/255.0, blue: 248.0/255.0, alpha: 1.0)
-            configuration.weekendDayStyle.dateTextFont = UIFont.boldSystemFont(ofSize: 20)
-            configuration.weekendDayStyle.weekDayTextColor = UIColor(red: 76.0/255.0, green: 163.0/255.0, blue: 248.0/255.0, alpha: 1.0)
-            
-            /// selected date customization
-            //configuration.selectedDayStyle.backgroundColor = UIColor(white: 0.9, alpha: 1)
-            configuration.daySizeCalculation = .numberOfVisibleItems(5)
-            
-            datepicker.configuration = configuration
+            configureDatePicker()
+            self.showSelectedDate()
+            self.datepicker.scrollToSelectedDate(animated: false)
         }
     }
     
@@ -87,11 +71,39 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
             self.CatalogTable.insertSubview(self.refreshControl, at: 50)
         }
         
-        DispatchQueue.main.async {
-            self.showSelectedDate()
-            self.datepicker.scrollToSelectedDate(animated: false)
-        }
+//        DispatchQueue.main.async {
+//            self.showSelectedDate()
+//            self.datepicker.scrollToSelectedDate(animated: false)
+//        }
+        
     }
+    
+    
+    
+    func configureDatePicker() {
+        var dates = [Date]()
+        for day in 0...15 {
+            dates.append(Date(timeIntervalSinceNow: Double(day * 86400)))
+        }
+        
+        datepicker.dates = dates
+        datepicker.selectedDate = Date()
+        datepicker.delegate = self
+        
+        var configuration = Configuration()
+        
+        /// weekend customization
+        configuration.weekendDayStyle.dateTextColor = UIColor(red: 76.0/255.0, green: 163.0/255.0, blue: 248.0/255.0, alpha: 1.0)
+        configuration.weekendDayStyle.dateTextFont = UIFont.boldSystemFont(ofSize: 20)
+        configuration.weekendDayStyle.weekDayTextColor = UIColor(red: 76.0/255.0, green: 163.0/255.0, blue: 248.0/255.0, alpha: 1.0)
+        
+        /// selected date customization
+        //configuration.selectedDayStyle.backgroundColor = UIColor(white: 0.9, alpha: 1)
+        configuration.daySizeCalculation = .numberOfVisibleItems(5)
+        
+        datepicker.configuration = configuration
+    }
+    
     
     /// Установка значения datepicker. Загрузка events
     @objc fileprivate func showSelectedDate() {
@@ -280,9 +292,9 @@ extension CatalogInfo: SFSafariViewControllerDelegate {
 
 // MARK: - ScrollableDatepickerDelegate
 
-extension CatalogInfo: ScrollableDatepickerDelegate {
+extension CatalogInfo: dateCollectionDelegate {
     
-    func datepicker(_ datepicker: ScrollableDatepicker, didSelectDate date: Date) {
+    func datepicker(_ datepicker: ScrollableDateCollection, didSelectDate date: Date) {
         showSelectedDate()
     }
     

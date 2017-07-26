@@ -31,6 +31,7 @@
 		CE32A9D81EF90DD900D60583 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9D71EF90DD900D60583 /* City.swift */; };
 		CE32A9DA1EF93D7B00D60583 /* PopupMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9D91EF93D7B00D60583 /* PopupMenuView.swift */; };
 		CE32A9DE1EFA517400D60583 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE32A9DD1EFA517400D60583 /* Repository.swift */; };
+		CE355A021F28D3480008EFDE /* ScrollableDateCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE355A011F28D3480008EFDE /* ScrollableDateCollection.swift */; };
 		CE3F601A1E7CFD8600CA207C /* SettingsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F60191E7CFD8600CA207C /* SettingsNavigationController.swift */; };
 		CE503F091ED5FAC3003027D8 /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE503F081ED5FAC3003027D8 /* mapViewController.swift */; };
 		CE544E811E7FC15800503106 /* SwiftyVK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE544E801E7FC15800503106 /* SwiftyVK.framework */; };
@@ -80,6 +81,7 @@
 		CE32A9D71EF90DD900D60583 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		CE32A9D91EF93D7B00D60583 /* PopupMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupMenuView.swift; sourceTree = "<group>"; };
 		CE32A9DD1EFA517400D60583 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		CE355A011F28D3480008EFDE /* ScrollableDateCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableDateCollection.swift; sourceTree = "<group>"; };
 		CE3853B01E2D469200D570AE /* CityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityViewController.swift; sourceTree = "<group>"; };
 		CE3F60191E7CFD8600CA207C /* SettingsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNavigationController.swift; sourceTree = "<group>"; };
 		CE503F081ED5FAC3003027D8 /* mapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapViewController.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				CE32A9D51EF90B7600D60583 /* Event.swift */,
 				CE32A9D71EF90DD900D60583 /* City.swift */,
 				CE32A9D91EF93D7B00D60583 /* PopupMenuView.swift */,
+				CE355A011F28D3480008EFDE /* ScrollableDateCollection.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				CE89EEF81E7C65E60066C6FD /* InternetChecker.swift in Sources */,
 				CE6274461F11311E0073C676 /* SettingsTableViewController.swift in Sources */,
 				CE1B4C891E7592DD005647F1 /* CatalogInfo.swift in Sources */,
+				CE355A021F28D3480008EFDE /* ScrollableDateCollection.swift in Sources */,
 				CE2766CE1F1E5D870086BD9E /* DayCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
