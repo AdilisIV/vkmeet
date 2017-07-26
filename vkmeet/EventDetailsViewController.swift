@@ -36,21 +36,17 @@ class EventDetailsViewController: LiveViewController {
     @IBOutlet weak var dateShadow: UIImageView!
 
     
-    //var selectedEventIDFromPrevView: String = ""
-    
-    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
-    
+    private var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     weak var eventsObject: Event!
-
     var defaults = UserDefaults.standard
     
-    //var stringUrl:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         prepareUI(event: eventsObject)
         
+        // MARK: - actionButton config
         let actionButton = DTZFloatingActionButton(frame:CGRect(
             x: view.frame.size.width - 56 - 14,
             y: view.frame.size.height - 56 - 14,
@@ -111,7 +107,7 @@ class EventDetailsViewController: LiveViewController {
     }
 
     
-    func prepareUI(event: Event!) {
+    private func prepareUI(event: Event!) {
         DispatchQueue.main.async {
             self.willGoOutlet.willgoID = event!.id
             self.dateLabel.text = event!.activity
@@ -166,12 +162,13 @@ class EventDetailsViewController: LiveViewController {
         
         if segue.identifier == "goToMapView" {
             let controller = segue.destination as! mapViewController
+            controller.eventName = self.eventsObject!.name
             controller.latitude = self.eventsObject!.latitude
             controller.longitude = self.eventsObject!.longitude
-            controller.eventName = self.eventsObject!.name
         }
     }
     
+    //MARK: - Popup Methods
     
     @IBAction func addItem(_ sender: Any) {
         let view = self.view
@@ -189,6 +186,7 @@ class EventDetailsViewController: LiveViewController {
     }
     
     
+    //MARK: - UI config
     func setupViews() {
         DispatchQueue.main.async {
             // eventAvatar

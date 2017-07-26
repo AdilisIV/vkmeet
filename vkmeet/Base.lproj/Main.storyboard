@@ -16,10 +16,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Auth View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="authorization" id="BYZ-38-t0r" customClass="ViewController" customModule="vkmeet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="authorization" id="BYZ-38-t0r" customClass="AuthViewController" customModule="vkmeet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -1161,7 +1161,7 @@
         <image name="vkmeet_logo" width="177" height="177"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sap-38-SS3"/>
+        <segue reference="obU-8y-HBF"/>
         <segue reference="spj-ry-rkT"/>
         <segue reference="3XS-ax-wnS"/>
     </inferredMetricsTieBreakers>

@@ -18,7 +18,7 @@ class CityViewController: LiveViewController,  UIPickerViewDelegate, UIPickerVie
     
     @IBOutlet weak var cityPickerView: UIPickerView!
     
-    var citiesData: [City] = [] {
+    private var citiesData: [City] = [] {
         didSet {
             cityPickerView.reloadAllComponents()
         }
@@ -35,8 +35,9 @@ class CityViewController: LiveViewController,  UIPickerViewDelegate, UIPickerVie
     }
     
     
+    // MARK: - Loading citiesData
     
-    func loadCities() {
+    private func loadCities() {
         startLoadIndication()
         Store.repository.extractCities { [weak self] (cities, error, source) in
             if source == .server {
@@ -50,6 +51,9 @@ class CityViewController: LiveViewController,  UIPickerViewDelegate, UIPickerVie
     }
     
     
+    // MARK: - pickerView methods
+    
+    /// записываем значение didSelectRow в UserDefaults
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         UserDefaultsService.userCity = citiesData[row].id
     }
@@ -72,7 +76,7 @@ class CityViewController: LiveViewController,  UIPickerViewDelegate, UIPickerVie
         return 1
     }
     
-    
+    /// при нажатии проверка наличия значения выбранного пользователем города в UserDefaults
     @IBAction func chooseBtnPressed(_ sender: UIButton) {
         if UserDefaultsService.userCity == "" {
             presentNotification(parentViewController: self, notificationTitle: "Ошибка", notificationMessage: "Не выбран город", completion: nil)
@@ -80,7 +84,6 @@ class CityViewController: LiveViewController,  UIPickerViewDelegate, UIPickerVie
             performSegue(withIdentifier: "goToEventsView", sender: nil)
         }
     }
-    
     
     
     override func didReceiveMemoryWarning() {

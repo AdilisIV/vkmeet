@@ -28,7 +28,7 @@ class SettingsTableViewController: UITableViewController {
     
     
     // MARK: - Actions
-    func changeNotificationSettings() {
+    private func changeNotificationSettings() {
         if UserDefaultsService.isNotificationEnabled! {
             UserDefaultsService.isNotificationEnabled = false
             if #available(iOS 10.0, *) {
@@ -61,7 +61,7 @@ class SettingsTableViewController: UITableViewController {
             
             VKAPIWorker.action(2)
             let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-            let viewController = storyboard.instantiateViewController(withIdentifier: "authorization") as! ViewController
+            let viewController = storyboard.instantiateViewController(withIdentifier: "authorization") as! AuthViewController
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             UIView.transition(with: appDelegate.window!, duration: 0.8, options: .transitionCrossDissolve, animations: {
                 appDelegate.window?.rootViewController = viewController
@@ -72,6 +72,7 @@ class SettingsTableViewController: UITableViewController {
         alert.addAction(ok)
         
         self.present(alert, animated: true, completion: nil)
+        // l__r9@ntagil.org
     }
     
     

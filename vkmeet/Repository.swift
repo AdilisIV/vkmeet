@@ -181,9 +181,6 @@ class Repository {
         fetchEventsByTime(for: cityID, timeOn: timeOn, timeOff: timeOff) { (events, error) in
             handler(events, error, .server)
         }
-//        fetchAllEvents(for: cityID) { (events, error) in
-//            handler(events, error, .server)
-//        }
     }
     
     // Extract/Update Event from web

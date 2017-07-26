@@ -8,11 +8,11 @@
 
 import UIKit
 
-class PopupMenuView: UIView {
-    
 
-    let affineTransorm = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-    var effect: UIVisualEffect!
+class PopupMenuView: UIView {
+
+    private let affineTransorm = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+    private var effect: UIVisualEffect!
 
     
     func animateIn(parrentView: UIView, popupView: UIView, visualEffect: UIVisualEffectView) {

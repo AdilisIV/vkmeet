@@ -16,7 +16,7 @@ extension UIColor {
         return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)
     }
 }
-//var vkDelegateReference : VKDelegate?
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,8 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        //vkDelegateReference = VKDelegatevkmeet()
         
         if #available(iOS 10.0, *) {
             let center = UNUserNotificationCenter.current()
@@ -39,13 +37,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GMSServices.provideAPIKey("AIzaSyAsUExqj_siAnA7Pnsll0GbU49s_KumQ1I")
         
+        /// конфигуририруем VKDelegate
         vkdelegate = VKDelegatevkmeet.init()
-        VK.configure(withAppId: vkdelegate.appID, delegate: vkdelegate)
         
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         let defaults = UserDefaults.standard
         
+        /// если пользователь уже был авторизован ранее, то отправляем его на экран выбора города,
+        /// иначе пусть авторизуется на AuthViewController
+        /// конфигуририруем window
         if VK.state == .authorized {
             if defaults.value(forKey: "city") != nil {
                 window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "navController")
@@ -56,19 +57,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "authorization")
         }
         
-        if UserDefaultsService.isNotificationEnabled == nil {
-            UserDefaultsService.isNotificationEnabled = true
-            print("isNotificationEnabled = true")
-        }
-        
+        /// делаем window видимым
         window?.makeKeyAndVisible()
         
-        application.statusBarStyle = .lightContent
+        /// по умолчанию Уведомления будут включены
+        if UserDefaultsService.isNotificationEnabled == nil {
+            UserDefaultsService.isNotificationEnabled = true
+        }
         
+        // MARK: - StatusBar Config
+        application.statusBarStyle = .lightContent
         let statusBarBackgroundView = UIView()
         statusBarBackgroundView.backgroundColor = UIColor.rgb(red: 0, green: 0, blue: 0)
         statusBarBackgroundView.alpha = 0.15
-        
         window?.addSubview(statusBarBackgroundView)
         window?.addConstraintsWithFormat(format: "H:|[v0]|", views: statusBarBackgroundView)
         window?.addConstraintsWithFormat(format: "V:|[v0(20)]", views: statusBarBackgroundView)

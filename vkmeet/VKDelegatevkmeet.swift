@@ -38,6 +38,9 @@ class VKDelegatevkmeet: VKDelegate {
         observers.append(observer)
     }
     
+    
+    // MARK: - VKDelegate protocol methods
+    
     func vkWillAuthorize() -> Set<VK.Scope> {
         return scope
     }

@@ -9,24 +9,20 @@ import UIKit
 import SwiftyVK
 
 
-class ViewController: UIViewController, VKAuthorizationObserver {
+class AuthViewController: UIViewController, VKAuthorizationObserver {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var loginButton: UIButton!
     
-    //let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
-    //internal weak static var delegate: VKDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         (UIApplication.shared.delegate as! AppDelegate).vkdelegate.addObserver(self)
-
     }
     
+    // MARK: - VKAuthorizationObserver
     
-    func authorizationCompleted(_ result: AuthorizationResult) {
+    internal func authorizationCompleted(_ result: AuthorizationResult) {
         if result == .success {
             DispatchQueue.main.async {
                 self.perform(#selector(self.performLoginSegue), with: nil, afterDelay: 1)
@@ -36,14 +32,7 @@ class ViewController: UIViewController, VKAuthorizationObserver {
         }
     }
     
-    
-    func showConnectionErrorWithAlert() {
-        let alert = UIAlertController.init(title: nil, message: "Нет доступа к сети", preferredStyle: .alert)
-        let ok = UIAlertAction.init(title: "OK", style: .default, handler: nil)
-        alert.addAction(ok)
-        self.present(alert, animated: true, completion: nil)
-    }
-    
+    // MARK: - LoadIndication
     
     func stopLoadIndication() {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
@@ -64,20 +53,25 @@ class ViewController: UIViewController, VKAuthorizationObserver {
         }
     }
     
+    // MARK: - Action Methods
     
     func performLoginSegue() {
         self.performSegue(withIdentifier: "chooseCityShow", sender: nil)
     }
-    
-
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+    }
+    
+    
+    private func showConnectionErrorWithAlert() {
+        let alert = UIAlertController.init(title: nil, message: "Нет доступа к сети", preferredStyle: .alert)
+        let ok = UIAlertAction.init(title: "OK", style: .default, handler: nil)
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func buttonDown(_ sender: Any) {

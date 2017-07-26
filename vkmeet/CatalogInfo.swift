@@ -31,12 +31,11 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
     
     /// получаем id города, который выбрал пользователь
     /// id в UserDefaults записывается в классе CityViewController
-    //let userCity = UserDefaults.standard.string(forKey: "city")
     let userCity = UserDefaultsService.userCity
     
     
-    
-    
+    // MARK: - datepicker config
+    /// конфигурируем datepicker
     @IBOutlet weak var datepicker: ScrollableDatepicker! {
         didSet {
             var dates = [Date]()
@@ -69,7 +68,8 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
         
         CatalogTable.delegate = self
         CatalogTable.dataSource = self
-
+        
+        /// конфигурируем navigationBar
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
@@ -79,7 +79,7 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
         
         self.startActivityIndicator()
         
-        /// UIRefresh
+        /// установка UIRefresh
         DispatchQueue.main.async {
             self.refreshControl = UIRefreshControl()
             self.refreshControl.tintColor = UIColor.rgb(red: 0, green: 0, blue: 0)
@@ -87,14 +87,13 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
             self.CatalogTable.insertSubview(self.refreshControl, at: 50)
         }
         
-        /// Установка значения datepicker. Загрузка events
         DispatchQueue.main.async {
             self.showSelectedDate()
             self.datepicker.scrollToSelectedDate(animated: false)
         }
     }
     
-    
+    /// Установка значения datepicker. Загрузка events
     @objc fileprivate func showSelectedDate() {
         guard let selectedDate = datepicker.selectedDate else {
             return
@@ -119,7 +118,8 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
     }
     
     
-    func loadEvents(timeOn: Int, timeOff: Int) {
+    /// загрузка мероприятий в соответствии с текущим значением selectedDate в datepicker
+    private func loadEvents(timeOn: Int, timeOff: Int) {
         startLoadIndication()
         Store.repository.extractEventsByTime(cityID: self.userCity!, timeOn: timeOn, timeOff: timeOff) { [weak self] (events, error, source) in
             if source == .server {
@@ -161,6 +161,7 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
     }
     
     
+    /// делаем загрузку все мероприятий по городу, если по дате показывается <= 2 мероприятий
     @IBAction func showAllButtonPressed(_ sender: UIButton) {
         
         startLoadIndication()
@@ -191,6 +192,7 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
     }
     
     
+    // MARK: - Popup Methods
     
     @IBAction func addItem(_ sender: Any) {
         addItemView.animateIn(parrentView: self.view, popupView: addItemView, visualEffect: visualEffectView)
@@ -206,6 +208,8 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
         // Dispose of any resources that can be recreated.
     }
     
+    
+    // MARK: - tableView Methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.eventsArr.count
@@ -242,13 +246,12 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
     }
     
     
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "goToEventDetails", sender: eventsArr[indexPath.row])
     }
     
-    
+    /// при переходе по нажатию ячейки передаем объект Event на DetailsVC для отображения в UI
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "goToEventDetails" {

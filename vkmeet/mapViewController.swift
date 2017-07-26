@@ -15,7 +15,7 @@ class mapViewController: UIViewController {
     var longitude: Double? = nil
     var eventName = ""
     
-    var mapView:GMSMapView?
+    private var mapView:GMSMapView?
 
     override func viewDidLoad() {
         super.viewDidLoad()

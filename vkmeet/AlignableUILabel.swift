@@ -10,6 +10,8 @@ import UIKit
 
 class AlignableUILabel: UILabel {
 
+    // MARK: - textVerticalAlign
+    
     override func drawText(in rect: CGRect) {
         var newRect = CGRect(x: rect.origin.x,y: rect.origin.y,width: rect.width, height: rect.height)
         let fittingSize = sizeThatFits(rect.size)
