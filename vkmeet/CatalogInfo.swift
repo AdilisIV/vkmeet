@@ -69,6 +69,8 @@ class CatalogInfo: LiveViewController, UITableViewDataSource, UITableViewDelegat
         CatalogTable.delegate = self
         CatalogTable.dataSource = self
         
+        datepicker.collectionView.backgroundColor = UIColor.clear
+        
         /// конфигурируем navigationBar
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem

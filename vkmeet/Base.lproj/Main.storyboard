@@ -713,7 +713,6 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h6f-0s-spX" customClass="ScrollableDatepicker" customModule="vkmeet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="320" height="50"/>
-                                <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="cVw-2e-X9L"/>
                                 </constraints>
@@ -1161,8 +1160,8 @@
         <image name="vkmeet_logo" width="177" height="177"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="obU-8y-HBF"/>
-        <segue reference="spj-ry-rkT"/>
+        <segue reference="IIh-Hf-Kom"/>
         <segue reference="3XS-ax-wnS"/>
+        <segue reference="spj-ry-rkT"/>
     </inferredMetricsTieBreakers>
 </document>
